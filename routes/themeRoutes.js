@@ -36,7 +36,7 @@ router.get('/code/:identifier', async (req, res) => {
 });
 // Save or update theme for a user
 router.post("/", async (req, res) => {
-  let { rlNo, email, themeData, selectedTheme, bodyFont, agencyId } = req.body;
+  let { rlNo, email, themeData, selectedTheme, bodyFont, agencyId, updatedBy } = req.body;
 
   if (!email && !rlNo) {
     return res.status(400).json({ message: "Either email or rlNo is required" });
@@ -85,10 +85,14 @@ router.post("/", async (req, res) => {
     existingTheme.selectedTheme = selectedTheme;
     existingTheme.bodyFont = bodyFont;
     existingTheme.updatedAt = new Date();
-
+    existingTheme.updatedBy = updatedBy || null; //added by myself new 
+    console.log(existingTheme,'here is existingTheme');
     await existingTheme.save();
 
-    res.json({ message: "Theme updated successfully" });
+    res.json({
+      message: "Theme updated successfully",
+      updatedBy: existingTheme.updatedBy,
+    });
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
   }
