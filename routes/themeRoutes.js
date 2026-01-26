@@ -6,10 +6,82 @@ const fs = require("fs");
 const path = require("path");
 const originCheck = require("../middleware/originCheck");
 const AgencyLoader = require('../models/loaderSchema');
+const defaultTheme = require("../middleware/defaulttheme");
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
   res.json({ ok: true });
+});
+
+router.post("/createNewinstance", async (req, res) => {
+  try {
+    let { email, rlNo, agencyId, createdBy } = req.body;
+
+    if (!agencyId || (!email && !rlNo)) {
+      return res.status(400).json({
+        message: "agencyId and either email or rlNo are required"
+      });
+    }
+
+    // ✅ Normalize emails
+    let emailList = [];
+    if (email) {
+      if (Array.isArray(email)) {
+        emailList = email.map(e => e.toLowerCase());
+      } else {
+        emailList = [email.toLowerCase()];
+      }
+    }
+
+    // ✅ Build query to check duplicates
+    let query = { agencyId };
+
+    if (emailList.length) {
+      query.email = { $in: emailList };
+    } else if (rlNo) {
+      query.rlNo = rlNo;
+    }
+
+    const existingTheme = await Theme.findOne(query);
+
+    if (existingTheme) {
+      return res.status(409).json({
+        message: "Theme already exists for this user and agency"
+      });
+    }
+
+    // ✅ Create new theme with defaults
+    const newTheme = new Theme({
+      email: emailList.length ? emailList : [],
+      rlNo: rlNo || null,
+      agencyId,
+      themeData: defaultTheme.themeData,
+      selectedTheme: defaultTheme.selectedTheme,
+      bodyFont: defaultTheme.bodyFont,
+      isActive: defaultTheme.isActive,
+      updatedBy: createdBy || null,
+      updatedAt: new Date()
+    });
+
+    await newTheme.save();
+
+    const baseURL = "https://theme-builder-delta.vercel.app/api/theme";
+    const customJsURL = `${baseURL}/combined?agencyId=${agencyId}`;
+    const customCssURL = `${baseURL}/merged-css?agencyId=${agencyId}`;
+
+     res.status(201).json({
+      message: "Theme created successfully",
+      themeId: newTheme._id,
+      customJs: `<script src="${customJsURL}"></script>`,
+      customCss: `@import url("${customCssURL}");`
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message
+    });
+  }
 });
 // Get theme for a user
 router.get('/code/:identifier', async (req, res) => {
@@ -140,7 +212,6 @@ router.get("/file", async (req, res) => {
     res.status(500).json({ message: "Error loading CSS" });
   }
 });
-
 
 router.get("/merged-css", async (req, res) => {
   try {
