@@ -13,7 +13,7 @@ router.get("/_debug-test", (req, res) => {
   res.json({ ok: true });
 });
 
-router.post("/createNewinstance", async (req, res) => {
+router.post("/onboard", async (req, res) => {
   try {
     let { email, rlNo, agencyId, createdBy } = req.body;
 
