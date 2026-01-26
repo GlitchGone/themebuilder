@@ -9,7 +9,8 @@ const themeSchema = new mongoose.Schema({
   bodyFont: String,
   updatedAt: { type: Date, default: Date.now },
   isActive: { type: Boolean, default: true } ,
-  updatedBy:{type:String, default:null}
+  updatedBy:{type:String, default:null},
+  createdBy:{type:String, default:null}
 }, { collection: 'userThemes' });
 
 module.exports = mongoose.model('Theme', themeSchema);

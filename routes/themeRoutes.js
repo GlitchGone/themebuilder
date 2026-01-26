@@ -59,7 +59,7 @@ router.post("/onboard", async (req, res) => {
       selectedTheme: defaultTheme.selectedTheme,
       bodyFont: defaultTheme.bodyFont,
       isActive: defaultTheme.isActive,
-      updatedBy: createdBy || null,
+      createdBy: createdBy || null,
       updatedAt: new Date()
     });
 
