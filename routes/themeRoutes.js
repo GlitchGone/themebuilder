@@ -65,7 +65,7 @@ router.post("/onboard", async (req, res) => {
 
     await newTheme.save();
 
-    const baseURL = "https://theme-builder-delta.vercel.app/api/theme";
+    const baseURL = "https://themebuilder-six.vercel.app/api/theme";
     const customJsURL = `${baseURL}/combined?agencyId=${agencyId}`;
     const customCssURL = `${baseURL}/merged-css?agencyId=${agencyId}`;
 
@@ -416,6 +416,7 @@ router.post("/loader-css", async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
+
 // 🟡 Get all loaders for an agency
 router.get("/Get-loader-css", async (req, res) => {
   try {
