@@ -515,7 +515,7 @@ router.get("/combined", async (req, res) => {
     // === Inject theme + agency vars ===
     const dynamicVars = `
     const agn = "${encodedAgn}";
-   const remoteEncoded = "aHR0cHM6Ly90aGVtZS1idWlsZGVyLWRlbHRhLnZlcmNlbC5hcHAvYXBpL3RoZW1lL2ZpbGU/YWdlbmN5SWQ9${encodedAgn}";
+   const remoteEncoded = "aHR0cHM6Ly90aGVtZWJ1aWxkZXItc2l4LnZlcmNlbC5hcHAvYXBpL3RoZW1lL2ZpbGU=/YWdlbmN5SWQ9${encodedAgn}";
     try { localStorage.setItem('agn', agn); } catch (e) {}
     `;
 
