@@ -7,12 +7,67 @@ const path = require("path");
 const originCheck = require("../middleware/originCheck");
 const AgencyLoader = require('../models/loaderSchema');
 const defaultTheme = require("../middleware/defaulttheme");
+const Themedynamically = require("../models/Theme");
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
   res.json({ ok: true });
 });
+router.post("/addthemes", async (req, res) => {
+  try {
+    const { themeName, themeData, createdBy } = req.body;
 
+    if (!themeName || !themeData) {
+      return res.status(400).json({
+        message: "themeName and themeData are required"
+      });
+    }
+
+    // Check duplicate
+    const existingTheme = await Themedynamically.findOne({ themeName });
+
+    if (existingTheme) {
+      return res.status(409).json({
+        message: "Theme with this name already exists"
+      });
+    }
+
+    const newTheme = new Themedynamically({
+      themeName,
+      themeData,
+      createdBy: createdBy || null
+    });
+
+    await newTheme.save();
+
+    res.status(201).json({
+      message: "Theme created successfully",
+      theme: newTheme
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
+      error: error.message
+    });
+  }
+});
+router.get("/getallthemes", async (req, res) => {
+  try {
+    const themes = await Themedynamically.find({ isActive: true });
+
+    res.status(200).json({
+      count: themes.length,
+      themes
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
+      error: error.message
+    });
+  }
+});
 router.post("/onboard", async (req, res) => {
   try {
     let { email, rlNo, agencyId, createdBy } = req.body;
