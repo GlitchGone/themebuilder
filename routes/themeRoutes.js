@@ -1,4 +1,5 @@
 // routes/themeRoutes.js
+require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 const Theme = require('../models/UserTheme');
@@ -8,6 +9,7 @@ const originCheck = require("../middleware/originCheck");
 const AgencyLoader = require('../models/loaderSchema');
 const defaultTheme = require("../middleware/defaulttheme");
 const Themedynamically = require("../models/Theme");
+const transporter = require("../utils/mailer");
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
@@ -78,7 +80,6 @@ router.post("/onboard", async (req, res) => {
       });
     }
 
-    // ✅ Normalize emails
     let emailList = [];
     if (email) {
       if (Array.isArray(email)) {
@@ -88,7 +89,6 @@ router.post("/onboard", async (req, res) => {
       }
     }
 
-    // ✅ Build query to check duplicates
     let query = { agencyId };
 
     if (emailList.length) {
@@ -105,7 +105,6 @@ router.post("/onboard", async (req, res) => {
       });
     }
 
-    // ✅ Create new theme with defaults
     const newTheme = new Theme({
       email: emailList.length ? emailList : [],
       rlNo: rlNo || null,
@@ -124,11 +123,20 @@ router.post("/onboard", async (req, res) => {
     const customJsURL = `${baseURL}/combined?agencyId=${agencyId}`;
     const customCssURL = `${baseURL}/merged-css?agencyId=${agencyId}`;
 
-     res.status(201).json({
-      message: "Theme created successfully",
+    const responseData = {
       themeId: newTheme._id,
       customJs: `<script src="${customJsURL}"></script>`,
       customCss: `@import url("${customCssURL}");`
+    };
+
+    // ✅ Send email (to first email or all)
+    // if (emailList.length) {
+    //   await sendThemeEmail(emailList[0], responseData);
+    // }
+
+    return res.status(201).json({
+      message: "Theme created & email sent successfully",
+      ...responseData
     });
 
   } catch (err) {
@@ -312,6 +320,7 @@ router.get("/merged-css", async (req, res) => {
       "GlitchGone Light Theme": "whitegreenlogin.css",
       "JetBlack Luxury Gold Theme": "jetblacklogin.css",
       "JetBlack Luxury Gold Theme - Light": "jetblacklogin.css",
+      "Veltrix Nova Theme": "veltrixnovaloginpage.css",
     };
 
     if (themeCssFiles[selectedTheme]) {
@@ -612,4 +621,81 @@ router.get("/:email", async (req, res) => {
     }
 });
 
+
+
+async function sendThemeEmail(to, data) {
+  const safeJs = data.customJs
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  const safeCss = data.customCss
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: to,
+    subject: "Your Theme Builder Script",
+   html: `
+  <div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 30px;">
+    
+    <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #4a90e2, #007aff); padding: 20px; text-align: center; color: white;">
+        <h2 style="margin: 0;">🎉 You are Registered Successfully</h2>
+        <p style="margin: 5px 0 0;">Your custom theme is ready</p>
+      </div>
+
+      <!-- Body -->
+      <div style="padding: 20px; color: #333;">
+        
+        <p style="font-size: 14px;">Hello,</p>
+        <p style="font-size: 14px;">
+          Your theme has been successfully created. Please find your integration details below:
+        </p>
+
+        <!-- JS -->
+        <div style="margin: 15px 0;">
+          <strong>Custom JS Script:</strong>
+          <div style="background: #0f172a; color: #38bdf8; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; overflow-x: auto;">
+            ${safeJs}
+          </div>
+        </div>
+
+        <!-- CSS -->
+        <div style="margin: 15px 0;">
+          <strong>Custom CSS:</strong>
+          <div style="background: #0f172a; color: #22c55e; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; overflow-x: auto;">
+            ${safeCss}
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <p style="font-size: 14px;">
+          Copy and paste the above code into your website to activate your theme.
+        </p>
+
+        <!-- Warning -->
+        <div style="margin-top: 20px; padding: 12px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 6px;">
+          <strong style="color: #856404;">⚠️ Important Note:</strong>
+          <p style="margin: 5px 0; font-size: 13px; color: #856404;">
+            Please do not share this code with anyone. Unauthorized sharing may result in your theme builder being blocked for security reasons.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="background: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #888;">
+        © ${new Date().getFullYear()} Growthable • All rights reserved
+      </div>
+
+    </div>
+  </div>
+`
+  };
+
+  await transporter.sendMail(mailOptions);
+}
 module.exports = router;
