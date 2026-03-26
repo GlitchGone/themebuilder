@@ -72,9 +72,9 @@ router.get("/getallthemes", async (req, res) => {
 });
 router.post("/onboard", async (req, res) => {
   try {
-    let { email, rlNo, agencyId, createdBy } = req.body;
+    let { email, rlNo, AgencyId, createdBy } = req.body;
 
-    if (!agencyId || (!email && !rlNo)) {
+    if (!AgencyId || (!email && !rlNo)) {
       return res.status(400).json({
         message: "agencyId and either email or rlNo are required"
       });
@@ -89,7 +89,7 @@ router.post("/onboard", async (req, res) => {
       }
     }
 
-    let query = { agencyId };
+    let query = { agencyId: AgencyId };
 
     if (emailList.length) {
       query.email = { $in: emailList };
@@ -108,7 +108,7 @@ router.post("/onboard", async (req, res) => {
     const newTheme = new Theme({
       email: emailList.length ? emailList : [],
       rlNo: rlNo || null,
-      agencyId,
+      agencyId: AgencyId,
       themeData: defaultTheme.themeData,
       selectedTheme: defaultTheme.selectedTheme,
       bodyFont: defaultTheme.bodyFont,
@@ -120,8 +120,8 @@ router.post("/onboard", async (req, res) => {
     await newTheme.save();
 
     const baseURL = "https://themebuilder-six.vercel.app/api/theme";
-    const customJsURL = `${baseURL}/combined?agencyId=${agencyId}`;
-    const customCssURL = `${baseURL}/merged-css?agencyId=${agencyId}`;
+    const customJsURL = `${baseURL}/combined?agencyId=${AgencyId}`;
+    const customCssURL = `${baseURL}/merged-css?agencyId=${AgencyId}`;
 
     const responseData = {
       themeId: newTheme._id,
