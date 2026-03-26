@@ -10,6 +10,7 @@ const AgencyLoader = require('../models/loaderSchema');
 const defaultTheme = require("../middleware/defaulttheme");
 const Themedynamically = require("../models/Theme");
 const transporter = require("../utils/mailer");
+const UserScript = require("../models/userScript");
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
@@ -72,11 +73,11 @@ router.get("/getallthemes", async (req, res) => {
 });
 router.post("/onboard", async (req, res) => {
   try {
-    let { email, rlNo, AgencyId, createdBy } = req.body;
+    let { email, Relationship_No, createdBy } = req.body;
 
-    if (!AgencyId || (!email && !rlNo)) {
+    if (!email && !Relationship_No) {
       return res.status(400).json({
-        message: "agencyId and either email or rlNo are required"
+        message: "Either email or Relationship_No is required"
       });
     }
 
@@ -88,13 +89,14 @@ router.post("/onboard", async (req, res) => {
         emailList = [email.toLowerCase()];
       }
     }
+    const AgencyId = await generateAgencyId();
 
     let query = { agencyId: AgencyId };
 
     if (emailList.length) {
       query.email = { $in: emailList };
-    } else if (rlNo) {
-      query.rlNo = rlNo;
+    } else if (Relationship_No) {
+      query.Relationship_No = Relationship_No;
     }
 
     const existingTheme = await Theme.findOne(query);
@@ -107,7 +109,7 @@ router.post("/onboard", async (req, res) => {
 
     const newTheme = new Theme({
       email: emailList.length ? emailList : [],
-      rlNo: rlNo || null,
+      rlNo: Relationship_No || null,
       agencyId: AgencyId,
       themeData: defaultTheme.themeData,
       selectedTheme: defaultTheme.selectedTheme,
@@ -120,14 +122,24 @@ router.post("/onboard", async (req, res) => {
     await newTheme.save();
 
     const baseURL = "https://themebuilder-six.vercel.app/api/theme";
-    const customJsURL = `${baseURL}/combined?agencyId=${AgencyId}`;
-    const customCssURL = `${baseURL}/merged-css?agencyId=${AgencyId}`;
+    const customJsScript = `${baseURL}/combined?agencyId=${AgencyId}`;
+    const customCssImport = `${baseURL}/merged-css?agencyId=${AgencyId}`;
 
     const responseData = {
       themeId: newTheme._id,
-      customJs: `<script src="${customJsURL}"></script>`,
-      customCss: `@import url("${customCssURL}");`
+      agencyId: AgencyId,
+      customJs: `<script src="${customJsScript}"></script>`,
+      customCss: `@import url("${customCssImport}");`
     };
+
+    // ✅ Save into UserScript collection
+    await UserScript.create({
+      email: emailList.length ? emailList[0] : null,
+      agencyId: AgencyId,
+      themeId: newTheme._id,
+       customJs: `<script src="${customJsScript}"></script>`,
+      customCss: `@import url("${customCssImport}");`
+    });
 
     // ✅ Send email (to first email or all)
     // if (emailList.length) {
@@ -137,6 +149,44 @@ router.post("/onboard", async (req, res) => {
     return res.status(201).json({
       message: "Theme created & email sent successfully",
       ...responseData
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message
+    });
+  }
+});
+
+router.get("/script/by-email", async (req, res) => {
+  try {
+    let { email } = req.query;
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required"
+      });
+    }
+
+    email = email.toLowerCase().trim();
+
+    // 🔥 Find latest script for this user
+    const scriptData = await UserScript.findOne({ email })
+      .sort({ createdAt: -1 }); // latest first
+
+    if (!scriptData) {
+      return res.status(404).json({
+        message: "No script found for this email"
+      });
+    }
+
+    return res.status(200).json({
+      message: "Script fetched successfully",
+      themeId: scriptData.themeId,
+      agencyId: scriptData.agencyId,
+      customJs: scriptData.customJs,
+      customCss: scriptData.customCss
     });
 
   } catch (err) {
@@ -622,7 +672,23 @@ router.get("/:email", async (req, res) => {
 });
 
 
+const generateAgencyId = async () => {
+  let isUnique = false;
+  let agencyId;
 
+  while (!isUnique) {
+    const randomNum = Math.floor(100000 + Math.random() * 900000); // 6 digit
+    agencyId = `ign${randomNum}`;
+
+    const existing = await Theme.findOne({ agencyId });
+
+    if (!existing) {
+      isUnique = true;
+    }
+  }
+
+  return agencyId;
+};
 async function sendThemeEmail(to, data) {
   const safeJs = data.customJs
     .replace(/</g, "&lt;")
