@@ -282,6 +282,34 @@ router.post("/", async (req, res) => {
     // ✅ Update existing theme
     // if (emailList.length > 0) existingTheme.email = emailList;
     // if (rlNo) existingTheme.rlNo = rlNo;
+    // Check if theme changed
+    const isNewTheme = existingTheme.selectedTheme !== selectedTheme;
+
+    // Default menu customization data
+    const defaultMenuCustomizations = {
+      sb_dashboard: { title: "Dashboard", icon: "f853" },
+      sb_conversations: { title: "Conversations", icon: "f27a" },
+      sb_calendars: { title: "Calendars", icon: "f133" },
+      sb_launchpad: { title: "Launchpad", icon: "f06a" },
+      sb_opportunities: { title: "Opportunities", icon: "f83e" },
+      sb_contacts: { title: "Contacts", icon: "f2c2" },
+      sb_payments: { title: "Payments", icon: "f81d" },
+      sb_reporting: { title: "Reporting", icon: "f24d" },
+      sb_email_marketing: { title: "Email Marketing", icon: "f07a" },
+      sb_automation: { title: "Automation", icon: "f544" },
+      sb_sites: { title: "Sites", icon: "f0ac" },
+      sb_app_media: { title: "App Media", icon: "f478" },
+      sb_memberships: { title: "Memberships", icon: "f390" },
+      sb_reputation: { title: "Reputation", icon: "f005" }
+    };
+
+    // If new theme → inject menu customizations
+    if (isNewTheme) {
+      existingTheme.themeData = {
+        ...existingTheme.themeData,
+        "--menuCustomizations": JSON.stringify(defaultMenuCustomizations)
+      };
+    }
 
     existingTheme.themeData = themeData;
     existingTheme.selectedTheme = selectedTheme;
