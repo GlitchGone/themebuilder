@@ -363,16 +363,17 @@ router.get("/merged-css", async (req, res) => {
     // ✅ Check if themeData and selectedTheme are missing
     const hasThemeData = Object.keys(themeData).length > 0;
     const hasSelectedTheme = selectedTheme && selectedTheme.trim() !== "";
-
+    console.log({ hasThemeData, hasSelectedTheme, selectedTheme });
     // ✅ If both are missing → return only main.css (no system-generated CSS)
-    if (!hasThemeData && !hasSelectedTheme) {
-      console.warn(`⚠️ No themeData or selectedTheme found for agencyId: ${agencyId}`);
+    if (!hasThemeData) {
+      console.warn(`⚠️ No themeDatafound for agencyId: ${agencyId}`);
+      return res.status(204).send(); // 204 = No Content
 
-      const mainCssPath = path.join(__dirname, "../public/main.css");
-      const mainCss = await fs.promises.readFile(mainCssPath, "utf8");
+      // const mainCssPath = path.join(__dirname, "../public/main.css");
+      // const mainCss = await fs.promises.readFile(mainCssPath, "utf8");
 
-      res.setHeader("Content-Type", "text/css");
-      return res.send(mainCss);
+      // res.setHeader("Content-Type", "text/css");
+      // return res.send(mainCss);
     }
 
     // ✅ Otherwise, continue with normal themed flow
