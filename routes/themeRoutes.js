@@ -11,6 +11,7 @@ const defaultTheme = require("../middleware/defaulttheme");
 const Themedynamically = require("../models/Theme");
 const transporter = require("../utils/mailer");
 const UserScript = require("../models/userScript");
+const AgencySettings = require("../models/AgencySettings");
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
@@ -111,10 +112,10 @@ router.post("/onboard", async (req, res) => {
       email: emailList.length ? emailList : [],
       rlNo: Relationship_No || null,
       agencyId: AgencyId,
-      themeData: defaultTheme.themeData,
-      selectedTheme: defaultTheme.selectedTheme,
-      bodyFont: defaultTheme.bodyFont,
-      isActive: defaultTheme.isActive,
+      themeData: null,
+      selectedTheme: null,
+      bodyFont: null,
+      isActive: true,
       createdBy: createdBy || null,
       updatedAt: new Date()
     });
@@ -131,16 +132,32 @@ router.post("/onboard", async (req, res) => {
       customJs: `<script src="${customJsScript}"></script>`,
       customCss: `@import url("${customCssImport}");`
     };
+      try{
+      // ✅ Save into UserScript collection
+          await UserScript.create({
+            email: emailList.length ? emailList[0] : null,
+            agencyId: AgencyId,
+            themeId: newTheme._id,
+            customJs: `<script src="${customJsScript}"></script>`,
+            customCss: `@import url("${customCssImport}");`
+          });
+      }catch(err){ 
+        console.error("❌ Error saving to UserScript:", err); 
+      }
 
-    // ✅ Save into UserScript collection
-    await UserScript.create({
-      email: emailList.length ? emailList[0] : null,
-      agencyId: AgencyId,
-      themeId: newTheme._id,
-       customJs: `<script src="${customJsScript}"></script>`,
-      customCss: `@import url("${customCssImport}");`
-    });
+      try{
+      await AgencySettings.create({
+          agencyId: AgencyId,
+          loaderId: null, // or default loader ObjectId
+          themeId: newTheme._id,
+          selectedTheme: null,
+          bodyFont:null
+          });
+      }catch(err){
+          console.error("❌ Error creating default AgencySettings:", err);
+      }
 
+    
     // ✅ Send email (to first email or all)
     // if (emailList.length) {
     //   await sendThemeEmail(emailList[0], responseData);
@@ -438,18 +455,23 @@ router.get("/merged-css", async (req, res) => {
     // ✅ Select Loader
     const companyLogoUrl = themeData["--loader-company-url"];
     const animationSetting = themeData["--animation-settings"];
+    const settings = await AgencySettings.findOne({ agencyId });
 
-    let loaderCSS = "";
-    if (companyLogoUrl && companyLogoUrl.trim() !== "") {
-      loaderCSS =
-        animationSetting === "BouncingLogo"
-          ? generateBouncingLogoCSS(companyLogoUrl)
-          : generatePulsatingLogoCSS(companyLogoUrl);
-    } else {
-      const activeLoader = await AgencyLoader.findOne({ agencyId, isActive: true });
-      // console.log(activeLoader,'Here is the loader Data');
-      loaderCSS = activeLoader?.loaderCSS || "";
-    }
+    let loaderCSS = "";                                                                                                                                                                          
+   if (companyLogoUrl && companyLogoUrl.trim() !== "") {
+        loaderCSS =
+          animationSetting === "BouncingLogo"
+            ? generateBouncingLogoCSS(companyLogoUrl)
+            : generatePulsatingLogoCSS(companyLogoUrl);
+      } else {
+        if (settings?.customLoaderCSS) {
+          loaderCSS = settings.customLoaderCSS;
+        } 
+        else if (settings?.loaderId) {
+          const loader = await AgencyLoader.findById(settings.loaderId);
+          loaderCSS = loader?.loaderCSS || "";
+        }
+      }
 
     // ✅ Read the system-generated style.css only when themedata exists
     const cssFilePath = path.join(__dirname, "../public/style.css");
@@ -492,7 +514,7 @@ router.get("/merged-css", async (req, res) => {
   }
 });
 
-// 🟢 Create or update a loader for an agency
+// 🟢 Create or update a loader for an agency -- To Do to remove the agencyid
 router.post("/loader-css", async (req, res) => {
   try {
     const { agencyId, loaderName, loaderCSS, previewImage, isActive } = req.body;
@@ -531,18 +553,30 @@ router.post("/loader-css", async (req, res) => {
   }
 });
 
-// 🟡 Get all loaders for an agency
+// 🟡 Get all loaders for an agency -0 need to update this API to remove agency Based.
 router.get("/Get-loader-css", async (req, res) => {
   try {
-    const { agencyId } = req.query;
-    if (!agencyId) {
-      return res.status(400).json({ success: false, message: "agencyId is required" });
+    const { email } = req.query;
+    if (!email) {
+      return res.status(400).json({ success: false, message: "email is required" });
     }
-    const loaders = await AgencyLoader.find({ agencyId });
-    if (!loaders || loaders.length === 0) {
-      return res.status(404).json({ success: false, message: "No loaders found for this agency" });
+    const userTheme = await Theme.findOne({ email: email, isActive: true });
+
+    if(!userTheme || userTheme.email.length === 0 || userTheme.isActive === false){
+      return res.status(404).json({ message: "User theme not found" });
     }
-    res.json({ success: true, loaders });
+
+    const loaders = await AgencyLoader.find();
+    const settings = await AgencySettings.findOne({
+      agencyId: userTheme.agencyId
+    });
+    console.log(settings,'here are loaders');
+    res.json({
+      success: true,
+      loaders,
+      activeLoaderId: settings?.loaderId || null
+    });
+
   } catch (err) {
     console.error("❌ Error fetching loaders:", err);
     res.status(500).json({ success: false, message: "Server error", error: err.message });
@@ -552,52 +586,51 @@ router.get("/Get-loader-css", async (req, res) => {
 // ✅ Update loader isActive status
 router.put("/loader-css/status", async (req, res) => {
   try {
-    const { _id, isActive } = req.body;
+    const { _id,email } = req.body;
 
     // ✅ Validate input
-    if (!_id || typeof isActive !== "boolean") {
+    
+    if (!_id) {
       return res.status(400).json({
-        message: "_id and boolean isActive are required",
+        message: "loader _id is required",
       });
     }
-
+    const userTheme = await Theme.findOne({ email: email, isActive: true });
+    if(!userTheme || userTheme.email.length === 0 || userTheme.isActive === false){
+      return res.status(404).json({ message: "User theme not found" });
+    }
+    const agencysettings = await AgencySettings.findOne({ agencyId: userTheme.agencyId });
     // ✅ Find the loader by ID
     const loader = await AgencyLoader.findById(_id);
     if (!loader) {
       return res.status(404).json({ message: "Loader not found" });
     }
 
-    // ✅ CASE 1: If activating a new loader
-    if (isActive) {
-      // 🔹 Find currently active loader for this agency
-      const currentActive = await AgencyLoader.findOne({
-        agencyId: loader.agencyId,
-        isActive: true,
-      });
-
-      // 🔹 If this same loader is already active → skip updates
-      if (currentActive && currentActive._id.equals(loader._id)) {
-        return res.status(200).json({
-          message: "This loader is already active. No changes made.",
-          loader,
+        const currentActive = await AgencySettings.findOne({
+          agencyId: userTheme.agencyId,
         });
-      }
+        console.log(currentActive,'here is current active loader');
+        if (
+          currentActive &&
+          currentActive.loaderId &&
+          currentActive.loaderId.equals(loader._id)
+        ) {
+          return res.status(200).json({
+            message: "Already active",
+            loaderId: loader._id,
+          });
+        }
 
       // 🔹 Otherwise, deactivate all loaders of this agency
-      await AgencyLoader.updateMany(
-        { agencyId: loader.agencyId },
-        { isActive: false }
+      await AgencySettings.updateOne(
+        { agencyId: userTheme.agencyId },
+        { loaderId: loader._id, updatedAt: new Date() },
+        { upsert: true }
       );
-    }
-
-    // ✅ Update the target loader’s status
-    loader.isActive = isActive;
-    loader.updatedAt = new Date();
-    await loader.save();
 
     res.status(200).json({
-      message: `Loader ${isActive ? "activated" : "deactivated"} successfully`,
-      loader,
+      message: "Loader activated successfully",
+      loaderId: loader._id
     });
   } catch (err) {
     console.error("❌ Error updating loader status:", err);
