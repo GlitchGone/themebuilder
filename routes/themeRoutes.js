@@ -112,8 +112,6 @@ router.post("/onboard", async (req, res) => {
       email: emailList.length ? emailList : [],
       rlNo: Relationship_No || null,
       agencyId: AgencyId,
-      themeData: null,
-      selectedTheme: null,
       bodyFont: null,
       isActive: true,
       createdBy: createdBy || null,
@@ -710,7 +708,24 @@ router.get("/combined", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
+router.post("/agencysettings", async (req, res) => {
+  try {
+    const { email, rlNo, agencyId } = req.body;   
+    const agencySettings = new AgencySettings({
+        agencyId: agencyId,
+          loaderId: null, // or default loader ObjectId
+          themeId: null,
+          selectedTheme: null,
+          bodyFont:null
+    });
+    await agencySettings.save();
+  }catch (err) {
+    console.error("❌ Error in /agencysettings API:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+  
+  
+  });
 // ✅ New API: Find theme by email
 router.get("/:email", async (req, res) => {
     try {
