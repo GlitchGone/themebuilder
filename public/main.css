@@ -790,6 +790,10 @@ button {
 .hl_header--controls a {
   z-index: 20 !important;
 }
+#sidebar-v2 {
+    border-top-right-radius: var(--sidebar-top-right-radius) !important;
+    border-bottom-right-radius: var(--sidebar-bottom-right-radius) !important;
+}
 
 #sidebar-v2 {
   background-color: var(--sidebar-bg-color) !important;
