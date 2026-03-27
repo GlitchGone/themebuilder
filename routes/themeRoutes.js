@@ -457,7 +457,8 @@ router.get("/merged-css", async (req, res) => {
     const animationSetting = themeData["--animation-settings"];
     const settings = await AgencySettings.findOne({ agencyId });
 
-    let loaderCSS = "";                                                                                                                                                                          
+    let loaderCSS = "";            
+
    if (companyLogoUrl && companyLogoUrl.trim() !== "") {
         loaderCSS =
           animationSetting === "BouncingLogo"
@@ -472,7 +473,6 @@ router.get("/merged-css", async (req, res) => {
           loaderCSS = loader?.loaderCSS || "";
         }
       }
-
     // ✅ Read the system-generated style.css only when themedata exists
     const cssFilePath = path.join(__dirname, "../public/style.css");
     const cssContent = hasThemeData ? await fs.promises.readFile(cssFilePath, "utf8") : "";
