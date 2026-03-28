@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
 const loaderSchema = new mongoose.Schema({
-  agencyId: { type: String, required: true },
   loaderName: { type: String, required: true }, // Example: 'BlueGradientSpinner'
   loaderCSS: { type: String, required: true }, // Store complete CSS of the loader as text
   previewImage: { type: String, default: null }, // (Optional) URL for visual preview
+ // Optional but recommended 👇
+  category: { type: String, default: "general" },
+  isDefault: { type: Boolean, default: false },
+  
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now   },
-  isActive: { type: Boolean, default: false } // Only one loader per agency should be active at a time
 }, { 
   collection: 'agencyLoaders' 
 });

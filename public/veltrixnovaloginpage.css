@@ -1,0 +1,193 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* Root Variables */
+:root {
+  --primary: #EF3E6C;
+  --secondary: #35475B;
+  --dark: #0F1722;
+  --card-bg: rgba(17,24,39,0.9);
+  --input-bg: #111827;
+  --input-border: #2D3748;
+  --text-light: #E5E7EB;
+  --text-muted: #AAB4BE;
+}
+
+/* BODY BACKGROUND */
+.hl_login {
+  background: linear-gradient(135deg, #0F1722 0%, #1F2A38 50%, #EF3E6C 100%) !important;
+  font-family: 'Poppins', sans-serif !important;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CENTER CARD */
+.hl_login .card {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(15px);
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+  width: 460px !important;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* CARD BODY */
+.hl_login .card-body {
+  padding: 35px !important;
+}
+
+/* HEADINGS */
+.login-card-heading h2 {
+  color: var(--primary) !important;
+  font-size: 28px !important;
+  font-weight: 600;
+  text-align: center;
+}
+
+.login-card-heading h4 {
+  color: var(--text-muted) !important;
+  text-align: center;
+}
+
+/* INPUT LABEL */
+.hl-text-input-label {
+  color: var(--text-muted) !important;
+}
+
+/* INPUT FIELD */
+.hl-text-input {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  color: var(--text-light) !important;
+  padding: 12px 14px !important;
+  transition: all 0.3s ease;
+}
+
+/* INPUT FOCUS */
+.hl-text-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(239, 62, 108, 0.2) !important;
+}
+
+/* PLACEHOLDER */
+.hl-text-input::placeholder {
+  color: #6B7280 !important;
+}
+
+/* FORGOT PASSWORD */
+.forgot-password {
+  color: var(--primary) !important;
+  transition: 0.3s;
+}
+
+.forgot-password:hover {
+  color: #ff6f91 !important;
+}
+
+/* BUTTON */
+.hl-btn {
+  background: linear-gradient(90deg, #EF3E6C, #ff6f91) !important;
+  border-radius: 12px !important;
+  font-weight: 500;
+  padding: 12px !important;
+  transition: all 0.3s ease;
+  border: none !important;
+}
+
+/* BUTTON HOVER */
+.hl-btn:hover {
+  background: #ff6f91 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(239, 62, 108, 0.4);
+}
+
+/* DIVIDER TEXT */
+.hl_login .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+/* FOOTER TEXT */
+.foot-note {
+  color: var(--text-muted) !important;
+  text-align: center;
+}
+
+/* LINKS */
+.foot-note a {
+  color: var(--primary) !important;
+}
+
+/* GOOGLE BUTTON FIX */
+#g_id_signin iframe {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+/* HEADER BAR */
+.hl_login--header {
+  background: transparent !important;
+}
+
+/* LANGUAGE DROPDOWN */
+.language-dropdown-container select {
+  background: #111827 !important;
+  color: white !important;
+  border-radius: 8px !important;
+  border: 1px solid #2D3748 !important;
+}
+
+/* SMOOTH ANIMATION */
+.hl_login .card {
+  animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make whole layout vertical */
+.hl_login {
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-top: 40px;
+}
+
+/* HEADER CONTAINER */
+.hl_login--header .container-fluid {
+  flex-direction: column !important;
+  align-items: center !important;
+  position: relative;
+}
+
+/* LOGO CENTER TOP */
+.hl_login--header a {
+  margin-bottom: 20px;
+}
+
+/* LANGUAGE TOP RIGHT */
+.language-dropdown-container {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+/* REMOVE HEADER HEIGHT LIMIT */
+.hl_login--header .container-fluid {
+  min-height: auto !important;
+}
+
+/* CENTER BODY */
+.hl_login--body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

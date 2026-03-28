@@ -1,4 +1,5 @@
 // routes/themeRoutes.js
+require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 const Theme = require('../models/UserTheme');
@@ -8,6 +9,9 @@ const originCheck = require("../middleware/originCheck");
 const AgencyLoader = require('../models/loaderSchema');
 const defaultTheme = require("../middleware/defaulttheme");
 const Themedynamically = require("../models/Theme");
+const transporter = require("../utils/mailer");
+const UserScript = require("../models/userScript");
+const AgencySettings = require("../models/AgencySettings");
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
@@ -70,15 +74,14 @@ router.get("/getallthemes", async (req, res) => {
 });
 router.post("/onboard", async (req, res) => {
   try {
-    let { email, rlNo, agencyId, createdBy } = req.body;
+    let { email, Relationship_No, createdBy } = req.body;
 
-    if (!agencyId || (!email && !rlNo)) {
+    if (!email && !Relationship_No) {
       return res.status(400).json({
-        message: "agencyId and either email or rlNo are required"
+        message: "Either email or Relationship_No is required"
       });
     }
 
-    // ✅ Normalize emails
     let emailList = [];
     if (email) {
       if (Array.isArray(email)) {
@@ -87,14 +90,14 @@ router.post("/onboard", async (req, res) => {
         emailList = [email.toLowerCase()];
       }
     }
+    const AgencyId = await generateAgencyId();
 
-    // ✅ Build query to check duplicates
-    let query = { agencyId };
+    let query = { agencyId: AgencyId };
 
     if (emailList.length) {
       query.email = { $in: emailList };
-    } else if (rlNo) {
-      query.rlNo = rlNo;
+    } else if (Relationship_No) {
+      query.Relationship_No = Relationship_No;
     }
 
     const existingTheme = await Theme.findOne(query);
@@ -105,15 +108,12 @@ router.post("/onboard", async (req, res) => {
       });
     }
 
-    // ✅ Create new theme with defaults
     const newTheme = new Theme({
       email: emailList.length ? emailList : [],
-      rlNo: rlNo || null,
-      agencyId,
-      themeData: defaultTheme.themeData,
-      selectedTheme: defaultTheme.selectedTheme,
-      bodyFont: defaultTheme.bodyFont,
-      isActive: defaultTheme.isActive,
+      rlNo: Relationship_No || null,
+      agencyId: AgencyId,
+      bodyFont: null,
+      isActive: true,
       createdBy: createdBy || null,
       updatedAt: new Date()
     });
@@ -121,14 +121,87 @@ router.post("/onboard", async (req, res) => {
     await newTheme.save();
 
     const baseURL = "https://themebuilder-six.vercel.app/api/theme";
-    const customJsURL = `${baseURL}/combined?agencyId=${agencyId}`;
-    const customCssURL = `${baseURL}/merged-css?agencyId=${agencyId}`;
+    const customJsScript = `${baseURL}/combined?agencyId=${AgencyId}`;
+    const customCssImport = `${baseURL}/merged-css?agencyId=${AgencyId}`;
 
-     res.status(201).json({
-      message: "Theme created successfully",
+    const responseData = {
       themeId: newTheme._id,
-      customJs: `<script src="${customJsURL}"></script>`,
-      customCss: `@import url("${customCssURL}");`
+      agencyId: AgencyId,
+      customJs: `<script src="${customJsScript}"></script>`,
+      customCss: `@import url("${customCssImport}");`
+    };
+      try{
+      // ✅ Save into UserScript collection
+          await UserScript.create({
+            email: emailList.length ? emailList[0] : null,
+            agencyId: AgencyId,
+            themeId: newTheme._id,
+            customJs: `<script src="${customJsScript}"></script>`,
+            customCss: `@import url("${customCssImport}");`
+          });
+      }catch(err){ 
+        console.error("❌ Error saving to UserScript:", err); 
+      }
+
+      try{
+      await AgencySettings.create({
+          agencyId: AgencyId,
+          loaderId: null, // or default loader ObjectId
+          themeId: newTheme._id,
+          selectedTheme: null,
+          bodyFont:null
+          });
+      }catch(err){
+          console.error("❌ Error creating default AgencySettings:", err);
+      }
+
+    
+    // ✅ Send email (to first email or all)
+    // if (emailList.length) {
+    //   await sendThemeEmail(emailList[0], responseData);
+    // }
+
+    return res.status(201).json({
+      message: "Theme created & email sent successfully",
+      ...responseData
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message
+    });
+  }
+});
+
+router.get("/script/by-email", async (req, res) => {
+  try {
+    let { email } = req.query;
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required"
+      });
+    }
+
+    email = email.toLowerCase().trim();
+
+    // 🔥 Find latest script for this user
+    const scriptData = await UserScript.findOne({ email })
+      .sort({ createdAt: -1 }); // latest first
+
+    if (!scriptData) {
+      return res.status(404).json({
+        message: "No script found for this email"
+      });
+    }
+
+    return res.status(200).json({
+      message: "Script fetched successfully",
+      themeId: scriptData.themeId,
+      agencyId: scriptData.agencyId,
+      customJs: scriptData.customJs,
+      customCss: scriptData.customCss
     });
 
   } catch (err) {
@@ -207,6 +280,34 @@ router.post("/", async (req, res) => {
     // ✅ Update existing theme
     // if (emailList.length > 0) existingTheme.email = emailList;
     // if (rlNo) existingTheme.rlNo = rlNo;
+    // Check if theme changed
+    const isNewTheme = existingTheme.selectedTheme !== selectedTheme;
+
+    // Default menu customization data
+    const defaultMenuCustomizations = {
+      sb_dashboard: { title: "Dashboard", icon: "f853" },
+      sb_conversations: { title: "Conversations", icon: "f27a" },
+      sb_calendars: { title: "Calendars", icon: "f133" },
+      sb_launchpad: { title: "Launchpad", icon: "f06a" },
+      sb_opportunities: { title: "Opportunities", icon: "f83e" },
+      sb_contacts: { title: "Contacts", icon: "f2c2" },
+      sb_payments: { title: "Payments", icon: "f81d" },
+      sb_reporting: { title: "Reporting", icon: "f24d" },
+      sb_email_marketing: { title: "Email Marketing", icon: "f07a" },
+      sb_automation: { title: "Automation", icon: "f544" },
+      sb_sites: { title: "Sites", icon: "f0ac" },
+      sb_app_media: { title: "App Media", icon: "f478" },
+      sb_memberships: { title: "Memberships", icon: "f390" },
+      sb_reputation: { title: "Reputation", icon: "f005" }
+    };
+
+    // If new theme → inject menu customizations
+    if (isNewTheme) {
+      existingTheme.themeData = {
+        ...existingTheme.themeData,
+        "--menuCustomizations": JSON.stringify(defaultMenuCustomizations)
+      };
+    }
 
     existingTheme.themeData = themeData;
     existingTheme.selectedTheme = selectedTheme;
@@ -288,16 +389,17 @@ router.get("/merged-css", async (req, res) => {
     // ✅ Check if themeData and selectedTheme are missing
     const hasThemeData = Object.keys(themeData).length > 0;
     const hasSelectedTheme = selectedTheme && selectedTheme.trim() !== "";
-
+    console.log({ hasThemeData, hasSelectedTheme, selectedTheme });
     // ✅ If both are missing → return only main.css (no system-generated CSS)
-    if (!hasThemeData && !hasSelectedTheme) {
-      console.warn(`⚠️ No themeData or selectedTheme found for agencyId: ${agencyId}`);
+    if (!hasThemeData) {
+      console.warn(`⚠️ No themeDatafound for agencyId: ${agencyId}`);
+      return res.status(204).send(); // 204 = No Content
 
-      const mainCssPath = path.join(__dirname, "../public/main.css");
-      const mainCss = await fs.promises.readFile(mainCssPath, "utf8");
+      // const mainCssPath = path.join(__dirname, "../public/main.css");
+      // const mainCss = await fs.promises.readFile(mainCssPath, "utf8");
 
-      res.setHeader("Content-Type", "text/css");
-      return res.send(mainCss);
+      // res.setHeader("Content-Type", "text/css");
+      // return res.send(mainCss);
     }
 
     // ✅ Otherwise, continue with normal themed flow
@@ -312,6 +414,7 @@ router.get("/merged-css", async (req, res) => {
       "GlitchGone Light Theme": "whitegreenlogin.css",
       "JetBlack Luxury Gold Theme": "jetblacklogin.css",
       "JetBlack Luxury Gold Theme - Light": "jetblacklogin.css",
+      "Veltrix Nova Theme": "veltrixnovaloginpage.css",
     };
 
     if (themeCssFiles[selectedTheme]) {
@@ -379,19 +482,24 @@ router.get("/merged-css", async (req, res) => {
     // ✅ Select Loader
     const companyLogoUrl = themeData["--loader-company-url"];
     const animationSetting = themeData["--animation-settings"];
+    const settings = await AgencySettings.findOne({ agencyId });
 
-    let loaderCSS = "";
-    if (companyLogoUrl && companyLogoUrl.trim() !== "") {
-      loaderCSS =
-        animationSetting === "BouncingLogo"
-          ? generateBouncingLogoCSS(companyLogoUrl)
-          : generatePulsatingLogoCSS(companyLogoUrl);
-    } else {
-      const activeLoader = await AgencyLoader.findOne({ agencyId, isActive: true });
-      // console.log(activeLoader,'Here is the loader Data');
-      loaderCSS = activeLoader?.loaderCSS || "";
-    }
+    let loaderCSS = "";            
 
+   if (companyLogoUrl && companyLogoUrl.trim() !== "") {
+        loaderCSS =
+          animationSetting === "BouncingLogo"
+            ? generateBouncingLogoCSS(companyLogoUrl)
+            : generatePulsatingLogoCSS(companyLogoUrl);
+      } else {
+        if (settings?.customLoaderCSS) {
+          loaderCSS = settings.customLoaderCSS;
+        } 
+        else if (settings?.loaderId) {
+          const loader = await AgencyLoader.findById(settings.loaderId);
+          loaderCSS = loader?.loaderCSS || "";
+        }
+      }
     // ✅ Read the system-generated style.css only when themedata exists
     const cssFilePath = path.join(__dirname, "../public/style.css");
     const cssContent = hasThemeData ? await fs.promises.readFile(cssFilePath, "utf8") : "";
@@ -433,7 +541,7 @@ router.get("/merged-css", async (req, res) => {
   }
 });
 
-// 🟢 Create or update a loader for an agency
+// 🟢 Create or update a loader for an agency -- To Do to remove the agencyid
 router.post("/loader-css", async (req, res) => {
   try {
     const { agencyId, loaderName, loaderCSS, previewImage, isActive } = req.body;
@@ -472,18 +580,30 @@ router.post("/loader-css", async (req, res) => {
   }
 });
 
-// 🟡 Get all loaders for an agency
+// 🟡 Get all loaders for an agency -0 need to update this API to remove agency Based.
 router.get("/Get-loader-css", async (req, res) => {
   try {
-    const { agencyId } = req.query;
-    if (!agencyId) {
-      return res.status(400).json({ success: false, message: "agencyId is required" });
+    const { email } = req.query;
+    if (!email) {
+      return res.status(400).json({ success: false, message: "email is required" });
     }
-    const loaders = await AgencyLoader.find({ agencyId });
-    if (!loaders || loaders.length === 0) {
-      return res.status(404).json({ success: false, message: "No loaders found for this agency" });
+    const userTheme = await Theme.findOne({ email: email, isActive: true });
+
+    if(!userTheme || userTheme.email.length === 0 || userTheme.isActive === false){
+      return res.status(404).json({ message: "User theme not found" });
     }
-    res.json({ success: true, loaders });
+
+    const loaders = await AgencyLoader.find();
+    const settings = await AgencySettings.findOne({
+      agencyId: userTheme.agencyId
+    });
+    console.log(settings,'here are loaders');
+    res.json({
+      success: true,
+      loaders,
+      activeLoaderId: settings?.loaderId || null
+    });
+
   } catch (err) {
     console.error("❌ Error fetching loaders:", err);
     res.status(500).json({ success: false, message: "Server error", error: err.message });
@@ -493,52 +613,51 @@ router.get("/Get-loader-css", async (req, res) => {
 // ✅ Update loader isActive status
 router.put("/loader-css/status", async (req, res) => {
   try {
-    const { _id, isActive } = req.body;
+    const { _id,email } = req.body;
 
     // ✅ Validate input
-    if (!_id || typeof isActive !== "boolean") {
+    
+    if (!_id) {
       return res.status(400).json({
-        message: "_id and boolean isActive are required",
+        message: "loader _id is required",
       });
     }
-
+    const userTheme = await Theme.findOne({ email: email, isActive: true });
+    if(!userTheme || userTheme.email.length === 0 || userTheme.isActive === false){
+      return res.status(404).json({ message: "User theme not found" });
+    }
+    const agencysettings = await AgencySettings.findOne({ agencyId: userTheme.agencyId });
     // ✅ Find the loader by ID
     const loader = await AgencyLoader.findById(_id);
     if (!loader) {
       return res.status(404).json({ message: "Loader not found" });
     }
 
-    // ✅ CASE 1: If activating a new loader
-    if (isActive) {
-      // 🔹 Find currently active loader for this agency
-      const currentActive = await AgencyLoader.findOne({
-        agencyId: loader.agencyId,
-        isActive: true,
-      });
-
-      // 🔹 If this same loader is already active → skip updates
-      if (currentActive && currentActive._id.equals(loader._id)) {
-        return res.status(200).json({
-          message: "This loader is already active. No changes made.",
-          loader,
+        const currentActive = await AgencySettings.findOne({
+          agencyId: userTheme.agencyId,
         });
-      }
+        console.log(currentActive,'here is current active loader');
+        if (
+          currentActive &&
+          currentActive.loaderId &&
+          currentActive.loaderId.equals(loader._id)
+        ) {
+          return res.status(200).json({
+            message: "Already active",
+            loaderId: loader._id,
+          });
+        }
 
       // 🔹 Otherwise, deactivate all loaders of this agency
-      await AgencyLoader.updateMany(
-        { agencyId: loader.agencyId },
-        { isActive: false }
+      await AgencySettings.updateOne(
+        { agencyId: userTheme.agencyId },
+        { loaderId: loader._id, updatedAt: new Date() },
+        { upsert: true }
       );
-    }
-
-    // ✅ Update the target loader’s status
-    loader.isActive = isActive;
-    loader.updatedAt = new Date();
-    await loader.save();
 
     res.status(200).json({
-      message: `Loader ${isActive ? "activated" : "deactivated"} successfully`,
-      loader,
+      message: "Loader activated successfully",
+      loaderId: loader._id
     });
   } catch (err) {
     console.error("❌ Error updating loader status:", err);
@@ -589,7 +708,24 @@ router.get("/combined", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
+router.post("/agencysettings", async (req, res) => {
+  try {
+    const { email, rlNo, agencyId } = req.body;   
+    const agencySettings = new AgencySettings({
+        agencyId: agencyId,
+          loaderId: null, // or default loader ObjectId
+          themeId: null,
+          selectedTheme: null,
+          bodyFont:null
+    });
+    await agencySettings.save();
+  }catch (err) {
+    console.error("❌ Error in /agencysettings API:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+  
+  
+  });
 // ✅ New API: Find theme by email
 router.get("/:email", async (req, res) => {
     try {
@@ -612,4 +748,97 @@ router.get("/:email", async (req, res) => {
     }
 });
 
+
+const generateAgencyId = async () => {
+  let isUnique = false;
+  let agencyId;
+
+  while (!isUnique) {
+    const randomNum = Math.floor(100000 + Math.random() * 900000); // 6 digit
+    agencyId = `ign${randomNum}`;
+
+    const existing = await Theme.findOne({ agencyId });
+
+    if (!existing) {
+      isUnique = true;
+    }
+  }
+
+  return agencyId;
+};
+async function sendThemeEmail(to, data) {
+  const safeJs = data.customJs
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  const safeCss = data.customCss
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: to,
+    subject: "Your Theme Builder Script",
+   html: `
+  <div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 30px;">
+    
+    <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #4a90e2, #007aff); padding: 20px; text-align: center; color: white;">
+        <h2 style="margin: 0;">🎉 You are Registered Successfully</h2>
+        <p style="margin: 5px 0 0;">Your custom theme is ready</p>
+      </div>
+
+      <!-- Body -->
+      <div style="padding: 20px; color: #333;">
+        
+        <p style="font-size: 14px;">Hello,</p>
+        <p style="font-size: 14px;">
+          Your theme has been successfully created. Please find your integration details below:
+        </p>
+
+        <!-- JS -->
+        <div style="margin: 15px 0;">
+          <strong>Custom JS Script:</strong>
+          <div style="background: #0f172a; color: #38bdf8; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; overflow-x: auto;">
+            ${safeJs}
+          </div>
+        </div>
+
+        <!-- CSS -->
+        <div style="margin: 15px 0;">
+          <strong>Custom CSS:</strong>
+          <div style="background: #0f172a; color: #22c55e; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; overflow-x: auto;">
+            ${safeCss}
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <p style="font-size: 14px;">
+          Copy and paste the above code into your website to activate your theme.
+        </p>
+
+        <!-- Warning -->
+        <div style="margin-top: 20px; padding: 12px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 6px;">
+          <strong style="color: #856404;">⚠️ Important Note:</strong>
+          <p style="margin: 5px 0; font-size: 13px; color: #856404;">
+            Please do not share this code with anyone. Unauthorized sharing may result in your theme builder being blocked for security reasons.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="background: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #888;">
+        © ${new Date().getFullYear()} Growthable • All rights reserved
+      </div>
+
+    </div>
+  </div>
+`
+  };
+
+  await transporter.sendMail(mailOptions);
+}
 module.exports = router;

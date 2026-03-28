@@ -58,7 +58,6 @@
  --login-other-text-size: 18px;
  --login-bg-color: #212121;
  --login-bg-gradient:  radial-gradient(circle, #212121 62%, #212121 100%);
- --login-company-logo: url(https://storage.googleapis.com/msgsndr/W0un4jEKdf7kQBusAM6W/media/67f759030a62176752d5b113.png); 
 }
 @media only screen and (min-width: 1080px) {
   .hl_login--header {
@@ -790,6 +789,10 @@ button {
 
 .hl_header--controls a {
   z-index: 20 !important;
+}
+#sidebar-v2 {
+    border-top-right-radius: var(--sidebar-top-right-radius) !important;
+    border-bottom-right-radius: var(--sidebar-bottom-right-radius) !important;
 }
 
 #sidebar-v2 {
