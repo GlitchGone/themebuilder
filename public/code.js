@@ -320,20 +320,163 @@ function getCurrentLocationId() {
 //     });
 //   }
 // }
-function restoreHiddenMenus() {
-  const savedRaw = localStorage.getItem(STORAGE.userTheme);
-  const saved = safeJsonParse(savedRaw) || {};
-  if (!saved.themeData || !saved.themeData["--hiddenMenus"]) return;
+// function restoreHiddenMenus() {
+//   const savedRaw = localStorage.getItem(STORAGE.userTheme);
+//   const saved = safeJsonParse(savedRaw) || {};
+//   if (!saved.themeData || !saved.themeData["--hiddenMenus"]) return;
 
-  let hiddenMenus;
-  try { hiddenMenus = JSON.parse(saved.themeData["--hiddenMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --hiddenMenus"); return; }
-  if (!hiddenMenus || typeof hiddenMenus !== "object") return;
+//   let hiddenMenus;
+//   try { hiddenMenus = JSON.parse(saved.themeData["--hiddenMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --hiddenMenus"); return; }
+//   if (!hiddenMenus || typeof hiddenMenus !== "object") return;
+
+//   const locationId = getCurrentLocationId();
+  
+//   if (locationId) {
+//     // Location-specific mode
+//     if (!hiddenMenus[locationId]) return;
+//     Object.keys(hiddenMenus[locationId]).forEach(menuId => {
+//       const menuEl = document.getElementById(menuId);
+//       const toggleEl = document.getElementById("hide-" + menuId);
+//       if (!menuEl) return;
+      
+//       const menuConfig = hiddenMenus[locationId][menuId];
+//       const hidden = !!(menuConfig && menuConfig.hidden);
+      
+//       menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
+//       if (toggleEl) toggleEl.checked = hidden;
+//     });
+//   } else {
+//     // Global mode
+//     Object.keys(hiddenMenus).forEach(menuId => {
+//       if (typeof hiddenMenus[menuId] === 'object') return; // Skip location objects
+      
+//       const menuEl = document.getElementById(menuId);
+//       const toggleEl = document.getElementById("hide-" + menuId);
+//       if (!menuEl) return;
+      
+//       const menuConfig = hiddenMenus[menuId];
+//       const hidden = !!(menuConfig && menuConfig.hidden);
+      
+//       menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
+//       if (toggleEl) toggleEl.checked = hidden;
+//     });
+//   }
+// }
+
+// function applyHiddenMenus() { 
+//   restoreHiddenMenus(); 
+// }
+
+
+// function applyLockedMenus() {
+//   const savedRaw = localStorage.getItem("userTheme");
+//   const saved = JSON.parse(savedRaw) || {};
+//   if (!saved.themeData || !saved.themeData["--lockedMenus"]) return;
+
+//   let lockedMenus;
+//   try { lockedMenus = JSON.parse(saved.themeData["--lockedMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --lockedMenus"); return; }
+//   if (!lockedMenus || typeof lockedMenus !== "object") return;
+
+//   const locationId = getCurrentLocationId();
+
+  
+//   // Select all sidebar menus
+//   // const allMenus = document.querySelectorAll(".hl_nav-header a, nav.flex-1.w-full a");
+//   const allMenus = document.querySelectorAll("a[id^='sb_'], .hl_nav-header a");
+//   allMenus.forEach(menu => {
+//     const menuId = menu.id?.trim();
+//     if (!menuId) return;
+    
+//     const isLocked = locationId ? !!lockedMenus[locationId]?.[menuId] : !!lockedMenus[menuId];
+    
+//     if (isLocked) {
+//       if (!menu.querySelector(".tb-lock-icon")) {
+//         const lockIcon = document.createElement("i");
+//         lockIcon.className = "tb-lock-icon fas fa-lock ml-2";
+//         lockIcon.style.color = "#F54927";
+//         lockIcon.style.setProperty("display", "inline-block", "important");
+//         lockIcon.style.setProperty("visibility", "visible", "important");
+//         lockIcon.style.setProperty("opacity", "1", "important");
+//         lockIcon.style.setProperty("position", "relative", "important");
+//         lockIcon.style.setProperty("z-index", "9999", "important");
+//         menu.appendChild(lockIcon);
+//       }
+//       menu.style.setProperty("opacity", "0.6", "important");
+//       menu.style.setProperty("cursor", "not-allowed", "important");
+//       if (menu.dataset.tbLockBound !== "1") {
+//         menu.addEventListener("click", blockMenuClick, true);
+//         menu.dataset.tbLockBound = "1";
+//       }
+//     } else {
+//       const icon = menu.querySelector(".tb-lock-icon");
+//       if (icon) {
+//         icon.remove();
+//       } else {
+//       }
+//       // menu.style.opacity = "";
+//       // menu.style.cursor = "";
+//       // menu.style.removeProperty("opacity");
+//       // menu.style.removeProperty("cursor");
+//       menu.style.setProperty("opacity", "1", "important");
+//       menu.style.setProperty("cursor", "auto", "important");
+//       if (menu.dataset.tbLockBound === "1") {
+//         menu.removeEventListener("click", blockMenuClick, true);
+//         delete menu.dataset.tbLockBound;
+//       }
+//     }
+//   });
+// }
+
+// function blockMenuClick(e) {
+//   e.preventDefault();
+//   e.stopPropagation();
+//   document.getElementById("tb-lock-popup")?.remove();
+
+//   const overlay = document.createElement("div");
+//   overlay.id = "tb-lock-popup";
+//   overlay.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:99999";
+//   overlay.innerHTML = `
+//     <div style="background:#fff;padding:20px 30px;border-radius:12px;max-width:400px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.3)">
+//       <h3 style="margin-bottom:12px;">Access Denied</h3>
+//       <p style="margin-bottom:20px;">No access. Please contact the Owner.</p>
+//       <button style="padding:8px 20px;border:none;border-radius:6px;background:#F54927;color:#fff;cursor:pointer;">OK</button>
+//     </div>`;
+//   overlay.querySelector("button").addEventListener("click", () => overlay.remove());
+//   document.body.appendChild(overlay);
+// }
+
+// // Call on page load
+// document.addEventListener('DOMContentLoaded', function() {
+//   applyHiddenMenus();
+//   applyLockedMenus();
+// });
+
+// // Also call when localStorage changes (if settings are updated dynamically)
+// // Polling fallback for iframe updates (checks every 500ms)
+// setInterval(() => {
+//   const current = localStorage.getItem(STORAGE.userTheme);
+//   if (current !== window.lastUserTheme) {
+//     window.lastUserTheme = current;
+//     applyHiddenMenus();
+//     applyLockedMenus();
+//   }
+// }, 500);
+
+  // ---- Logo injection ----
+  function restoreHiddenMenus() {
+  const savedRaw = localStorage.getItem("userTheme"); // Changed from STORAGE.userTheme
+  const saved = JSON.parse(savedRaw) || {}; // Changed from safeJsonParse
+  if (!saved.themeData) return;
 
   const locationId = getCurrentLocationId();
   
   if (locationId) {
-    // Location-specific mode
-    if (!hiddenMenus[locationId]) return;
+    // Location-specific mode - use --hiddenMenus
+    if (!saved.themeData["--hiddenMenus"]) return;
+    let hiddenMenus;
+    try { hiddenMenus = JSON.parse(saved.themeData["--hiddenMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --hiddenMenus"); return; }
+    if (!hiddenMenus || typeof hiddenMenus !== "object" || !hiddenMenus[locationId]) return;
+    
     Object.keys(hiddenMenus[locationId]).forEach(menuId => {
       const menuEl = document.getElementById(menuId);
       const toggleEl = document.getElementById("hide-" + menuId);
@@ -346,15 +489,19 @@ function restoreHiddenMenus() {
       if (toggleEl) toggleEl.checked = hidden;
     });
   } else {
-    // Global mode
-    Object.keys(hiddenMenus).forEach(menuId => {
-      if (typeof hiddenMenus[menuId] === 'object') return; // Skip location objects
-      
+    // Global mode - use --agencyLockedHideMenus
+    if (!saved.themeData["--agencyLockedHideMenus"]) return;
+    let agencyData;
+    try { agencyData = JSON.parse(saved.themeData["--agencyLockedHideMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --agencyLockedHideMenus"); return; }
+    if (!agencyData || typeof agencyData !== "object") return;
+    
+    let globalHidden = agencyData.hidden || {};
+    Object.keys(globalHidden).forEach(menuId => {
       const menuEl = document.getElementById(menuId);
       const toggleEl = document.getElementById("hide-" + menuId);
       if (!menuEl) return;
       
-      const menuConfig = hiddenMenus[menuId];
+      const menuConfig = globalHidden[menuId];
       const hidden = !!(menuConfig && menuConfig.hidden);
       
       menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
@@ -367,84 +514,137 @@ function applyHiddenMenus() {
   restoreHiddenMenus(); 
 }
 
-
-
-
 function applyLockedMenus() {
   const savedRaw = localStorage.getItem("userTheme");
   const saved = JSON.parse(savedRaw) || {};
-  if (!saved.themeData || !saved.themeData["--lockedMenus"]) return;
-
-  let lockedMenus;
-  try { lockedMenus = JSON.parse(saved.themeData["--lockedMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --lockedMenus"); return; }
-  if (!lockedMenus || typeof lockedMenus !== "object") return;
+  if (!saved.themeData) return;
 
   const locationId = getCurrentLocationId();
-
   
-  // Select all sidebar menus
-  // const allMenus = document.querySelectorAll(".hl_nav-header a, nav.flex-1.w-full a");
-  const allMenus = document.querySelectorAll("a[id^='sb_'], .hl_nav-header a");
-  allMenus.forEach(menu => {
-    const menuId = menu.id?.trim();
-    if (!menuId) return;
+  if (locationId) {
+    // Location-specific mode - use --lockedMenus
+    if (!saved.themeData["--lockedMenus"]) return;
+    let lockedMenus;
+    try { lockedMenus = JSON.parse(saved.themeData["--lockedMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --lockedMenus"); return; }
+    if (!lockedMenus || typeof lockedMenus !== "object" || !lockedMenus[locationId]) return;
     
-    const isLocked = locationId ? !!lockedMenus[locationId]?.[menuId] : !!lockedMenus[menuId];
-    
-    if (isLocked) {
-      if (!menu.querySelector(".tb-lock-icon")) {
-        const lockIcon = document.createElement("i");
-        lockIcon.className = "tb-lock-icon fas fa-lock ml-2";
-        lockIcon.style.color = "#F54927";
-        lockIcon.style.setProperty("display", "inline-block", "important");
-        lockIcon.style.setProperty("visibility", "visible", "important");
-        lockIcon.style.setProperty("opacity", "1", "important");
-        lockIcon.style.setProperty("position", "relative", "important");
-        lockIcon.style.setProperty("z-index", "9999", "important");
-        menu.appendChild(lockIcon);
-      }
-      menu.style.setProperty("opacity", "0.6", "important");
-      menu.style.setProperty("cursor", "not-allowed", "important");
-      if (menu.dataset.tbLockBound !== "1") {
-        menu.addEventListener("click", blockMenuClick, true);
-        menu.dataset.tbLockBound = "1";
-      }
-    } else {
-      const icon = menu.querySelector(".tb-lock-icon");
-      if (icon) {
-        icon.remove();
+    // Select all sidebar menus
+    const allMenus = document.querySelectorAll("a[id^='sb_'], .hl_nav-header a");
+    allMenus.forEach(menu => {
+      const menuId = menu.id?.trim();
+      if (!menuId) return;
+      
+      const lockData = lockedMenus[locationId][menuId];
+      const isLocked = lockData && typeof lockData === 'object' ? lockData.locked : !!lockData;
+      
+      if (isLocked) {
+        if (!menu.querySelector(".tb-lock-icon")) {
+          const lockIcon = document.createElement("i");
+          lockIcon.className = "tb-lock-icon fas fa-lock ml-2";
+          lockIcon.style.color = "#F54927";
+          lockIcon.style.setProperty("display", "inline-block", "important");
+          lockIcon.style.setProperty("visibility", "visible", "important");
+          lockIcon.style.setProperty("opacity", "1", "important");
+          lockIcon.style.setProperty("position", "relative", "important");
+          lockIcon.style.setProperty("z-index", "9999", "important");
+          menu.appendChild(lockIcon);
+        }
+        menu.style.setProperty("opacity", "0.6", "important");
+        menu.style.setProperty("cursor", "not-allowed", "important");
+        if (menu.dataset.tbLockBound !== "1") {
+          menu.addEventListener("click", (e) => blockMenuClick(e, menuId), true);
+          menu.dataset.tbLockBound = "1";
+        }
       } else {
+        const icon = menu.querySelector(".tb-lock-icon");
+        if (icon) {
+          icon.remove();
+        }
+        menu.style.setProperty("opacity", "1", "important");
+        menu.style.setProperty("cursor", "auto", "important");
+        if (menu.dataset.tbLockBound === "1") {
+          menu.removeEventListener("click", blockMenuClick, true);
+          delete menu.dataset.tbLockBound;
+        }
       }
-      // menu.style.opacity = "";
-      // menu.style.cursor = "";
-      // menu.style.removeProperty("opacity");
-      // menu.style.removeProperty("cursor");
-      menu.style.setProperty("opacity", "1", "important");
-      menu.style.setProperty("cursor", "auto", "important");
-      if (menu.dataset.tbLockBound === "1") {
-        menu.removeEventListener("click", blockMenuClick, true);
-        delete menu.dataset.tbLockBound;
+    });
+  } else {
+    // Global mode - use --agencyLockedHideMenus
+    if (!saved.themeData["--agencyLockedHideMenus"]) return;
+    let agencyData;
+    try { agencyData = JSON.parse(saved.themeData["--agencyLockedHideMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --agencyLockedHideMenus"); return; }
+    if (!agencyData || typeof agencyData !== "object") return;
+    
+    let globalLocked = agencyData.locked || {};
+    
+    // Select all sidebar menus
+    const allMenus = document.querySelectorAll("a[id^='sb_'], .hl_nav-header a");
+    allMenus.forEach(menu => {
+      const menuId = menu.id?.trim();
+      if (!menuId) return;
+      
+      const lockData = globalLocked[menuId];
+      const isLocked = lockData && typeof lockData === 'object' ? lockData.locked : !!lockData;
+      
+      if (isLocked) {
+        if (!menu.querySelector(".tb-lock-icon")) {
+          const lockIcon = document.createElement("i");
+          lockIcon.className = "tb-lock-icon fas fa-lock ml-2";
+          lockIcon.style.color = "#F54927";
+          lockIcon.style.setProperty("display", "inline-block", "important");
+          lockIcon.style.setProperty("visibility", "visible", "important");
+          lockIcon.style.setProperty("opacity", "1", "important");
+          lockIcon.style.setProperty("position", "relative", "important");
+          lockIcon.style.setProperty("z-index", "9999", "important");
+          menu.appendChild(lockIcon);
+        }
+        menu.style.setProperty("opacity", "0.6", "important");
+        menu.style.setProperty("cursor", "not-allowed", "important");
+        if (menu.dataset.tbLockBound !== "1") {
+          menu.addEventListener("click", (e) => blockMenuClick(e, menuId), true);
+          menu.dataset.tbLockBound = "1";
+        }
+      } else {
+        const icon = menu.querySelector(".tb-lock-icon");
+        if (icon) {
+          icon.remove();
+        }
+        menu.style.setProperty("opacity", "1", "important");
+        menu.style.setProperty("cursor", "auto", "important");
+        if (menu.dataset.tbLockBound === "1") {
+          menu.removeEventListener("click", blockMenuClick, true);
+          delete menu.dataset.tbLockBound;
+        }
       }
-    }
-  });
+    });
+  }
 }
 
-function blockMenuClick(e) {
+function blockMenuClick(e, menuId) {
   e.preventDefault();
   e.stopPropagation();
-  document.getElementById("tb-lock-popup")?.remove();
+  
+  // Get popupType from localStorage
+  const savedRaw = localStorage.getItem("userTheme");
+  const saved = JSON.parse(savedRaw) || {};
+  const lockedMenus = saved.themeData && saved.themeData["--lockedMenus"] ? JSON.parse(saved.themeData["--lockedMenus"]) : {};
+  const agencyData = saved.themeData && saved.themeData["--agencyLockedHideMenus"] ? JSON.parse(saved.themeData["--agencyLockedHideMenus"]) : {};
+  const locationId = getCurrentLocationId();
 
-  const overlay = document.createElement("div");
-  overlay.id = "tb-lock-popup";
-  overlay.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:99999";
-  overlay.innerHTML = `
-    <div style="background:#fff;padding:20px 30px;border-radius:12px;max-width:400px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.3)">
-      <h3 style="margin-bottom:12px;">Access Denied</h3>
-      <p style="margin-bottom:20px;">No access. Please contact the Owner.</p>
-      <button style="padding:8px 20px;border:none;border-radius:6px;background:#F54927;color:#fff;cursor:pointer;">OK</button>
-    </div>`;
-  overlay.querySelector("button").addEventListener("click", () => overlay.remove());
-  document.body.appendChild(overlay);
+  let popupType = "simple"; // default
+  if (locationId) {
+    const lockData = lockedMenus[locationId]?.[menuId];
+    if (lockData && typeof lockData === 'object') {
+      popupType = lockData.popupType || "simple";
+    }
+  } else {
+    const lockData = agencyData.locked?.[menuId];
+    if (lockData && typeof lockData === 'object') {
+      popupType = lockData.popupType || "simple";
+    }
+  }
+
+  showPreviewPopup(popupType);
 }
 
 // Call on page load
@@ -456,15 +656,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Also call when localStorage changes (if settings are updated dynamically)
 // Polling fallback for iframe updates (checks every 500ms)
 setInterval(() => {
-  const current = localStorage.getItem(STORAGE.userTheme);
+  const current = localStorage.getItem("userTheme"); // Changed from STORAGE.userTheme
   if (current !== window.lastUserTheme) {
     window.lastUserTheme = current;
     applyHiddenMenus();
     applyLockedMenus();
   }
 }, 500);
-
-  // ---- Logo injection ----
+  
   async function applyAgencyLogo(attempt = 1) {
     const savedRaw = localStorage.getItem(STORAGE.userTheme);
     const saved = safeJsonParse(savedRaw) || {};
