@@ -1951,6 +1951,14 @@ nav a#sb_location-mobile-app,
   background-repeat: no-repeat !important;
   background-position: center center !important;
   position: relative !important;
+  width: 56px !important;
+  height: 40px !important;
+  border-radius: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 #hl_header--copilot-icon:hover {
