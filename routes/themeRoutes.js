@@ -173,7 +173,6 @@ router.post("/onboard", async (req, res) => {
     });
   }
 });
-
 router.get("/script/by-email", async (req, res) => {
   try {
     let { email } = req.query;
@@ -540,7 +539,6 @@ router.get("/merged-css", async (req, res) => {
     res.status(500).json({ message: "Server Error merging CSS" });
   }
 });
-
 // 🟢 Create or update a loader for an agency -- To Do to remove the agencyid
 router.post("/loader-css", async (req, res) => {
   try {
@@ -579,7 +577,6 @@ router.post("/loader-css", async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
-
 // 🟡 Get all loaders for an agency -0 need to update this API to remove agency Based.
 router.get("/Get-loader-css", async (req, res) => {
   try {
@@ -609,7 +606,6 @@ router.get("/Get-loader-css", async (req, res) => {
     res.status(500).json({ success: false, message: "Server error", error: err.message });
   }
 });
-
 // ✅ Update loader isActive status
 router.put("/loader-css/status", async (req, res) => {
   try {
@@ -664,7 +660,6 @@ router.put("/loader-css/status", async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
-
 router.get("/combined", async (req, res) => {
   try {
     const agencyId = req.query.agencyId;
