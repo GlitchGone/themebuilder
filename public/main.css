@@ -1948,6 +1948,16 @@ nav a#sb_location-mobile-app,
 #hl_header--copilot-icon{
   background-color: var(--header-icon-bg) !important;
   border-radius: 8px !important;
+  content: "" !important;
+  width: 4rem !important;
+  height: 2rem !important;
+  border-radius: 100% !important;
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: transparent !important;
+  border: none !important;
 }
 #hl_header--copilot-icon:hover::after {
   background-color: var(--header-icon-hover-bg) !important;
