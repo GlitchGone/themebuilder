@@ -1945,6 +1945,14 @@ nav a#sb_location-mobile-app,
   background-image: var(--header-menu-icon-help-active) !important;
 }
 
+#hl_header--copilot-icon{
+  background-color: var(--header-icon-bg) !important;
+  border-radius: 8px !important;
+}
+#hl_header--copilot-icon:hover::after {
+  background-color: var(--header-icon-hover-bg) !important;
+}
+
 /* Dialer icon */
 
 #dialer-error-toggle i {
