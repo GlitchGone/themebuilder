@@ -369,7 +369,7 @@ function applyHiddenMenus() {
 //     });
 //   }
 // }
-    function applyLockedMenus() {
+function applyLockedMenus() {
   const savedRaw = localStorage.getItem("userTheme");
   const saved = JSON.parse(savedRaw) || {};
   if (!saved.themeData || !saved.themeData["--lockedMenus"]) return;
@@ -419,8 +419,10 @@ function applyHiddenMenus() {
       } else {
         console.log("No icon found for", menuId);
       }
-      menu.style.opacity = "";
-      menu.style.cursor = "";
+      // menu.style.opacity = "";
+      // menu.style.cursor = "";
+      menu.style.removeProperty("opacity");
+      menu.style.removeProperty("cursor");
       if (menu.dataset.tbLockBound === "1") {
         menu.removeEventListener("click", blockMenuClick, true);
         delete menu.dataset.tbLockBound;
