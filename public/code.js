@@ -457,12 +457,6 @@ document.addEventListener('DOMContentLoaded', function() {
   applyLockedMenus();
 });
 
-// Call on page load
-document.addEventListener('DOMContentLoaded', function() {
-  applyHiddenMenus();
-  applyLockedMenus();
-});
-
 // Also call when localStorage changes (if settings are updated dynamically)
 window.addEventListener('storage', function(e) {
   if (e.key === STORAGE.userTheme) {
