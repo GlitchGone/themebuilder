@@ -1,5 +1,4 @@
 
-window.lastUserTheme = localStorage.getItem(STORAGE.userTheme);
 // ThemeBuilder - safer, namespaced, production-ready
 (function () {
   const NS = "themebuilder"; // namespace prefix for storage & IDs
@@ -369,6 +368,9 @@ function applyHiddenMenus() {
 //     });
 //   }
 // }
+
+window.lastUserTheme = localStorage.getItem(STORAGE.userTheme);
+
 function applyLockedMenus() {
   const savedRaw = localStorage.getItem("userTheme");
   const saved = JSON.parse(savedRaw) || {};
