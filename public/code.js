@@ -297,7 +297,8 @@ function applyLockedMenus() {
   if (!lockedMenus || typeof lockedMenus !== "object") return;
 
   const locationId = getCurrentLocationId();
-  
+    console.log("applyLockedMenus called, locationId:", locationId);
+  console.log("lockedMenus:", lockedMenus);
   if (locationId) {
     // Location-specific mode
     if (!lockedMenus[locationId]) return;
@@ -306,7 +307,8 @@ function applyLockedMenus() {
       if (!menuEl) return;
       
       const isLocked = !!lockedMenus[locationId][menuId];
-      
+          console.log("Processing menu:", menuId, "isLocked:", isLocked);
+
       if (isLocked) {
         if (!menuEl.querySelector(".tb-lock-icon")) {
           const lockIcon = document.createElement("i");
