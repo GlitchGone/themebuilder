@@ -238,54 +238,6 @@ function getCurrentLocationId() {
   }
   return null; // No location ID in URL (agency level)
 }
-
-function restoreHiddenMenus() {
-  const savedRaw = localStorage.getItem(STORAGE.userTheme);
-  const saved = safeJsonParse(savedRaw) || {};
-  if (!saved.themeData || !saved.themeData["--hiddenMenus"]) return;
-
-  let hiddenMenus;
-  try { hiddenMenus = JSON.parse(saved.themeData["--hiddenMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --hiddenMenus"); return; }
-  if (!hiddenMenus || typeof hiddenMenus !== "object") return;
-
-  const locationId = getCurrentLocationId();
-  
-  if (locationId) {
-    // Location-specific mode
-    if (!hiddenMenus[locationId]) return;
-    Object.keys(hiddenMenus[locationId]).forEach(menuId => {
-      const menuEl = document.getElementById(menuId);
-      const toggleEl = document.getElementById("hide-" + menuId);
-      if (!menuEl) return;
-      
-      const menuConfig = hiddenMenus[locationId][menuId];
-      const hidden = !!(menuConfig && menuConfig.hidden);
-      
-      menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
-      if (toggleEl) toggleEl.checked = hidden;
-    });
-  } else {
-    // Global mode
-    Object.keys(hiddenMenus).forEach(menuId => {
-      if (typeof hiddenMenus[menuId] === 'object') return; // Skip location objects
-      
-      const menuEl = document.getElementById(menuId);
-      const toggleEl = document.getElementById("hide-" + menuId);
-      if (!menuEl) return;
-      
-      const menuConfig = hiddenMenus[menuId];
-      const hidden = !!(menuConfig && menuConfig.hidden);
-      
-      menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
-      if (toggleEl) toggleEl.checked = hidden;
-    });
-  }
-}
-
-function applyHiddenMenus() { 
-  restoreHiddenMenus(); 
-}
-
 // function applyLockedMenus() {
 //   const savedRaw = localStorage.getItem(STORAGE.userTheme);
 //   const saved = safeJsonParse(savedRaw) || {};
@@ -368,10 +320,164 @@ function applyHiddenMenus() {
 //     });
 //   }
 // }
+// function restoreHiddenMenus() {
+//   const savedRaw = localStorage.getItem(STORAGE.userTheme);
+//   const saved = safeJsonParse(savedRaw) || {};
+//   if (!saved.themeData || !saved.themeData["--hiddenMenus"]) return;
 
-window.lastUserTheme = localStorage.getItem(STORAGE.userTheme);
+//   let hiddenMenus;
+//   try { hiddenMenus = JSON.parse(saved.themeData["--hiddenMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --hiddenMenus"); return; }
+//   if (!hiddenMenus || typeof hiddenMenus !== "object") return;
 
-function applyLockedMenus() {
+//   const locationId = getCurrentLocationId();
+  
+//   if (locationId) {
+//     // Location-specific mode
+//     if (!hiddenMenus[locationId]) return;
+//     Object.keys(hiddenMenus[locationId]).forEach(menuId => {
+//       const menuEl = document.getElementById(menuId);
+//       const toggleEl = document.getElementById("hide-" + menuId);
+//       if (!menuEl) return;
+      
+//       const menuConfig = hiddenMenus[locationId][menuId];
+//       const hidden = !!(menuConfig && menuConfig.hidden);
+      
+//       menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
+//       if (toggleEl) toggleEl.checked = hidden;
+//     });
+//   } else {
+//     // Global mode
+//     Object.keys(hiddenMenus).forEach(menuId => {
+//       if (typeof hiddenMenus[menuId] === 'object') return; // Skip location objects
+      
+//       const menuEl = document.getElementById(menuId);
+//       const toggleEl = document.getElementById("hide-" + menuId);
+//       if (!menuEl) return;
+      
+//       const menuConfig = hiddenMenus[menuId];
+//       const hidden = !!(menuConfig && menuConfig.hidden);
+      
+//       menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
+//       if (toggleEl) toggleEl.checked = hidden;
+//     });
+//   }
+// }
+
+function restoreHiddenMenus() {
+  const savedRaw = localStorage.getItem("userTheme");
+  const saved = JSON.parse(savedRaw) || {};
+  if (!saved.themeData) return;
+
+  const locationId = getCurrentLocationId();
+  
+  if (locationId) {
+    // Location-specific mode - use --hiddenMenus
+    if (!saved.themeData["--hiddenMenus"]) return;
+    let hiddenMenus;
+    try { hiddenMenus = JSON.parse(saved.themeData["--hiddenMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --hiddenMenus"); return; }
+    if (!hiddenMenus || typeof hiddenMenus !== "object" || !hiddenMenus[locationId]) return;
+    
+    Object.keys(hiddenMenus[locationId]).forEach(menuId => {
+      const menuEl = document.getElementById(menuId);
+      const toggleEl = document.getElementById("hide-" + menuId);
+      if (!menuEl) return;
+      
+      const menuConfig = hiddenMenus[locationId][menuId];
+      const hidden = !!(menuConfig && menuConfig.hidden);
+      
+      menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
+      if (toggleEl) toggleEl.checked = hidden;
+    });
+  } else {
+    // Global mode - use --agencyLockedHideMenus
+    if (!saved.themeData["--agencyLockedHideMenus"]) return;
+    let agencyData;
+    try { agencyData = JSON.parse(saved.themeData["--agencyLockedHideMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --agencyLockedHideMenus"); return; }
+    if (!agencyData || typeof agencyData !== "object") return;
+    
+    let globalHidden = agencyData.hidden || {};
+    Object.keys(globalHidden).forEach(menuId => {
+      const menuEl = document.getElementById(menuId);
+      const toggleEl = document.getElementById("hide-" + menuId);
+      if (!menuEl) return;
+      
+      const menuConfig = globalHidden[menuId];
+      const hidden = !!(menuConfig && menuConfig.hidden);
+      
+      menuEl.style.setProperty("display", hidden ? "none" : "flex", "important");
+      if (toggleEl) toggleEl.checked = hidden;
+    });
+  }
+}
+
+
+function applyHiddenMenus() { 
+  restoreHiddenMenus(); 
+}
+
+
+
+
+// function applyLockedMenus() {
+//   const savedRaw = localStorage.getItem("userTheme");
+//   const saved = JSON.parse(savedRaw) || {};
+//   if (!saved.themeData || !saved.themeData["--lockedMenus"]) return;
+
+//   let lockedMenus;
+//   try { lockedMenus = JSON.parse(saved.themeData["--lockedMenus"]); } catch (e) { console.warn("[ThemeBuilder] invalid --lockedMenus"); return; }
+//   if (!lockedMenus || typeof lockedMenus !== "object") return;
+
+//   const locationId = getCurrentLocationId();
+
+  
+//   // Select all sidebar menus
+//   // const allMenus = document.querySelectorAll(".hl_nav-header a, nav.flex-1.w-full a");
+//   const allMenus = document.querySelectorAll("a[id^='sb_'], .hl_nav-header a");
+//   allMenus.forEach(menu => {
+//     const menuId = menu.id?.trim();
+//     if (!menuId) return;
+    
+//     const isLocked = locationId ? !!lockedMenus[locationId]?.[menuId] : !!lockedMenus[menuId];
+    
+//     if (isLocked) {
+//       if (!menu.querySelector(".tb-lock-icon")) {
+//         const lockIcon = document.createElement("i");
+//         lockIcon.className = "tb-lock-icon fas fa-lock ml-2";
+//         lockIcon.style.color = "#F54927";
+//         lockIcon.style.setProperty("display", "inline-block", "important");
+//         lockIcon.style.setProperty("visibility", "visible", "important");
+//         lockIcon.style.setProperty("opacity", "1", "important");
+//         lockIcon.style.setProperty("position", "relative", "important");
+//         lockIcon.style.setProperty("z-index", "9999", "important");
+//         menu.appendChild(lockIcon);
+//       }
+//       menu.style.setProperty("opacity", "0.6", "important");
+//       menu.style.setProperty("cursor", "not-allowed", "important");
+//       if (menu.dataset.tbLockBound !== "1") {
+//         menu.addEventListener("click", blockMenuClick, true);
+//         menu.dataset.tbLockBound = "1";
+//       }
+//     } else {
+//       const icon = menu.querySelector(".tb-lock-icon");
+//       if (icon) {
+//         icon.remove();
+//       } else {
+//       }
+//       // menu.style.opacity = "";
+//       // menu.style.cursor = "";
+//       // menu.style.removeProperty("opacity");
+//       // menu.style.removeProperty("cursor");
+//       menu.style.setProperty("opacity", "1", "important");
+//       menu.style.setProperty("cursor", "auto", "important");
+//       if (menu.dataset.tbLockBound === "1") {
+//         menu.removeEventListener("click", blockMenuClick, true);
+//         delete menu.dataset.tbLockBound;
+//       }
+//     }
+//   });
+// }
+
+    function applyLockedMenus() {
   const savedRaw = localStorage.getItem("userTheme");
   const saved = JSON.parse(savedRaw) || {};
   if (!saved.themeData || !saved.themeData["--lockedMenus"]) return;
@@ -381,18 +487,18 @@ function applyLockedMenus() {
   if (!lockedMenus || typeof lockedMenus !== "object") return;
 
   const locationId = getCurrentLocationId();
-  console.log("(CustomMap.js) applyLockedMenus called, locationId:", locationId);
-  console.log("(CustomMap.js) lockedMenus:", lockedMenus);
+  console.log("(settings.js) applyLockedMenus called, locationId:", locationId);
+  console.log("lockedMenus:", lockedMenus);
   
   // Select all sidebar menus
-  // const allMenus = document.querySelectorAll(".hl_nav-header a, nav.flex-1.w-full a");
   const allMenus = document.querySelectorAll("a[id^='sb_'], .hl_nav-header a");
+  
   allMenus.forEach(menu => {
     const menuId = menu.id?.trim();
     if (!menuId) return;
     
     const isLocked = locationId ? !!lockedMenus[locationId]?.[menuId] : !!lockedMenus[menuId];
-    console.log("(CustomMap.js) Processing menu:", menuId, "isLocked:", isLocked);
+    console.log("(settings.js) Processing menu:", menuId, "isLocked:", isLocked);
     
     if (isLocked) {
       if (!menu.querySelector(".tb-lock-icon")) {
@@ -413,18 +519,14 @@ function applyLockedMenus() {
         menu.dataset.tbLockBound = "1";
       }
     } else {
-      console.log("(CustomMap.js) Unlocking menu:", menuId);
+      console.log("(settings.js) Unlocking menu:", menuId);
       const icon = menu.querySelector(".tb-lock-icon");
       if (icon) {
-        console.log("(CustomMap.js) Removing icon for", menuId);
+        console.log("(settings.js) Removing icon for", menuId);
         icon.remove();
       } else {
-        console.log("(CustomMap.js) No icon found for", menuId);
+        console.log("(settings.js) No icon found for", menuId);
       }
-      // menu.style.opacity = "";
-      // menu.style.cursor = "";
-      // menu.style.removeProperty("opacity");
-      // menu.style.removeProperty("cursor");
       menu.style.setProperty("opacity", "1", "important");
       menu.style.setProperty("cursor", "auto", "important");
       if (menu.dataset.tbLockBound === "1") {
