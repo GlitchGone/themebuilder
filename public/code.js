@@ -1,5 +1,5 @@
 
-
+window.lastUserTheme = localStorage.getItem(STORAGE.userTheme);
 // ThemeBuilder - safer, namespaced, production-ready
 (function () {
   const NS = "themebuilder"; // namespace prefix for storage & IDs
@@ -458,12 +458,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Also call when localStorage changes (if settings are updated dynamically)
-window.addEventListener('storage', function(e) {
-  if (e.key === STORAGE.userTheme) {
+// Polling fallback for iframe updates (checks every 500ms)
+setInterval(() => {
+  const current = localStorage.getItem(STORAGE.userTheme);
+  if (current !== window.lastUserTheme) {
+    window.lastUserTheme = current;
     applyHiddenMenus();
     applyLockedMenus();
   }
-});
+}, 500);
 
   // ---- Logo injection ----
   async function applyAgencyLogo(attempt = 1) {
