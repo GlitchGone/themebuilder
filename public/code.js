@@ -227,20 +227,6 @@ function applySidebarLogoFromTheme() {
   //  if (mergedTheme["--forgetpassword-text"]) {const cleanText = stripQuotes(mergedTheme["--forgetpassword-text"]);updateElementText("#forgot_passowrd_btn", cleanText);}
   }
 
-  // ---- Hidden/Locked menus ----
-// ---- Hidden/Locked menus ----
-
-// Function to get current location ID from URL
-function getCurrentLocationId() {
-  const path = window.location.pathname;
-  const parts = path.split('/');
-  const locationIndex = parts.indexOf('location');
-  if (locationIndex !== -1 && parts.length > locationIndex + 1) {
-    return parts[locationIndex + 1];
-  }
-  return null; // No location ID in URL (agency level)
-}
-
 // ---- Hidden/Locked menus ----
 
 // Function to get current location ID from URL
