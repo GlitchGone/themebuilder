@@ -1834,6 +1834,8 @@ nav a#sb_location-mobile-app {
 } */
 /* COPILOT ICON BUTTON GENERAL */
 #hl_header--copilot-icon {
+  width: 4rem !important;
+  height: 2rem !important;
   border-radius: 100% !important;
   position: relative !important;
   display: flex !important;
