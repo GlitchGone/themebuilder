@@ -1945,19 +1945,16 @@ nav a#sb_location-mobile-app,
   background-image: var(--header-menu-icon-help-active) !important;
 }
 
-#hl_header--copilot-icon{
-  background-color: var(--header-icon-bg) !important;
-  border-radius: 8px !important;
-  content: "" !important;
-  width: 4rem !important;
-  height: 2rem !important;
-  border-radius: 100% !important;
+#hl_header--copilot-icon {
+  background: var(--header-icon-bg) !important;
+  background-image: var(--header-icon-bg-gradient) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
   position: relative !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  background: transparent !important;
-  border: none !important;
+}
+
+#hl_header--copilot-icon:hover {
+  background-color: var(--header-icon-hover-bg) !important;
 }
 #hl_header--copilot-icon:hover::after {
   background-color: var(--header-icon-hover-bg) !important;
