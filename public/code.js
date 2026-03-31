@@ -671,10 +671,20 @@ function applyLockedMenus() {
         }
         menu.style.setProperty("opacity", "0.6", "important");
         menu.style.setProperty("cursor", "not-allowed", "important");
-        if (menu.dataset.tbLockBound !== "1") {
-          menu.addEventListener("click", (e) => blockMenuClick(e, menuId), true);
-          menu.dataset.tbLockBound = "1";
-        }
+        // Extract the popup type stored for this menu
+                const lockData = locationId
+                    ? lockedMenus[locationId]?.[menuId]
+                    : lockedMenus[menuId];
+                const popupType = (lockData && typeof lockData === "object" && lockData.popupType)
+                    ? lockData.popupType
+                    : "simple"; // fallback for old entries that stored just `true`
+                if (menu.dataset.tbLockBound !== "1") {
+                    menu.addEventListener("click", (e) => {
+                        blockMenuClick(e, menuId);
+                        showPreviewPopup(popupType);
+                    }, true);
+                    menu.dataset.tbLockBound = "1";
+                }
       } else {
         const icon = menu.querySelector(".tb-lock-icon");
         if (icon) {
@@ -705,6 +715,7 @@ function blockMenuClick(e, menuId) {
   let popupType = "simple"; // default
   if (locationId) {
     const lockData = lockedMenus[locationId]?.[menuId];
+    console.log("popup type",lockData.popupType);
     if (lockData && typeof lockData === 'object') {
       popupType = lockData.popupType || "simple";
     }
