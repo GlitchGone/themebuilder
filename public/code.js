@@ -671,20 +671,10 @@ function applyLockedMenus() {
         }
         menu.style.setProperty("opacity", "0.6", "important");
         menu.style.setProperty("cursor", "not-allowed", "important");
-        // Extract the popup type stored for this menu
-                const lockData = locationId
-                    ? lockedMenus[locationId]?.[menuId]
-                    : lockedMenus[menuId];
-                const popupType = (lockData && typeof lockData === "object" && lockData.popupType)
-                    ? lockData.popupType
-                    : "simple"; // fallback for old entries that stored just `true`
-                if (menu.dataset.tbLockBound !== "1") {
-                    menu.addEventListener("click", (e) => {
-                        blockMenuClick(e, menuId);
-                        showPreviewPopup(popupType);
-                    }, true);
-                    menu.dataset.tbLockBound = "1";
-                }
+        if (menu.dataset.tbLockBound !== "1") {
+          menu.addEventListener("click", (e) => blockMenuClick(e, menuId), true);
+          menu.dataset.tbLockBound = "1";
+        }
       } else {
         const icon = menu.querySelector(".tb-lock-icon");
         if (icon) {
