@@ -513,7 +513,7 @@ function getCurrentLocationId() {
 function applyHiddenMenus() { 
   restoreHiddenMenus(); 
 }
-    function showPreviewPopup(type) {
+    function showPreviewPopup(type, popupUrl) {
             document.getElementById("tb-preview-popup")?.remove();
 
             const overlay = document.createElement("div");
@@ -564,7 +564,13 @@ function applyHiddenMenus() {
             }
 
             popup.innerHTML = content;
-
+            const actionBtn = popup.querySelector("button");
+            if (actionBtn && popupUrl) {
+                actionBtn.style.cursor = "pointer";
+                actionBtn.addEventListener("click", () => {
+                    window.open(popupUrl, "_blank");
+                });
+            }
             const closeBtn = document.createElement("button");
             closeBtn.textContent = "Close";
             closeBtn.style.marginTop = "15px";
@@ -574,7 +580,71 @@ function applyHiddenMenus() {
             overlay.appendChild(popup);
             document.body.appendChild(overlay);
         }
+function showCustomizePopup(type, currentUrl, onSave) {
+    document.getElementById("tb-customize-popup")?.remove();
 
+    const overlay = document.createElement("div");
+    overlay.id = "tb-customize-popup";
+    overlay.style.cssText = `
+        position:fixed; top:0; left:0;
+        width:100%; height:100%;
+        background:rgba(0,0,0,0.5);
+        display:flex; align-items:center; justify-content:center;
+        z-index:200000;
+    `;
+
+    const popup = document.createElement("div");
+    popup.style.cssText = `
+        background:#fff; padding:24px; border-radius:10px;
+        max-width:380px; width:90%; text-align:center;
+        box-shadow:0 8px 24px rgba(0,0,0,0.3);
+    `;
+
+    // Render popup header (same look as the real popup)
+    if (type === "upgrade") {
+        popup.innerHTML = `<h3 style="margin:0 0 8px">Upgrade Required 🚀</h3><p style="color:#555;margin:0 0 16px">This feature is available in Premium Plan.</p>`;
+    } else if (type === "contact") {
+        popup.innerHTML = `<h3 style="margin:0 0 8px">Restricted</h3><p style="color:#555;margin:0 0 16px">Please contact admin to get access.</p>`;
+    }
+
+    // URL input (replaces the action button)
+    const urlLabel = document.createElement("label");
+    urlLabel.textContent = "Button URL:";
+    urlLabel.style.cssText = "display:block;font-size:13px;font-weight:bold;text-align:left;margin-bottom:5px;";
+
+    const urlInput = document.createElement("input");
+    urlInput.type = "text";
+    urlInput.value = currentUrl || "";
+    urlInput.placeholder = "https://your-url.com";
+    urlInput.style.cssText = "width:100%;padding:8px;border:1px solid #ccc;border-radius:5px;font-size:13px;box-sizing:border-box;";
+
+    popup.appendChild(urlLabel);
+    popup.appendChild(urlInput);
+
+    // Save / Cancel buttons
+    const btnRow = document.createElement("div");
+    btnRow.style.cssText = "display:flex;gap:10px;justify-content:center;margin-top:16px;";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.textContent = "Cancel";
+    cancelBtn.style.cssText = "padding:8px 18px;border:1px solid #ccc;border-radius:5px;background:#fff;cursor:pointer;";
+    cancelBtn.onclick = () => overlay.remove();
+
+    const saveBtn = document.createElement("button");
+    saveBtn.textContent = "Save";
+    saveBtn.style.cssText = "padding:8px 18px;border:none;border-radius:5px;background:#F54927;color:#fff;cursor:pointer;";
+    saveBtn.onclick = () => {
+        onSave(urlInput.value.trim());
+        overlay.remove();
+    };
+
+    btnRow.appendChild(cancelBtn);
+    btnRow.appendChild(saveBtn);
+    popup.appendChild(btnRow);
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+}
 function applyLockedMenus() {
   const savedRaw = localStorage.getItem("userTheme");
   const saved = JSON.parse(savedRaw) || {};
@@ -725,7 +795,16 @@ function blockMenuClick(e, menuId) {
     }
   }
 
-  showPreviewPopup(popupType);
+  // CORRECT:
+    let popupUrl = "";
+    if (locationId) {
+        const lockData = lockedMenus[locationId]?.[menuId];
+        if (lockData && typeof lockData === "object") popupUrl = lockData.popupUrl || "";
+    } else {
+        const lockData = agencyData.locked?.[menuId];
+        if (lockData && typeof lockData === "object") popupUrl = lockData.popupUrl || "";
+    }
+    showPreviewPopup(popupType, popupUrl);
 }
 
 // Call on page load
