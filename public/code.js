@@ -513,7 +513,7 @@ function getCurrentLocationId() {
 function applyHiddenMenus() { 
   restoreHiddenMenus(); 
 }
-    function showPreviewPopup(type, popupUrl) {
+    function showPreviewPopup(type) {
             document.getElementById("tb-preview-popup")?.remove();
 
             const overlay = document.createElement("div");
@@ -564,13 +564,7 @@ function applyHiddenMenus() {
             }
 
             popup.innerHTML = content;
-            const actionBtn = popup.querySelector("button");
-            if (actionBtn && popupUrl) {
-                actionBtn.style.cursor = "pointer";
-                actionBtn.addEventListener("click", () => {
-                    window.open(popupUrl, "_blank");
-                });
-            }
+
             const closeBtn = document.createElement("button");
             closeBtn.textContent = "Close";
             closeBtn.style.marginTop = "15px";
@@ -731,16 +725,7 @@ function blockMenuClick(e, menuId) {
     }
   }
 
-  // CORRECT:
-    let popupUrl = "";
-    if (locationId) {
-        const lockData = lockedMenus[locationId]?.[menuId];
-        if (lockData && typeof lockData === "object") popupUrl = lockData.popupUrl || "";
-    } else {
-        const lockData = agencyData.locked?.[menuId];
-        if (lockData && typeof lockData === "object") popupUrl = lockData.popupUrl || "";
-    }
-    showPreviewPopup(popupType, popupUrl);
+  showPreviewPopup(popupType);
 }
 
 // Call on page load
