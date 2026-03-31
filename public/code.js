@@ -715,7 +715,6 @@ function blockMenuClick(e, menuId) {
   let popupType = "simple"; // default
   if (locationId) {
     const lockData = lockedMenus[locationId]?.[menuId];
-    console.log("popup type",lockData.popupType);
     if (lockData && typeof lockData === 'object') {
       popupType = lockData.popupType || "simple";
     }
@@ -725,7 +724,6 @@ function blockMenuClick(e, menuId) {
       popupType = lockData.popupType || "simple";
     }
   }
-        console.log('(codefile.js) popup type on click:', popupType);
 
   showPreviewPopup(popupType);
 }
