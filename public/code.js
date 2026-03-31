@@ -725,6 +725,7 @@ function blockMenuClick(e, menuId) {
       popupType = lockData.popupType || "simple";
     }
   }
+        console.log('(codefile.js) popup type on click:', popupType);
 
   showPreviewPopup(popupType);
 }
