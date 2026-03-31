@@ -4151,3 +4151,6 @@ body.bluewave-topnav-active .container {
     opacity: 0.5;           /* makes it look disabled */
     user-select: none;      /* prevents text selection */
 }
+.modal-title{
+  color: #ffffff !important;
+}
