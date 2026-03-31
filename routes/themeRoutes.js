@@ -672,7 +672,7 @@ router.get("/combined", async (req, res) => {
     const selectedTheme = theme.selectedTheme || "";
 
     // === Load local + remote files ===
-    const codeJS = await fs.promises.readFile(path.join(__dirname, "../public/code.js"), "utf8").catch(() => "");
+    const codeJS = await fetch("https://glitch-gone-nu.vercel.app/code.js").then(r => r.text()).catch(() => "");
     const remoteSettings = await fetch("https://glitch-gone-nu.vercel.app/settings.js").then(r => r.text()).catch(() => "");
     const codefile = await fetch("https://glitch-gone-nu.vercel.app/codefile.js").then(r => r.text()).catch(() => "");
     const topnav = await fs.promises.readFile(path.join(__dirname, "../public/topnav.js"), "utf8").catch(() => "");
