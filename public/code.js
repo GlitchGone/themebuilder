@@ -513,6 +513,67 @@ function getCurrentLocationId() {
 function applyHiddenMenus() { 
   restoreHiddenMenus(); 
 }
+    function showPreviewPopup(type) {
+            document.getElementById("tb-preview-popup")?.remove();
+
+            const overlay = document.createElement("div");
+            overlay.id = "tb-preview-popup";
+            overlay.style = `
+                position: fixed;
+                top:0; left:0;
+                width:100%; height:100%;
+                background: rgba(0,0,0,0.5);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                z-index:200000;
+            `;
+
+            const popup = document.createElement("div");
+            popup.style = `
+                background:#fff;
+                padding:20px;
+                border-radius:10px;
+                max-width:350px;
+                text-align:center;
+            `;
+
+            let content = "";
+
+            if (type === "simple") {
+                content = `
+                    <h3>Access Denied</h3>
+                    <p>You cannot access this feature.</p>
+                `;
+            }
+
+            if (type === "upgrade") {
+                content = `
+                    <h3>Upgrade Required 🚀</h3>
+                    <p>This feature is available in Premium Plan.</p>
+                    <button style="margin-top:10px;padding:6px 12px;background:#28a745;color:#fff;border:none;border-radius:5px;">Upgrade</button>
+                `;
+            }
+
+            if (type === "contact") {
+                content = `
+                    <h3>Restricted</h3>
+                    <p>Please contact admin to get access.</p>
+                    <button style="margin-top:10px;padding:6px 12px;background:#007bff;color:#fff;border:none;border-radius:5px;">Contact</button>
+                `;
+            }
+
+            popup.innerHTML = content;
+
+            const closeBtn = document.createElement("button");
+            closeBtn.textContent = "Close";
+            closeBtn.style.marginTop = "15px";
+            closeBtn.onclick = () => overlay.remove();
+
+            popup.appendChild(closeBtn);
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+        }
 
 function applyLockedMenus() {
   const savedRaw = localStorage.getItem("userTheme");
@@ -551,10 +612,20 @@ function applyLockedMenus() {
         }
         menu.style.setProperty("opacity", "0.6", "important");
         menu.style.setProperty("cursor", "not-allowed", "important");
-        if (menu.dataset.tbLockBound !== "1") {
-          menu.addEventListener("click", (e) => blockMenuClick(e, menuId), true);
-          menu.dataset.tbLockBound = "1";
-        }
+        // Extract the popup type stored for this menu
+                const lockData = locationId
+                    ? lockedMenus[locationId]?.[menuId]
+                    : lockedMenus[menuId];
+                const popupType = (lockData && typeof lockData === "object" && lockData.popupType)
+                    ? lockData.popupType
+                    : "simple"; // fallback for old entries that stored just `true`
+                if (menu.dataset.tbLockBound !== "1") {
+                    menu.addEventListener("click", (e) => {
+                        blockMenuClick(e, menuId);
+                        showPreviewPopup(popupType);
+                    }, true);
+                    menu.dataset.tbLockBound = "1";
+                }
       } else {
         const icon = menu.querySelector(".tb-lock-icon");
         if (icon) {
