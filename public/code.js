@@ -47,7 +47,7 @@
       if (themeData && themeData["--custom-logo-url"]) {
         changeFavicon(themeData["--custom-logo-url"]);
       } else {
-        changeFavicon('https://storage.googleapis.com/msgsndr/W0un4jEKdf7kQBusAM6W/media/6642738faffa4aad7ee4eb45.png');
+        changeFavicon('');
       }
 
       const cssText = decodeBase64Utf8(css);
