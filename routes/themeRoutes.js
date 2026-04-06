@@ -90,6 +90,18 @@ router.post("/onboard", async (req, res) => {
         emailList = [email.toLowerCase()];
       }
     }
+    // ✅ GLOBAL EMAIL CHECK HERE
+    if (emailList.length) {
+      const existingEmailUser = await Theme.findOne({
+        email: { $in: emailList }
+      });
+
+      if (existingEmailUser) {
+        return res.status(409).json({
+          message: "Email already exists, please choose another email. Thanks"
+        });
+      }
+    }
     const AgencyId = await generateAgencyId();
 
     let query = { agencyId: AgencyId };
