@@ -263,7 +263,19 @@ router.post("/", async (req, res) => {
         emailList = [email.toLowerCase()];
       }
     }
+    // ✅ NEW CHECK (cross-agency)
+    if (emailList.length > 0) {
+      const emailConflict = await Theme.findOne({
+        email: { $in: emailList },
+        agencyId: { $ne: agencyId }
+      });
 
+      if (emailConflict) {
+        return res.status(409).json({
+          message: "This email is already associated with another agency. Please use a different email."
+        });
+      }
+    }
     // ✅ Build query with agencyId check
     let query = {};
     if (emailList.length > 0) {
