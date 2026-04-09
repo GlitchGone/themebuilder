@@ -414,7 +414,7 @@ router.get("/merged-css", async (req, res) => {
     const hasSelectedTheme = selectedTheme && selectedTheme.trim() !== "";
     console.log({ hasThemeData, hasSelectedTheme, selectedTheme });
     // ✅ If both are missing → return only main.css (no system-generated CSS)
-    if (!hasThemeData) {
+    if (!hasThemeData || selectedTheme ==="") {
       console.warn(`⚠️ No themeDatafound for agencyId: ${agencyId}`);
       return res.status(204).send(); // 204 = No Content
 
