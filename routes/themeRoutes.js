@@ -58,7 +58,9 @@ router.post("/addthemes", async (req, res) => {
 });
 router.get("/getallthemes", async (req, res) => {
   try {
-    const themes = await Themedynamically.find({ isActive: true });
+    const themes = await Themedynamically
+  .find({ isActive: true })
+  .sort({ _id: -1 });
 
     res.status(200).json({
       count: themes.length,
