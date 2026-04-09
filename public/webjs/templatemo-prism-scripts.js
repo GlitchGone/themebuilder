@@ -14,7 +14,7 @@ https://templatemo.com/tm-600-prism-flux
         const portfolioData = [
             {
                 id: 1,
-                title: 'Default Theme',
+                title: 'Green Night Theme',
                 description: 'A bold fusion of green and black tones crafted for clarity, balance, and modern visual appeal.',
                 image: 'images/default.png',
                 tech: ['Emerald', 'Carbon', 'Neon']

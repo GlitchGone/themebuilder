@@ -131,5 +131,5 @@ module.exports = {
     "--custom-logo-css": "",
     "--theme-mode": "dark"
   },
-  "selectedTheme": "Default Theme",
+  "selectedTheme": "Green Night Theme",
 }

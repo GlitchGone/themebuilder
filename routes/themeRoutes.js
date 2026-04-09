@@ -428,7 +428,7 @@ router.get("/merged-css", async (req, res) => {
     // ✅ Otherwise, continue with normal themed flow
     let logincss = "";
     const themeCssFiles = {
-      "Default Theme": "glitchgonelogin.css",
+      "Green Night Theme": "glitchgonelogin.css",
       "Default Light Theme": "glitchgonelogin.css",
       "BlueWave Theme": "bluewavelogin.css",
       "OceanMist Theme": "oceanmefistlogin.css",
