@@ -92,22 +92,21 @@ router.post("/onboard", async (req, res) => {
         emailList = [email.toLowerCase()];
       }
     }
-    // ✅ GLOBAL EMAIL CHECK HERE
+
     if (emailList.length) {
       const existingEmailUser = await Theme.findOne({
         email: { $in: emailList }
       });
-
       if (existingEmailUser) {
         return res.status(409).json({
           message: "Email already exists, please choose another email. Thanks"
         });
       }
     }
+
     const AgencyId = await generateAgencyId();
 
     let query = { agencyId: AgencyId };
-
     if (emailList.length) {
       query.email = { $in: emailList };
     } else if (Relationship_No) {
@@ -115,21 +114,26 @@ router.post("/onboard", async (req, res) => {
     }
 
     const existingTheme = await Theme.findOne(query);
-
     if (existingTheme) {
       return res.status(409).json({
         message: "Theme already exists for this user and agency"
       });
     }
 
+    // ✅ Fetch Default Theme template
+    const defaultThemeTemplate = await Themedynamically.findOne({ themeName: "Default Theme" });
+    console.log(defaultThemeTemplate,'defaultThemeTemplate');
     const newTheme = new Theme({
       email: emailList.length ? emailList : [],
       rlNo: Relationship_No || null,
       agencyId: AgencyId,
-      bodyFont: null,
+      bodyFont: defaultThemeTemplate?.themeData?.["--body-font"] || null,
       isActive: true,
       createdBy: createdBy || null,
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      // ✅ Seed with default theme data
+      themeData: defaultThemeTemplate?.themeData || {},
+      selectedTheme: defaultThemeTemplate ? "Default Theme" : null
     });
 
     await newTheme.save();
@@ -144,36 +148,31 @@ router.post("/onboard", async (req, res) => {
       customJs: `<script src="${customJsScript}"></script>`,
       customCss: `@import url("${customCssImport}");`
     };
-      try{
-      // ✅ Save into UserScript collection
-          await UserScript.create({
-            email: emailList.length ? emailList[0] : null,
-            agencyId: AgencyId,
-            themeId: newTheme._id,
-            customJs: `<script src="${customJsScript}"></script>`,
-            customCss: `@import url("${customCssImport}");`
-          });
-      }catch(err){ 
-        console.error("❌ Error saving to UserScript:", err); 
-      }
 
-      try{
+    try {
+      await UserScript.create({
+        email: emailList.length ? emailList[0] : null,
+        agencyId: AgencyId,
+        themeId: newTheme._id,
+        customJs: `<script src="${customJsScript}"></script>`,
+        customCss: `@import url("${customCssImport}");`
+      });
+    } catch (err) {
+      console.error("❌ Error saving to UserScript:", err);
+    }
+
+    try {
       await AgencySettings.create({
-          agencyId: AgencyId,
-          loaderId: null, // or default loader ObjectId
-          themeId: newTheme._id,
-          selectedTheme: null,
-          bodyFont:null
-          });
-      }catch(err){
-          console.error("❌ Error creating default AgencySettings:", err);
-      }
-
-    
-    // ✅ Send email (to first email or all)
-    // if (emailList.length) {
-    //   await sendThemeEmail(emailList[0], responseData);
-    // }
+        agencyId: AgencyId,
+        loaderId: null,
+        themeId: newTheme._id,
+        // ✅ Also sync selectedTheme into AgencySettings
+        selectedTheme: defaultThemeTemplate ? "Default Theme" : null,
+        bodyFont: defaultThemeTemplate?.themeData?.["--body-font"] || null
+      });
+    } catch (err) {
+      console.error("❌ Error creating default AgencySettings:", err);
+    }
 
     return res.status(201).json({
       message: "Theme created & email sent successfully",
@@ -616,10 +615,10 @@ router.get("/Get-loader-css", async (req, res) => {
       return res.status(404).json({ message: "User theme not found" });
     }
 
-    const loaders = await AgencyLoader.find();
+    const loaders = await AgencyLoader.find().lean();
     const settings = await AgencySettings.findOne({
       agencyId: userTheme.agencyId
-    });
+    }).lean();
     console.log(settings,'here are loaders');
     res.json({
       success: true,
