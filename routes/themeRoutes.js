@@ -392,7 +392,38 @@ router.get("/file", async (req, res) => {
     res.status(500).json({ message: "Error loading CSS" });
   }
 });
+router.post("/check-theme", async (req, res) => {
+    try {
+        const { email, agencyId } = req.body;
 
+        // ✅ Validation
+        if (!email || !agencyId) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and agencyId are required"
+            });
+        }
+
+        // ✅ Query with email + agencyId + isActive
+        const theme = await Theme.findOne({
+            email: email,
+            agencyId: agencyId,
+            isActive: true
+        });
+
+        if (!theme) {
+            return res.json({ success: false }); // ❌ Not found
+        }
+
+        return res.json({ success: true }); // ✅ Found
+    } catch (err) {
+        console.error("❌ API Error:", err.message);
+        res.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+    }
+});
 router.get("/merged-css", async (req, res) => {
   try {
     const agencyId = req.query.agencyId;
