@@ -798,8 +798,6 @@ router.get("/:email", async (req, res) => {
         res.status(500).json({ success: false, message: "Server error" });
     }
 });
-
-
 const generateAgencyId = async () => {
   let isUnique = false;
   let agencyId;
