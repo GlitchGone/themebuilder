@@ -12,6 +12,8 @@ const Themedynamically = require("../models/Theme");
 const transporter = require("../utils/mailer");
 const UserScript = require("../models/userScript");
 const AgencySettings = require("../models/AgencySettings");
+const connectDB = require("../lib/mongo"); // ← add this line
+
 
 router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
