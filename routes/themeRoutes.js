@@ -18,6 +18,7 @@ router.get("/_debug-test", (req, res) => {
   res.json({ ok: true });
 });
 router.post("/addthemes", async (req, res) => {
+  await connectDB(); 
   try {
     const { themeName, themeData, createdBy } = req.body;
 
@@ -57,6 +58,7 @@ router.post("/addthemes", async (req, res) => {
   }
 });
 router.get("/getallthemes", async (req, res) => {
+  await connectDB(); 
   try {
     const themes = await Themedynamically
   .find({ isActive: true })
@@ -248,6 +250,7 @@ router.get('/code/:identifier', async (req, res) => {
 });
 // Save or update theme for a user
 router.post("/", async (req, res) => {
+  await connectDB(); 
   let { rlNo, email, themeData, selectedTheme, bodyFont, agencyId, updatedBy } = req.body;
 
   if (!email && !rlNo) {
@@ -393,6 +396,7 @@ router.get("/file", async (req, res) => {
   }
 });
 router.post("/check-theme", async (req, res) => {
+  await connectDB(); 
     try {
         const { email, agencyId } = req.body;
 
@@ -425,6 +429,7 @@ router.post("/check-theme", async (req, res) => {
     }
 });
 router.get("/merged-css", async (req, res) => {
+  await connectDB(); 
   try {
     const agencyId = req.query.agencyId;
 
@@ -597,6 +602,7 @@ router.get("/merged-css", async (req, res) => {
 });
 // 🟢 Create or update a loader for an agency -- To Do to remove the agencyid
 router.post("/loader-css", async (req, res) => {
+  await connectDB(); 
   try {
     const { agencyId, loaderName, loaderCSS, previewImage, isActive } = req.body;
     
@@ -635,6 +641,7 @@ router.post("/loader-css", async (req, res) => {
 });
 // 🟡 Get all loaders for an agency -0 need to update this API to remove agency Based.
 router.get("/Get-loader-css", async (req, res) => {
+  await connectDB(); 
   try {
     const { email } = req.query;
     if (!email) {
@@ -664,6 +671,7 @@ router.get("/Get-loader-css", async (req, res) => {
 });
 // ✅ Update loader isActive status
 router.put("/loader-css/status", async (req, res) => {
+  await connectDB(); 
   try {
     const { _id,email } = req.body;
 
@@ -717,6 +725,7 @@ router.put("/loader-css/status", async (req, res) => {
   }
 });
 router.get("/combined", async (req, res) => {
+  await connectDB(); 
   try {
     const agencyId = req.query.agencyId;
     if (!agencyId) return res.status(400).json({ message: "agencyId is required" });
@@ -760,6 +769,7 @@ router.get("/combined", async (req, res) => {
   }
 });
 router.post("/agencysettings", async (req, res) => {
+  await connectDB(); 
   try {
     const { email, rlNo, agencyId } = req.body;   
     const agencySettings = new AgencySettings({
@@ -779,6 +789,7 @@ router.post("/agencysettings", async (req, res) => {
   });
 // ✅ New API: Find theme by email
 router.get("/:email", async (req, res) => {
+  await connectDB(); 
     try {
         const email = req.params.email;
 

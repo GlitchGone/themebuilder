@@ -76,7 +76,7 @@ html body::after {
  --sidebar-menu-border-style: double;
  --sidebar-menu-border-color: #16181c00;
  --sidebar-bg-color: #212121;
- --sidebar-main-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
+ /* --sidebar-main-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --card-body-font-color: #fafafa;
  --card-body-bg-color: #212121;
  --card-body-font-size: 22px;
