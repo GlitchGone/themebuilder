@@ -379,7 +379,22 @@ router.get("/file", async (req, res) => {
       // OR, if you prefer a message instead of an empty response:
       // return res.status(404).json({ message: "No theme data found" });
     }
-
+    const companyLogoUrl = themeData["--loader-company-url"];
+    const animationSetting = themeData["--animation-settings"];
+    const settings = await AgencySettings.findOne({ agencyId });
+    let loaderCSS = "";
+    if (companyLogoUrl && companyLogoUrl.trim() !== "") {
+      loaderCSS = animationSetting === "BouncingLogo"
+        ? generateBouncingLogoCSS(companyLogoUrl)
+        : generatePulsatingLogoCSS(companyLogoUrl);
+    } else {
+      if (settings?.customLoaderCSS) {
+        loaderCSS = settings.customLoaderCSS;
+      } else if (settings?.loaderId) {
+        const loader = await AgencyLoader.findById(settings.loaderId);
+        loaderCSS = loader?.loaderCSS || "";
+      }
+    }
     // ✅ If themeData exists → load CSS
     const cssFilePath = path.join(__dirname, "../public/style.css");
     const cssContent = await fs.promises.readFile(cssFilePath, "utf8");
@@ -390,6 +405,7 @@ router.get("/file", async (req, res) => {
       css: encodedCSS,
       themeData: themeData,
       selectedTheme: selectedTheme,
+      loaderCSS: Buffer.from(loaderCSS, "utf8").toString("base64") // encode it
     });
 
   } catch (err) {
