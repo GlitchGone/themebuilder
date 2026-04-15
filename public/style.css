@@ -67,10 +67,10 @@ html body::after {
  --sidebar-menu-active-color: #fafafa;
  --sidebar-menu-hover-color: #fafafa;
  --sidebar-menu-bg: #212121;
- --sidebar-menu-hover-bg: #038c3f;
- --sidebar-menu-active-bg: #038c3f;
+ /* --sidebar-menu-hover-bg: #038c3f; */
+ /* --sidebar-menu-active-bg: #038c3f; */
  --sidebar-menu-font-size: 14px;
- --sidebar-menu-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
+ /* --sidebar-menu-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --sidebar-menu-border-width:  0rem 0rem 0rem 0rem; ;
  --sidebar-menu-border-radius: 16px;
  --sidebar-menu-border-style: double;
