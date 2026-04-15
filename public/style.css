@@ -53,10 +53,10 @@ html body::after {
  /* --second-color: #038c3f; */
  --grey-color: #fff8f8ff;
  --warning-color: #db0707ff;
- --dark-color: #038c3f;
- --scroll-color: #038c3fff;
+ /* --dark-color: #038c3f;
+ --scroll-color: #038c3fff; */
  --app-bg-color: #F9FAFB;
- --Acent-color: #100939;
+ /* --Acent-color: #100939; */
  --alert-color: #ff0101ff;
  --white-color: #ffffffff;
  --sidebar-menu-icon-color: #ffffffff;
@@ -66,7 +66,7 @@ html body::after {
  --sidebar-menu-color: #fafafa;
  --sidebar-menu-active-color: #fafafa;
  --sidebar-menu-hover-color: #fafafa;
- --sidebar-menu-bg: #212121;
+ /* --sidebar-menu-bg: #212121; */
  /* --sidebar-menu-hover-bg: #038c3f; */
  /* --sidebar-menu-active-bg: #038c3f; */
  --sidebar-menu-font-size: 14px;
@@ -74,8 +74,8 @@ html body::after {
  --sidebar-menu-border-width:  0rem 0rem 0rem 0rem; ;
  --sidebar-menu-border-radius: 16px;
  --sidebar-menu-border-style: double;
- --sidebar-menu-border-color: #16181c00;
- --sidebar-bg-color: #212121;
+ /* --sidebar-menu-border-color: #16181c00;s */
+ /* --sidebar-bg-color: #212121; */
  /* --sidebar-main-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --card-body-font-color: #fafafa;
  --card-body-bg-color: #212121;
@@ -107,7 +107,9 @@ html body::after {
  --header-bg-color: #F2F7FA;
  --header-main-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
  --header-main-box-shadow: 0px 0px 0px 0px #0b4dffff;
- --top-nav-menu-color: #fafafa;
+
+ /*Top Navigation*/
+ /* --top-nav-menu-color: #fafafa;
  --top-nav-menu-active-color: #fafafa;
  --top-nav-menu-hover-color: #fafafa;
  --top-nav-menu-bg: #212121;
@@ -129,7 +131,7 @@ html body::after {
  --top-nav-title-color: #000000ff;
  --top-nav-title-font-size: 24px;
  --top-nav-bg-color: #31249600;
- --top-nav-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
+ --top-nav-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --sidebar-menu-icon-lunchpad:"\f06a";
  --sidebar-menu-icon-dashboard:"\f58d";
  --sidebar-menu-icon-conversations:"\f27a";
