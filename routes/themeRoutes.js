@@ -16,10 +16,12 @@ const connectDB = require("../lib/mongo"); // ← add this line
 // ─── Server-side caches (persist across warm requests) ───────────────────────
 const _fileCache = new Map();        // static CSS files: path → content
 const _resultCache = new Map();      // final CSS: agencyId → { css, etag, builtAt }
-const RESULT_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const RESULT_CACHE_TTL = 15 * 60 * 1000; // 5 minutes
 const _remoteJsCache = new Map(); // url → { content, fetchedAt }
-const REMOTE_JS_TTL = 10 * 60 * 1000; // 10 minutes
+const REMOTE_JS_TTL = 20 * 60 * 1000; // 10 minutes
 const _combinedCache = new Map(); // agencyId → { js, etag, builtAt }
+let _allThemesCache = null; // { data, etag, builtAt }
+const ALL_THEMES_TTL = 30 * 60 * 1000; // 5 minutes
 async function readFileCached(filePath) {
   if (_fileCache.has(filePath)) return _fileCache.get(filePath);
   try {
@@ -50,7 +52,7 @@ router.get("/_debug-test", (req, res) => {
   res.json({ ok: true });
 });
 router.post("/addthemes", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
   try {
     const { themeName, themeData, createdBy } = req.body;
 
@@ -89,23 +91,58 @@ router.post("/addthemes", async (req, res) => {
     });
   }
 });
-router.get("/getallthemes", async (req, res) => {
-  await connectDB(); 
-  try {
-    const themes = await Themedynamically
-  .find({ isActive: true })
-  .sort({ _id: -1 });
+// router.get("/getallthemes", async (req, res) => {
+//   await connectDB();
+//   try {
+//     const themes = await Themedynamically
+//   .find({ isActive: true })
+//   .sort({ _id: -1 });
 
-    res.status(200).json({
-      count: themes.length,
-      themes
-    });
+//     res.status(200).json({
+//       count: themes.length,
+//       themes
+//     });
+
+//   } catch (error) {
+//     res.status(500).json({
+//       message: "Server error",
+//       error: error.message
+//     });
+//   }
+// });
+router.get("/getallthemes", async (req, res) => {
+  await connectDB();
+  try {
+    // ── 1. In-memory cache check ──────────────────────────────────────────────
+    if (_allThemesCache && (Date.now() - _allThemesCache.builtAt) < ALL_THEMES_TTL) {
+      res.setHeader("ETag", _allThemesCache.etag);
+      res.setHeader("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+
+      if (req.headers["if-none-match"] === _allThemesCache.etag) {
+        return res.status(304).end();
+      }
+
+      return res.status(200).json(_allThemesCache.data);
+    }
+
+    // ── 2. Fetch from DB ──────────────────────────────────────────────────────
+    const themes = await Themedynamically.find({ isActive: true }).sort({ _id: -1 });
+
+    const responseData = { count: themes.length, themes };
+
+    // ── 3. Build ETag from latest theme's _id ─────────────────────────────────
+    const latestId = themes[0]?._id?.toString() || "empty";
+    const etag = `"allthemes-${latestId}-${themes.length}"`;
+
+    // ── 4. Store in cache ─────────────────────────────────────────────────────
+    _allThemesCache = { data: responseData, etag, builtAt: Date.now() };
+
+    res.setHeader("ETag", etag);
+    res.setHeader("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+    return res.status(200).json(responseData);
 
   } catch (error) {
-    res.status(500).json({
-      message: "Server error",
-      error: error.message
-    });
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 });
 router.post("/onboard", async (req, res) => {
@@ -282,7 +319,7 @@ router.get('/code/:identifier', async (req, res) => {
 });
 // Save or update theme for a user
 router.post("/", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
   let { rlNo, email, themeData, selectedTheme, bodyFont, agencyId, updatedBy } = req.body;
 
   if (!email && !rlNo) {
@@ -315,7 +352,7 @@ router.post("/", async (req, res) => {
     // ✅ Build query with agencyId check
     let query = {};
     if (emailList.length > 0) {
-        query = { 
+        query = {
             email: { $regex: emailList.join('|'), $options: 'i' },
             agencyId
         }    } else if (rlNo) {
@@ -372,7 +409,7 @@ router.post("/", async (req, res) => {
     existingTheme.selectedTheme = selectedTheme;
     existingTheme.bodyFont = bodyFont;
     existingTheme.updatedAt = new Date();
-    existingTheme.updatedBy = updatedBy || null; //added by myself new 
+    existingTheme.updatedBy = updatedBy || null; //added by myself new
     console.log(existingTheme,'here is existingTheme');
     await existingTheme.save();
 
@@ -444,7 +481,7 @@ router.get("/file", async (req, res) => {
   }
 });
 router.post("/check-theme", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
     try {
         const { email, agencyId } = req.body;
 
@@ -477,7 +514,7 @@ router.post("/check-theme", async (req, res) => {
     }
 });
 // router.get("/merged-css", async (req, res) => {
-//   await connectDB(); 
+//   await connectDB();
 //   try {
 //     const agencyId = req.query.agencyId;
 
@@ -592,7 +629,7 @@ router.post("/check-theme", async (req, res) => {
 //     const animationSetting = themeData["--animation-settings"];
 //     const settings = await AgencySettings.findOne({ agencyId });
 
-//     let loaderCSS = "";            
+//     let loaderCSS = "";
 
 //    if (companyLogoUrl && companyLogoUrl.trim() !== "") {
 //         loaderCSS =
@@ -602,7 +639,7 @@ router.post("/check-theme", async (req, res) => {
 //       } else {
 //         if (settings?.customLoaderCSS) {
 //           loaderCSS = settings.customLoaderCSS;
-//         } 
+//         }
 //         else if (settings?.loaderId) {
 //           const loader = await AgencyLoader.findById(settings.loaderId);
 //           loaderCSS = loader?.loaderCSS || "";
@@ -749,22 +786,22 @@ router.get("/merged-css", async (req, res) => {
   }
 });
 router.post("/loader-css", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
   try {
     const { agencyId, loaderName, loaderCSS, previewImage, isActive } = req.body;
-    
+
     // ✅ Validate required fields
     if (!agencyId || !loaderName || !loaderCSS) {
       return res.status(400).json({
         message: "agencyId, loaderName, and loaderCSS are required"
       });
     }
-    
+
     // ✅ If this loader is marked active, deactivate others for same agency
     if (isActive) {
       await AgencyLoader.updateMany({ agencyId }, { isActive: false });
     }
-    
+
     // ✅ Create a new loader record
     const newLoader = new AgencyLoader({
       agencyId,
@@ -774,9 +811,9 @@ router.post("/loader-css", async (req, res) => {
       isActive: !!isActive,
       updatedAt: new Date()
     });
-    
+
     await newLoader.save();
-    
+
     res.status(201).json({
       message: "Loader saved successfully",
       loader: newLoader
@@ -788,7 +825,7 @@ router.post("/loader-css", async (req, res) => {
 });
 // 🟡 Get all loaders for an agency -0 need to update this API to remove agency Based.
 router.get("/Get-loader-css", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
   try {
     const { email } = req.query;
     if (!email) {
@@ -818,12 +855,12 @@ router.get("/Get-loader-css", async (req, res) => {
 });
 // ✅ Update loader isActive status
 router.put("/loader-css/status", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
   try {
     const { _id,email } = req.body;
 
     // ✅ Validate input
-    
+
     if (!_id) {
       return res.status(400).json({
         message: "loader _id is required",
@@ -872,7 +909,7 @@ router.put("/loader-css/status", async (req, res) => {
   }
 });
 // router.get("/combined", async (req, res) => {
-//   await connectDB(); 
+//   await connectDB();
 //   try {
 //     const agencyId = req.query.agencyId;
 //     if (!agencyId) return res.status(400).json({ message: "agencyId is required" });
@@ -972,9 +1009,9 @@ try { localStorage.setItem('agn', agn); } catch (e) {}
   }
 });
 router.post("/agencysettings", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
   try {
-    const { email, rlNo, agencyId } = req.body;   
+    const { email, rlNo, agencyId } = req.body;
     const agencySettings = new AgencySettings({
         agencyId: agencyId,
           loaderId: null, // or default loader ObjectId
@@ -987,12 +1024,12 @@ router.post("/agencysettings", async (req, res) => {
     console.error("❌ Error in /agencysettings API:", err);
     res.status(500).json({ message: "Internal Server Error" });
   }
-  
-  
+
+
   });
 // ✅ New API: Find theme by email
 router.get("/:email", async (req, res) => {
-  await connectDB(); 
+  await connectDB();
     try {
         const email = req.params.email;
 
@@ -1044,9 +1081,9 @@ async function sendThemeEmail(to, data) {
     subject: "Your Theme Builder Script",
    html: `
   <div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 30px;">
-    
+
     <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      
+
       <!-- Header -->
       <div style="background: linear-gradient(135deg, #4a90e2, #007aff); padding: 20px; text-align: center; color: white;">
         <h2 style="margin: 0;">🎉 You are Registered Successfully</h2>
@@ -1055,7 +1092,7 @@ async function sendThemeEmail(to, data) {
 
       <!-- Body -->
       <div style="padding: 20px; color: #333;">
-        
+
         <p style="font-size: 14px;">Hello,</p>
         <p style="font-size: 14px;">
           Your theme has been successfully created. Please find your integration details below:
