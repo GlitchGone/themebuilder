@@ -716,6 +716,9 @@ button {
   color: var(--sidebar-menu-color) !important;
 }
 #sidebar-v2 nav a#sb_vibe span.nav-title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     color: var(--sidebar-menu-color) !important;
 }
 #sidebar-v2 nav a.active span.nav-title {
