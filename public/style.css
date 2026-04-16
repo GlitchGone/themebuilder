@@ -2041,6 +2041,7 @@ nav a#sb_location-mobile-app,
 }
 
 #recent_activities-toggle::before {
+  left: 1px !important;
   content: "" !important;
   mask-image: var(--header-menu-icon-notifications);
   -webkit-mask-image: var(--header-menu-icon-notifications);
