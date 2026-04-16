@@ -16,12 +16,12 @@ const connectDB = require("../lib/mongo"); // ← add this line
 // ─── Server-side caches (persist across warm requests) ───────────────────────
 const _fileCache = new Map();        // static CSS files: path → content
 const _resultCache = new Map();      // final CSS: agencyId → { css, etag, builtAt }
-const RESULT_CACHE_TTL = 15 * 60 * 1000; // 5 minutes
+const RESULT_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 const _remoteJsCache = new Map(); // url → { content, fetchedAt }
-const REMOTE_JS_TTL = 20 * 60 * 1000; // 10 minutes
+const REMOTE_JS_TTL = 5 * 60 * 1000; // 10 minutes
 const _combinedCache = new Map(); // agencyId → { js, etag, builtAt }
 let _allThemesCache = null; // { data, etag, builtAt }
-const ALL_THEMES_TTL = 30 * 60 * 1000; // 5 minutes
+const ALL_THEMES_TTL = 5 * 60 * 1000; // 5 minutes
 async function readFileCached(filePath) {
   if (_fileCache.has(filePath)) return _fileCache.get(filePath);
   try {
