@@ -235,9 +235,8 @@ router.post("/onboard", async (req, res) => {
     try {
       await AgencySettings.create({
         agencyId: AgencyId,
-        loaderId: null,
+        loaderId: "69975a870e781c3a0b685ca5", // ✅ fixed loader id
         themeId: newTheme._id,
-        // ✅ Also sync selectedTheme into AgencySettings
         selectedTheme: defaultThemeTemplate ? "Default Theme" : null,
         bodyFont: defaultThemeTemplate?.themeData?.["--body-font"] || null
       });
@@ -1008,25 +1007,63 @@ try { localStorage.setItem('agn', agn); } catch (e) {}
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+// router.post("/agencysettings", async (req, res) => {
+//   await connectDB();
+//   try {
+//     const { email, rlNo, agencyId } = req.body;
+//     const agencySettings = new AgencySettings({
+//         agencyId: agencyId,
+//           loaderId: null, // or default loader ObjectId
+//           themeId: null,
+//           selectedTheme: null,
+//           bodyFont:null
+//     });
+//     await agencySettings.save();
+//   }catch (err) {
+//     console.error("❌ Error in /agencysettings API:", err);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+
+
+//   });
 router.post("/agencysettings", async (req, res) => {
   await connectDB();
+
   try {
-    const { email, rlNo, agencyId } = req.body;
-    const agencySettings = new AgencySettings({
+    const { agencyId } = req.body;
+
+    if (!agencyId) {
+      return res.status(400).json({ message: "agencyId is required" });
+    }
+
+    const result = await AgencySettings.updateOne(
+      {
         agencyId: agencyId,
-          loaderId: null, // or default loader ObjectId
-          themeId: null,
-          selectedTheme: null,
-          bodyFont:null
+        loaderId: null // ✅ only update if loaderId is null
+      },
+      {
+        $set: {
+          loaderId: "69975a870e781c3a0b685ca5"
+        }
+      }
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({
+        message: "No matching record found or loaderId already set"
+      });
+    }
+
+    return res.status(200).json({
+      message: "LoaderId updated successfully",
+      updated: result
     });
-    await agencySettings.save();
-  }catch (err) {
+
+  } catch (err) {
     console.error("❌ Error in /agencysettings API:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error" });
   }
-
-
-  });
+});
 // ✅ New API: Find theme by email
 router.get("/:email", async (req, res) => {
   await connectDB();
