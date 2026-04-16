@@ -91,25 +91,6 @@ router.post("/addthemes", async (req, res) => {
     });
   }
 });
-// router.get("/getallthemes", async (req, res) => {
-//   await connectDB();
-//   try {
-//     const themes = await Themedynamically
-//   .find({ isActive: true })
-//   .sort({ _id: -1 });
-
-//     res.status(200).json({
-//       count: themes.length,
-//       themes
-//     });
-
-//   } catch (error) {
-//     res.status(500).json({
-//       message: "Server error",
-//       error: error.message
-//     });
-//   }
-// });
 router.get("/getallthemes", async (req, res) => {
   await connectDB();
   try {
@@ -512,179 +493,6 @@ router.post("/check-theme", async (req, res) => {
         });
     }
 });
-// router.get("/merged-css", async (req, res) => {
-//   await connectDB();
-//   try {
-//     const agencyId = req.query.agencyId;
-
-//     if (!agencyId) {
-//       return res.status(400).json({ message: "agencyId is required" });
-//     }
-
-//     // ✅ Fetch active theme
-//     const theme = await Theme.findOne({ agencyId, isActive: true });
-//     if (!theme) {
-//       return res.status(404).json({ message: "Theme not found or inactive" });
-//     }
-
-//     const themeData = theme.themeData || {};
-//     const selectedTheme = theme?.selectedTheme || "";
-
-//     // ✅ Check if themeData and selectedTheme are missing
-//     const hasThemeData = Object.keys(themeData).length > 0;
-//     const hasSelectedTheme = selectedTheme && selectedTheme.trim() !== "";
-//     console.log({ hasThemeData, hasSelectedTheme, selectedTheme });
-//     // ✅ If both are missing → return only main.css (no system-generated CSS)
-//     if (!hasThemeData || selectedTheme ==="") {
-//       console.warn(`⚠️ No themeDatafound for agencyId: ${agencyId}`);
-//       return res.status(204).send(); // 204 = No Content
-
-//       // const mainCssPath = path.join(__dirname, "../public/main.css");
-//       // const mainCss = await fs.promises.readFile(mainCssPath, "utf8");
-
-//       // res.setHeader("Content-Type", "text/css");
-//       // return res.send(mainCss);
-//     }
-
-//     // ✅ Otherwise, continue with normal themed flow
-//     let logincss = "";
-//     const themeCssFiles = {
-//       "Green Night Theme": "glitchgonelogin.css",
-//       "Default Light Theme": "glitchgonelogin.css",
-//       "BlueWave Theme": "bluewavelogin.css",
-//       "OceanMist Theme": "oceanmefistlogin.css",
-//       "OceanMist Light Theme": "oceanmefistlogin.css",
-//       "VelvetNight Theme": "velvetnightlogin.css",
-//       "GlitchGone Light Theme": "whitegreenlogin.css",
-//       "JetBlack Luxury Gold Theme": "jetblacklogin.css",
-//       "JetBlack Luxury Gold Theme - Light": "jetblacklogin.css",
-//       "Veltrix Nova Theme": "veltrixnovaloginpage.css",
-//     };
-
-//     if (themeCssFiles[selectedTheme]) {
-//       const cssFilePath = path.join(__dirname, "../public", themeCssFiles[selectedTheme]);
-//       try {
-//         logincss = await fs.promises.readFile(cssFilePath, "utf8");
-//       } catch (err) {
-//         console.error(`⚠️ Could not read ${themeCssFiles[selectedTheme]}:`, err);
-//       }
-//     }
-
-//     // ✅ Loader helpers
-//     const generatePulsatingLogoCSS = (logoUrl) => `
-//       .hl-loader-container, .lds-ring, .app-loader,
-//       #app + .app-loader, #app.loading + .app-loader {
-//         display: none !important;
-//       }
-//       #custom-global-loader {
-//         position: fixed;
-//         top: 0; left: 0;
-//         width: 100%; height: 100vh;
-//         background: linear-gradient(180deg, #0074f7 0%, #00c0f7 100%);
-//         display: flex; justify-content: center; align-items: center;
-//         z-index: 999999;
-//       }
-//       #custom-global-loader::before {
-//         content: "";
-//         width: 120px; height: 120px;
-//         background: url("${logoUrl}") center/contain no-repeat;
-//         animation: fadeIn 1s ease-in-out infinite alternate;
-//       }
-//       @keyframes fadeIn {
-//         0% { opacity: 0.7; transform: scale(0.95); }
-//         100% { opacity: 1; transform: scale(1.05); }
-//       }
-//     `;
-
-//     const generateBouncingLogoCSS = (logoUrl) => `
-//       .hl-loader-container, .lds-ring, .app-loader,
-//       #app + .app-loader, #app.loading + .app-loader {
-//         display: none !important;
-//       }
-//       #custom-global-loader {
-//         position: fixed;
-//         top: 0; left: 0;
-//         width: 100%; height: 100vh;
-//         background: linear-gradient(180deg, #0074f7 0%, #00c0f7 100%);
-//         display: flex; justify-content: center; align-items: center;
-//         z-index: 999999;
-//       }
-//       #custom-global-loader::before {
-//         content: "";
-//         width: 120px; height: 120px;
-//         background: url("${logoUrl}") center/contain no-repeat;
-//         animation: bounceLogo 1s ease-in-out infinite;
-//       }
-//       @keyframes bounceLogo {
-//         0%, 100% { transform: translateY(0); }
-//         25% { transform: translateY(-30px); }
-//         50% { transform: translateY(0); }
-//         75% { transform: translateY(-15px); }
-//       }
-//     `;
-
-//     // ✅ Select Loader
-//     const companyLogoUrl = themeData["--loader-company-url"];
-//     const animationSetting = themeData["--animation-settings"];
-//     const settings = await AgencySettings.findOne({ agencyId });
-
-//     let loaderCSS = "";
-
-//    if (companyLogoUrl && companyLogoUrl.trim() !== "") {
-//         loaderCSS =
-//           animationSetting === "BouncingLogo"
-//             ? generateBouncingLogoCSS(companyLogoUrl)
-//             : generatePulsatingLogoCSS(companyLogoUrl);
-//       } else {
-//         if (settings?.customLoaderCSS) {
-//           loaderCSS = settings.customLoaderCSS;
-//         }
-//         else if (settings?.loaderId) {
-//           const loader = await AgencyLoader.findById(settings.loaderId);
-//           loaderCSS = loader?.loaderCSS || "";
-//         }
-//       }
-//     // ✅ Read the system-generated style.css only when themedata exists
-//     const cssFilePath = path.join(__dirname, "../public/style.css");
-//     const cssContent = hasThemeData ? await fs.promises.readFile(cssFilePath, "utf8") : "";
-//     const codeJS = await fs.promises.readFile(path.join(__dirname, "../public/code.js"), "utf8").catch(() => "");
-
-//   // ✅ Before generating dynamicVariables
-//   let processedThemeData = { ...themeData };
-
-//   // Only keep --theme-mode if selectedTheme is Light or Dark
-//   if (!["Dark Theme", "Light Theme"].includes(selectedTheme)) {
-//     // Remove mode key from themeData for custom themes
-//     if (processedThemeData["--theme-mode"]) {
-//       delete processedThemeData["--theme-mode"];
-//       console.log(`--theme-mode removed from themeData for ${selectedTheme}`);
-//     }
-//   }
-
-//     // ✅ Dynamic theme variables
-//     const dynamicVariables = hasThemeData
-//       ? Object.entries(processedThemeData).map(([key, value]) => `${key}: ${value};`).join("\n")
-//       : "";
-
-//     // ✅ Merge all CSS
-//     const finalCss = `
-//     :root {
-//     ${dynamicVariables}
-//     }
-//     ${loaderCSS}
-//     ${logincss}
-//     ${cssContent}
-//     `;
-
-//     res.setHeader("Content-Type", "text/css");
-//     res.send(finalCss);
-
-//   } catch (error) {
-//     console.error("❌ Error merging CSS:", error);
-//     res.status(500).json({ message: "Server Error merging CSS" });
-//   }
-// });
-// 🟢 Create or update a loader for an agency -- To Do to remove the agencyid
 router.get("/merged-css", async (req, res) => {
   await connectDB();
   try {
@@ -907,50 +715,6 @@ router.put("/loader-css/status", async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
-// router.get("/combined", async (req, res) => {
-//   await connectDB();
-//   try {
-//     const agencyId = req.query.agencyId;
-//     if (!agencyId) return res.status(400).json({ message: "agencyId is required" });
-
-//     const theme = await Theme.findOne({ agencyId, isActive: true });
-//     if (!theme) return res.status(403).json({ message: "User Not Found Or Invalid ID" });
-
-//     const themeData = theme.themeData || {};
-//     const selectedTheme = theme.selectedTheme || "";
-
-//     // === Load local + remote files ===
-//     const codeJS = await fetch("https://glitch-gone-nu.vercel.app/code.js").then(r => r.text()).catch(() => "");
-//     const remoteSettings = await fetch("https://glitch-gone-nu.vercel.app/settings.js").then(r => r.text()).catch(() => "");
-//     const codefile = await fetch("https://glitch-gone-nu.vercel.app/codefile.js").then(r => r.text()).catch(() => "");
-//     const topnav = await fs.promises.readFile(path.join(__dirname, "../public/topnav.js"), "utf8").catch(() => "");
-//     const cssContent = await fs.promises.readFile(path.join(__dirname, "../public/style.css"), "utf8").catch(() => "");
-//     // === Encode dynamic data ===
-//     const encodedCSS = Buffer.from(cssContent || "", "utf8").toString("base64");
-//     const encodedAgn = Buffer.from(agencyId, "utf8").toString("base64");
-
-//     // === Inject theme + agency vars ===
-//     const dynamicVars = `
-//     const agn = "${encodedAgn}";
-//    const remoteEncoded = "aHR0cHM6Ly90aGVtZWJ1aWxkZXItc2l4LnZlcmNlbC5hcHAvYXBpL3RoZW1lL2ZpbGU/YWdlbmN5SWQ9${encodedAgn}";
-//     try { localStorage.setItem('agn', agn); } catch (e) {}
-//     `;
-
-//     // === Combine final JS ===
-//     const finalJS = `
-//     ${codefile}
-//     ${dynamicVars}
-//     ${codeJS}
-//     ${remoteSettings}
-//     `;
-
-//     res.setHeader("Content-Type", "application/javascript");
-//     res.send(finalJS);
-//   } catch (err) {
-//     console.error("❌ Error in /combined API:", err);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// });
 router.get("/combined", async (req, res) => {
   await connectDB();
   try {
@@ -1007,25 +771,7 @@ try { localStorage.setItem('agn', agn); } catch (e) {}
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-// router.post("/agencysettings", async (req, res) => {
-//   await connectDB();
-//   try {
-//     const { email, rlNo, agencyId } = req.body;
-//     const agencySettings = new AgencySettings({
-//         agencyId: agencyId,
-//           loaderId: null, // or default loader ObjectId
-//           themeId: null,
-//           selectedTheme: null,
-//           bodyFont:null
-//     });
-//     await agencySettings.save();
-//   }catch (err) {
-//     console.error("❌ Error in /agencysettings API:", err);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
 
-
-//   });
 router.post("/agencysettings", async (req, res) => {
   await connectDB();
 
