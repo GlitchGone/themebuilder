@@ -3762,7 +3762,16 @@ div.sidebar-v2-location .hl_topbar-tabs.notification-banner-wrapper {
 [id="sb_AI Agents"] {
   order: var(--ai-agents-order) !important;
 }
-
+  [id="sb_vibe"]:hover::after {
+    color: var(--sidebar-menu-color, #ffffff); /* hover */
+  }
+  #app
+  .sidebar-v2-location
+  .hl_nav-header
+  a[id="sb_vibe"]
+  .nav-title::after {
+  color: var(--sidebar-menu-color, #ffffff); /* hover */
+}
 /* 2. name */
 #app
   .sidebar-v2-location
@@ -3823,6 +3832,7 @@ nav a[id="sb_AI Agents"] {
 [id="sb_AI Agents"]:hover::after {
   background-color: #ffffff; /* hover */
 }
+
 
 [id="sb_AI Agents"].active::after {
   background-color: #c0c0c0; /* active */
