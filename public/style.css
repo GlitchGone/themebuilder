@@ -721,6 +721,13 @@ button {
     opacity: 1 !important;
     color: var(--sidebar-menu-color) !important;
 }
+#sidebar-v2 nav a#sb_vibe:hover span.nav-title {
+    color: var(--sidebar-text-hover-color, #ffffff) !important;
+}
+/* Active */
+#sidebar-v2 nav a#sb_vibe.active span.nav-title {
+    color: var(--sidebar-text-active-color, #ffffff) !important;
+}
 #sidebar-v2 nav a.active span.nav-title {
   color: var(--sidebar-text-active-color,#ffffff) !important;
 }
