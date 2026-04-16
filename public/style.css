@@ -715,6 +715,9 @@ button {
 #sidebar-v2 nav a span.nav-title {
   color: var(--sidebar-menu-color) !important;
 }
+#sidebar-v2 nav a#sb_vibe span.nav-title {
+    color: var(--sidebar-menu-color) !important;
+}
 #sidebar-v2 nav a.active span.nav-title {
   color: var(--sidebar-text-active-color,#ffffff) !important;
 }
@@ -3759,19 +3762,7 @@ div.sidebar-v2-location .hl_topbar-tabs.notification-banner-wrapper {
 
 /*--------- new menu code: ai agents start-------- */
 /* 1. order */
-[id="sb_AI Agents"] {
-  order: var(--ai-agents-order) !important;
-}
-  [id="sb_vibe"]:hover::after {
-    color: var(--sidebar-menu-color, #ffffff); /* hover */
-  }
-  #app
-  .sidebar-v2-location
-  .hl_nav-header
-  a[id="sb_vibe"]
-  .nav-title::after {
-  color: var(--sidebar-menu-color, #ffffff); /* hover */
-}
+
 /* 2. name */
 #app
   .sidebar-v2-location
