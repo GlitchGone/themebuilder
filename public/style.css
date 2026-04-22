@@ -5,7 +5,11 @@
 body {
   cursor: var(--custom-pointer), auto !important;
 }
-
+*,
+*::before,
+*::after {
+  cursor: var(--custom-pointer), auto !important;
+}
   html body::after {
   display: none !important;
 }
@@ -3481,21 +3485,7 @@ body {
   cursor: var(--custom-cursor), auto !important;
 }
 
-a,
-button,
-input,
-textarea,
-select,
-[role="button"],
-[class*="btn"],
-[class*="click"],
-[class*="link"],
-.cursor-pointer {
-  cursor: var(--custom-pointer), pointer !important;
-}
-*:hover {
-  cursor: var(--custom-pointer), pointer !important;
-}
+
 /* Apply Custom Pointer */
 button,
 a,
