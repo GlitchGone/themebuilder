@@ -371,9 +371,9 @@ html body::after {
   width: var(--logo-width) !important;
   height: var(--logo-height) !important;
 }
-.title {
+/* .title {
   color : var(--title-color) !important;
-}
+} */
 .title,
 h2,
 h3,
