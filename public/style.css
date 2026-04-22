@@ -94,6 +94,8 @@ html body::after {
 --sidebar-menu-icon-reputation:"\f005";
 --sidebar-menu-icon-ask-ai: "\f666";
 --sidebar-menu-icon-vibe: "\f666";
+--sidebar-menu-icon-ai-agents: url("https://cdn.msgsndr.com/sidebar-v2/aiIcon.svg");
+
 
 
  #location-dashboard_banner--wordpress-promo-container{display: none !important};
@@ -3292,6 +3294,66 @@ nav a[id="sb_AI Agents"],
 .v2-collapse #sidebar-v2 nav a[id="sb_AI Agents"] {
   display: var(--ai-agents-display) !important;
 } */
+#sb_AI\ Agents img {
+  display: none !important;
+}
+#sb_AI\ Agents {
+  position: relative;
+  padding-left: 40px !important;
+  display: flex;
+  align-items: center;
+}
+#sb_AI\ Agents::after {
+  content: "" !important;
+
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* SVG mask */
+  mask-image: var(--sidebar-menu-icon-ai-agents);
+  -webkit-mask-image: var(--sidebar-menu-icon-ai-agents);
+
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+
+  mask-size: contain;
+  -webkit-mask-size: contain;
+
+  background-color: var(--sidebar-menu-icon-color); /* default color */
+}
+#sb_AI\ Agents:hover::after {
+  background-color: var(--sidebar-menu-icon-hover-color, #ffffff);
+}
+
+#sb_AI\ Agents.active::after {
+  background-color: var(--sidebar-menu-icon-active-color, #c0c0c0);
+}
+#sb_AI\ Agents .nav-title {
+  color: var(--sidebar-menu-text-color, #b9b9b9);
+}
+
+#sb_AI\ Agents:hover .nav-title {
+  color: var(--sidebar-menu-text-hover-color, #ffffff);
+}
+
+#sb_AI\ Agents.active .nav-title {
+  color: var(--sidebar-menu-text-active-color, #c0c0c0);
+}
+nav a#sb_AI\ Agents,
+.v2-collapse #sidebar-v2 nav a#sb_AI\ Agents {
+  display: var(--ai-agents-display) !important;
+}
+
 #sb_ask-ai img {
   display: none !important;
 }
