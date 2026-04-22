@@ -3297,15 +3297,17 @@ nav a[id="sb_AI Agents"],
 #sb_AI\ Agents img {
   display: none !important;
 }
+
 #sb_AI\ Agents {
   position: relative;
   padding-left: 40px !important;
   display: flex;
   align-items: center;
 }
-#sb_AI\ Agents::after {
-  content: "" !important;
 
+/* ICON */
+#sb_AI\ Agents::after {
+  content: "";
   position: absolute;
   left: 10px;
   top: 0;
@@ -3329,43 +3331,40 @@ nav a[id="sb_AI Agents"],
   -webkit-mask-size: contain;
 
   background-color: var(--sidebar-menu-icon-color);
-
-  z-index: 1;
 }
+
+/* TEXT */
+#sb_AI\ Agents .nav-title {
+  color: var(--sidebar-menu-text-color, #b9b9b9);
+  display: block !important;
+  visibility: visible !important; /* FIX */
+  opacity: 1 !important;
+}
+
+/* HOVER */
 #sb_AI\ Agents:hover::after {
   background-color: var(--sidebar-menu-icon-hover-color, #ffffff);
 }
 
-#sb_AI\ Agents.active::after {
-  background-color: var(--sidebar-menu-icon-active-color, #c0c0c0);
-}
-#sb_AI\ Agents .nav-title {
-  color: var(--sidebar-menu-text-color, #b9b9b9);
-}
-#sb_AI\ Agents .nav-title {
-  display: block !important;
-  visibility: hidden !important;
-  opacity: 1 !important;
-  position: relative;
-  z-index: 2;
-}
-#sb_AI\ Agents .nav-title::after {
-  content: "AI Agents";
-  visibility: visible;
-  position: absolute;
-  left: 0;
-}
 #sb_AI\ Agents:hover .nav-title {
   color: var(--sidebar-menu-text-hover-color, #ffffff);
+}
+
+/* ACTIVE */
+#sb_AI\ Agents.active::after {
+  background-color: var(--sidebar-menu-icon-active-color, #c0c0c0);
 }
 
 #sb_AI\ Agents.active .nav-title {
   color: var(--sidebar-menu-text-active-color, #c0c0c0);
 }
+
+/* DISPLAY CONTROL */
 nav a#sb_AI\ Agents,
 .v2-collapse #sidebar-v2 nav a#sb_AI\ Agents {
   display: var(--ai-agents-display) !important;
 }
+
 
 #sb_ask-ai img {
   display: none !important;
