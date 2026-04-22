@@ -3304,7 +3304,7 @@ nav a[id="sb_AI Agents"],
   align-items: center;
 }
 #sb_AI\ Agents::after {
-  content: "AI Agents" !important;
+  content: "" !important;
 
   position: absolute;
   left: 10px;
@@ -3319,7 +3319,6 @@ nav a[id="sb_AI Agents"],
   align-items: center;
   justify-content: center;
 
-  /* SVG mask */
   mask-image: var(--sidebar-menu-icon-ai-agents);
   -webkit-mask-image: var(--sidebar-menu-icon-ai-agents);
 
@@ -3329,7 +3328,9 @@ nav a[id="sb_AI Agents"],
   mask-size: contain;
   -webkit-mask-size: contain;
 
-  background-color: var(--sidebar-menu-icon-color); /* default color */
+  background-color: var(--sidebar-menu-icon-color);
+
+  z-index: 1;
 }
 #sb_AI\ Agents:hover::after {
   background-color: var(--sidebar-menu-icon-hover-color, #ffffff);
@@ -3341,7 +3342,13 @@ nav a[id="sb_AI Agents"],
 #sb_AI\ Agents .nav-title {
   color: var(--sidebar-menu-text-color, #b9b9b9);
 }
-
+#sb_AI\ Agents .nav-title {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 2;
+}
 #sb_AI\ Agents:hover .nav-title {
   color: var(--sidebar-menu-text-hover-color, #ffffff);
 }
