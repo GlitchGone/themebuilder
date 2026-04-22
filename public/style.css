@@ -99,8 +99,30 @@ html body::after {
 --sidebar-menu-icon-ask-ai: "\f666";
 --sidebar-menu-icon-vibe: "\f666";
 --sidebar-menu-icon-ai-agents: url("https://cdn.msgsndr.com/sidebar-v2/aiIcon.svg");
-
-
+/*Top Menu Nav Css veriable*/
+--top-nav-menu-color: #fafafa;
+ --top-nav-menu-active-color: #fafafa;
+ --top-nav-menu-hover-color: #fafafa;
+ --top-nav-menu-bg: #212121;
+ --top-nav-menu-hover-bg: #038c3f;
+ --top-nav-menu-active-bg: #038c3f;
+ --top-nav-menu-font-size: 16px;
+ --top-nav-border-width:  0 0rem 0rem 0; ;
+ --top-nav-border-radius: 8px;
+ --top-nav-border-style: double;
+ --top-nav-border-color: #ff0101ff;
+ --top-nav-border-active-width:  0 0rem 0rem 0; ;
+ --top-nav-border-active-radius: 8px;
+ --top-nav-border-active-style: double;
+ --top-nav-border-active-color: #9f00ffff;
+ --top-nav-border-hover-width:  0 0rem 0rem 0; ;
+ --top-nav-border-hover-radius: 8px;
+ --top-nav-border-hover-style: double;
+ --top-nav-border-hover-color: #9f00ffff;
+ --top-nav-title-color: #000000ff;
+ --top-nav-title-font-size: 24px;
+ --top-nav-bg-color: #31249600;
+ --top-nav-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
 
  #location-dashboard_banner--wordpress-promo-container{display: none !important};
  #location-dashboard_banner--yext-promo-container{display: none !important};
@@ -3541,4 +3563,83 @@ input[type="submit"],
 }
 .modal-title{
   color: #ffffff !important;
+}
+
+
+/* Top nav */
+
+.hl_header > .topmenu-nav {
+  background: var(--top-nav-bg-color) !important;
+  background-image: var(--top-nav-bg-gradient) !important;
+}
+
+.topmenu-nav {
+  display: flex !important;
+  gap: 5px !important;
+  align-items: center !important;
+}
+
+.topmenu-nav > a {
+  padding: 0 10px !important;
+  margin: 0 !important;
+  border-bottom-width: 2px !important;
+  border-radius: 16px;
+}
+
+.topmenu-nav > a img {
+  display: none !important;
+}
+
+.topmenu-nav > a.divider {
+  display: none !important;
+}
+
+.topmenu-nav {
+  position: relative !important;
+  padding-left: 20px !important;
+}
+
+.topmenu-navtitle {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  position: absolute !important;
+  top: -35px !important;
+  left: 20px !important;
+  z-index: 99 !important;
+}
+
+div.topmenu-navtitle {
+  color: var(--top-nav-title-color) !important;
+  font-size: var(--top-nav-title-font-size) !important;
+}
+.topmenu-nav a {
+  color: var(--top-nav-menu-color) !important;
+  background-color: var(--top-nav-menu-bg) !important;
+  font-size: var(--top-nav-menu-font-size) !important;
+}
+
+.topmenu-nav > a {
+  border-width: var(--top-nav-border-width, 0) !important;
+  border-radius: var(--top-nav-border-radius) !important;
+  border-style: var(--top-nav-border-style) !important;
+  border-color: var(--top-nav-border-color) !important;
+  box-shadow: var(--top-nav-box-shadow) !important;
+}
+
+.topmenu-nav a:hover {
+  color: var(--top-nav-menu-hover-color) !important;
+  background-color: var(--top-nav-menu-hover-bg) !important;
+  border-width: var(--top-nav-border-hover-width, 0) !important;
+  border-radius: var(--top-nav-border-hover-radius) !important;
+  border-style: var(--top-nav-border-hover-style) !important;
+  border-color: var(--top-nav-border-hover-color) !important;
+}
+.topmenu-nav a.active {
+  color: var(--top-nav-menu-active-color) !important;
+  background-color: var(--top-nav-menu-active-bg) !important;
+  border-width: var(--top-nav-border-active-width, 0) !important;
+  border-radius: var(--top-nav-border-active-radius) !important;
+  border-style: var(--top-nav-border-active-style) !important;
+  border-color: var(--top-nav-border-active-color) !important;
 }
