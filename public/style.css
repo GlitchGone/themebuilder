@@ -1,23 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Slabo+27px:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Titillium+Web:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Barlow:ital,wght@0,400;0,700;1,400;1,700&family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Inter:wght@100..900&display=swap);@import url(https://ghlcusomizer.s3.amazonaws.com/font_awesome/css/all_with_font.css);
 @import url(https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap);
-/* Apply globally to all clickable things
-button, 
-a, 
-[role="button"], 
-[onclick],
-input[type="button"],
-input[type="submit"],
-input[type="checkbox"],
-input[type="radio"],
-select,
-label,
-.cursor-pointer {
-  cursor: var(--custom-pointer) !important;
-} */
-
-/*starts from here*/
-
-/* Hide body immediately until loader is ready */
 
 /*Loader Reted end here */
 body {
@@ -50,13 +32,9 @@ html body::after {
  --header-icon-width: 32px;
  --header-icon-height: 32px;
  --primary-color: #212121;
- /* --second-color: #038c3f; */
  --grey-color: #fff8f8ff;
  --warning-color: #db0707ff;
- /* --dark-color: #038c3f;
- --scroll-color: #038c3fff; */
  --app-bg-color: #F9FAFB;
- /* --Acent-color: #100939; */
  --alert-color: #ff0101ff;
  --white-color: #ffffffff;
  --sidebar-menu-icon-color: #ffffffff;
@@ -66,17 +44,10 @@ html body::after {
  --sidebar-menu-color: #fafafa;
  --sidebar-menu-active-color: #fafafa;
  --sidebar-menu-hover-color: #fafafa;
- /* --sidebar-menu-bg: #212121; */
- /* --sidebar-menu-hover-bg: #038c3f; */
- /* --sidebar-menu-active-bg: #038c3f; */
  --sidebar-menu-font-size: 14px;
- /* --sidebar-menu-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --sidebar-menu-border-width:  0rem 0rem 0rem 0rem; ;
  --sidebar-menu-border-radius: 16px;
  --sidebar-menu-border-style: double;
- /* --sidebar-menu-border-color: #16181c00;s */
- /* --sidebar-bg-color: #212121; */
- /* --sidebar-main-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --card-body-font-color: #fafafa;
  --card-body-bg-color: #212121;
  --card-body-font-size: 22px;
@@ -107,31 +78,6 @@ html body::after {
  --header-bg-color: #F2F7FA;
  --header-main-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
  --header-main-box-shadow: 0px 0px 0px 0px #0b4dffff;
-
- /*Top Navigation*/
- /* --top-nav-menu-color: #fafafa;
- --top-nav-menu-active-color: #fafafa;
- --top-nav-menu-hover-color: #fafafa;
- --top-nav-menu-bg: #212121;
- --top-nav-menu-hover-bg: #038c3f;
- --top-nav-menu-active-bg: #038c3f;
- --top-nav-menu-font-size: 16px;
- --top-nav-border-width:  0 0rem 0rem 0; ;
- --top-nav-border-radius: 8px;
- --top-nav-border-style: double;
- --top-nav-border-color: #ff0101ff;
- --top-nav-border-active-width:  0 0rem 0rem 0; ;
- --top-nav-border-active-radius: 8px;
- --top-nav-border-active-style: double;
- --top-nav-border-active-color: #9f00ffff;
- --top-nav-border-hover-width:  0 0rem 0rem 0; ;
- --top-nav-border-hover-radius: 8px;
- --top-nav-border-hover-style: double;
- --top-nav-border-hover-color: #9f00ffff;
- --top-nav-title-color: #000000ff;
- --top-nav-title-font-size: 24px;
- --top-nav-bg-color: #31249600;
- --top-nav-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%); */
  --sidebar-menu-icon-lunchpad:"\f06a";
  --sidebar-menu-icon-dashboard:"\f58d";
  --sidebar-menu-icon-conversations:"\f27a";
@@ -277,7 +223,7 @@ html body::after {
  --sub-getting-started-display: flex;
  --sub-voice-ai-display: flex;
  --sub-conversation-ai-display: flex;
- --ai-agents-display: none;
+ --ai-agents-display: flex;
  --sub-social-planners-display: flex;
  --sub-countdown-timers-display: flex;
  --sub-brand-boards-display: flex;
@@ -336,107 +282,32 @@ html body::after {
  --reporting-new-name: "Reporting";
  --app-marketplace-new-name: "App Marketplace";
  --mobile-app-new-name: "Mobile App";
-/* --sidebar-menu-icon-lunchpad: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='8' x2='12' y2='12'/%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'/%3E%3C/svg%3E"); */
-
- /* --sidebar-menu-icon-lunchpad: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-alert-circle%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%228%22%20y2%3D%2212%22%3E%3C%2Fline%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2216%22%20y2%3D%2216%22%3E%3C%2Fline%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-lunchpad-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-alert-circle%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%228%22%20y2%3D%2212%22%3E%3C%2Fline%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2216%22%20y2%3D%2216%22%3E%3C%2Fline%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-lunchpad-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-alert-circle%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%228%22%20y2%3D%2212%22%3E%3C%2Fline%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2216%22%20y2%3D%2216%22%3E%3C%2Fline%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-dashboard: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 7v7'/%3E%3Cpath d='M12 7v4'/%3E%3Cpath d='M16 7v9'/%3E%3Cpath d='M5 3a2 2 0 0 0-2 2'/%3E%3Cpath d='M9 3h1'/%3E%3Cpath d='M14 3h1'/%3E%3Cpath d='M19 3a2 2 0 0 1 2 2'/%3E%3Cpath d='M21 9v1'/%3E%3Cpath d='M21 14v1'/%3E%3Cpath d='M21 19a2 2 0 0 1-2 2'/%3E%3Cpath d='M14 21h1'/%3E%3Cpath d='M9 21h1'/%3E%3Cpath d='M5 21a2 2 0 0 1-2-2'/%3E%3Cpath d='M3 14v1'/%3E%3Cpath d='M3 9v1'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-dashboard: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-kanban-square-dashed%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M8%207v7%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%207v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%207v9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%203a2%202%200%200%200-2%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%203h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14%203h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19%203a2%202%200%200%201%202%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%209v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%2014v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%2019a2%202%200%200%201-2%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14%2021h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2021h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%2021a2%202%200%200%201-2-2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%2014v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%209v1%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-dashboard-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-kanban-square-dashed%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M8%207v7%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%207v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%207v9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%203a2%202%200%200%200-2%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%203h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14%203h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19%203a2%202%200%200%201%202%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%209v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%2014v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%2019a2%202%200%200%201-2%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14%2021h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2021h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%2021a2%202%200%200%201-2-2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%2014v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%209v1%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-dashboard-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-kanban-square-dashed%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M8%207v7%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%207v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%207v9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%203a2%202%200%200%200-2%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%203h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14%203h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19%203a2%202%200%200%201%202%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%209v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%2014v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M21%2019a2%202%200%200%201-2%202%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14%2021h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2021h1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%2021a2%202%200%200%201-2-2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%2014v1%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%209v1%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-media-storage: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Ccircle cx='10' cy='12' r='2'/%3E%3Cpath d='m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22'/%3E%3C/svg%3E"); */
-/* --sidebar-menu-icon-media-storage: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-file-image%22%3E%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%2F%3E%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2212%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22m20%2017-1.296-1.296a2.41%202.41%200%200%200-3.408%200L9%2022%22%2F%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-media-storage-hover: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-file-image%22%3E%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%2F%3E%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2212%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22m20%2017-1.296-1.296a2.41%202.41%200%200%200-3.408%200L9%2022%22%2F%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-media-storage-active: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-file-image%22%3E%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%2F%3E%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2212%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22m20%2017-1.296-1.296a2.41%202.41%200%200%200-3.408%200L9%2022%22%2F%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-ai-agents: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-sparkles%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22m12%203-1.912%205.813a2%202%200%200%201-1.275%201.275L3%2012l5.813%201.912a2%202%200%200%201%201.275%201.275L12%2021l1.912-5.813a2%202%200%200%201%201.275-1.275L21%2012l-5.813-1.912a2%202%200%200%201-1.275-1.275L12%203Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%203v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19%2017v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%205h4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17%2019h4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
 --sidebar-menu-icon-ai-agents: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M19 17v4'/%3E%3Cpath d='M3 5h4'/%3E%3Cpath d='M17 19h4'/%3E%3C/svg%3E");
 --sidebar-menu-icon-ai-agents-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-sparkles%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22m12%203-1.912%205.813a2%202%200%200%201-1.275%201.275L3%2012l5.813%201.912a2%202%200%200%201%201.275%201.275L12%2021l1.912-5.813a2%202%200%200%201%201.275-1.275L21%2012l-5.813-1.912a2%202%200%200%201-1.275-1.275L12%203Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%203v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19%2017v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%205h4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17%2019h4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 --sidebar-menu-icon-ai-agents-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-sparkles%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22m12%203-1.912%205.813a2%202%200%200%201-1.275%201.275L3%2012l5.813%201.912a2%202%200%200%201%201.275%201.275L12%2021l1.912-5.813a2%202%200%200%201%201.275-1.275L21%2012l-5.813-1.912a2%202%200%200%201-1.275-1.275L12%203Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M5%203v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19%2017v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M3%205h4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17%2019h4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
-/* --sidebar-menu-icon-conversations: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3Cpath d='M13 8H7'/%3E%3Cpath d='M17 12H7'/%3E%3C/svg%3E"); */
-/* --sidebar-menu-icon-conversations: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-message-square-text%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M21%2015a2%202%200%200%201-2%202H7l-4%204V5a2%202%200%200%201%202-2h14a2%202%200%200%201%202%202z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M13%208H7%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17%2012H7%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-conversations-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-message-square-text%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M21%2015a2%202%200%200%201-2%202H7l-4%204V5a2%202%200%200%201%202-2h14a2%202%200%200%201%202%202z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M13%208H7%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17%2012H7%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-conversations-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-message-square-text%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M21%2015a2%202%200%200%201-2%202H7l-4%204V5a2%202%200%200%201%202-2h14a2%202%200%200%201%202%202z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M13%208H7%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17%2012H7%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-calendars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M16 2v4'/%3E%3Crect width='18' height='18' x='3' y='4' rx='2'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 14h.01'/%3E%3Cpath d='M12 14h.01'/%3E%3Cpath d='M16 14h.01'/%3E%3Cpath d='M8 18h.01'/%3E%3Cpath d='M12 18h.01'/%3E%3Cpath d='M16 18h.01'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-calendars: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-calendar-days%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M8%202v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%202v4%22%3E%3C%2Fpath%3E%3Crect%20width%3D%2218%22%20height%3D%2218%22%20x%3D%223%22%20y%3D%224%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M3%2010h18%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2018h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2018h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%2018h.01%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-calendars-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-calendar-days%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M8%202v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%202v4%22%3E%3C%2Fpath%3E%3Crect%20width%3D%2218%22%20height%3D%2218%22%20x%3D%223%22%20y%3D%224%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M3%2010h18%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2018h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2018h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%2018h.01%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-calendars-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-calendar-days%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M8%202v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%202v4%22%3E%3C%2Fpath%3E%3Crect%20width%3D%2218%22%20height%3D%2218%22%20x%3D%223%22%20y%3D%224%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M3%2010h18%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%2014h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2018h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2018h.01%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M16%2018h.01%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-contact: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 21a8 8 0 0 1 10.434-7.62'/%3E%3Ccircle cx='10' cy='8' r='5'/%3E%3Ccircle cx='18' cy='18' r='3'/%3E%3Cpath d='m19.5 14.3-.4.9'/%3E%3Cpath d='m16.9 20.8-.4.9'/%3E%3Cpath d='m21.7 19.5-.9-.4'/%3E%3Cpath d='m15.2 16.9-.9-.4'/%3E%3Cpath d='m21.7 16.5-.9.4'/%3E%3Cpath d='m15.2 19.1-.9.4'/%3E%3Cpath d='m19.5 21.7-.4-.9'/%3E%3Cpath d='m16.9 15.2-.4-.9'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-contact: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-user-round-cog%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M2%2021a8%208%200%200%201%2010.434-7.62%22%3E%3C%2Fpath%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%228%22%20r%3D%225%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%223%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22m19.5%2014.3-.4.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m16.9%2020.8-.4.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m21.7%2019.5-.9-.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m15.2%2016.9-.9-.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m21.7%2016.5-.9.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m15.2%2019.1-.9.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m19.5%2021.7-.4-.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m16.9%2015.2-.4-.9%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-contact-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-user-round-cog%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M2%2021a8%208%200%200%201%2010.434-7.62%22%3E%3C%2Fpath%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%228%22%20r%3D%225%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%223%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22m19.5%2014.3-.4.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m16.9%2020.8-.4.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m21.7%2019.5-.9-.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m15.2%2016.9-.9-.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m21.7%2016.5-.9.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m15.2%2019.1-.9.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m19.5%2021.7-.4-.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m16.9%2015.2-.4-.9%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-contact-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-user-round-cog%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M2%2021a8%208%200%200%201%2010.434-7.62%22%3E%3C%2Fpath%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%228%22%20r%3D%225%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%223%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22m19.5%2014.3-.4.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m16.9%2020.8-.4.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m21.7%2019.5-.9-.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m15.2%2016.9-.9-.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m21.7%2016.5-.9.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m15.2%2019.1-.9.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m19.5%2021.7-.4-.9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22m16.9%2015.2-.4-.9%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-opportunities: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12h-4l-3 9L9 3 6 12H2'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-opportunities: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-activity%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2012h-4l-3%209L9%203l-3%209H2%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-opportunities-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-activity%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2012h-4l-3%209L9%203l-3%209H2%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-opportunities-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-activity%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2012h-4l-3%209L9%203l-3%209H2%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-payments: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' x2='12' y1='2' y2='22'/%3E%3Cpath d='M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-payments: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-dollar-sign%20lucide-icon%20customizable%22%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%222%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3Cpath%20d%3D%22M17%205H9.5a3.5%203.5%200%200%200%200%207h5a3.5%203.5%200%200%201%200%207H6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-payments-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-dollar-sign%20lucide-icon%20customizable%22%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%222%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3Cpath%20d%3D%22M17%205H9.5a3.5%203.5%200%200%200%200%207h5a3.5%203.5%200%200%201%200%207H6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-payments-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-dollar-sign%20lucide-icon%20customizable%22%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212%22%20y1%3D%222%22%20y2%3D%2222%22%3E%3C%2Fline%3E%3Cpath%20d%3D%22M17%205H9.5a3.5%203.5%200%200%200%200%207h5a3.5%203.5%200%200%201%200%207H6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-marketing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='21' r='1'/%3E%3Ccircle cx='19' cy='21' r='1'/%3E%3Cpath d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-marketing: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-shopping-cart%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2221%22%20r%3D%221%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2221%22%20r%3D%221%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M2.05%202.05h2l2.66%2012.42a2%202%200%200%200%202%201.58h9.78a2%202%200%200%200%201.95-1.57l1.65-7.43H5.12%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-marketing-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-shopping-cart%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2221%22%20r%3D%221%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2221%22%20r%3D%221%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M2.05%202.05h2l2.66%2012.42a2%202%200%200%200%202%201.58h9.78a2%202%200%200%200%201.95-1.57l1.65-7.43H5.12%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-marketing-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-shopping-cart%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2221%22%20r%3D%221%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2221%22%20r%3D%221%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M2.05%202.05h2l2.66%2012.42a2%202%200%200%200%202%201.58h9.78a2%202%200%200%200%201.95-1.57l1.65-7.43H5.12%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-automation: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 8V4H8'/%3E%3Crect width='16' height='12' x='4' y='8' rx='2'/%3E%3Cpath d='M2 14h2'/%3E%3Cpath d='M20 14h2'/%3E%3Cpath d='M15 13v2'/%3E%3Cpath d='M9 13v2'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-automation: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bot%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M12%208V4H8%22%3E%3C%2Fpath%3E%3Crect%20width%3D%2216%22%20height%3D%2212%22%20x%3D%224%22%20y%3D%228%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M2%2014h2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M20%2014h2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M15%2013v2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2013v2%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-automation-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bot%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M12%208V4H8%22%3E%3C%2Fpath%3E%3Crect%20width%3D%2216%22%20height%3D%2212%22%20x%3D%224%22%20y%3D%228%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M2%2014h2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M20%2014h2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M15%2013v2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2013v2%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-automation-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bot%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M12%208V4H8%22%3E%3C%2Fpath%3E%3Crect%20width%3D%2216%22%20height%3D%2212%22%20x%3D%224%22%20y%3D%228%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M2%2014h2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M20%2014h2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M15%2013v2%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9%2013v2%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-site: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-site: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-globe%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M12%202a14.5%2014.5%200%200%200%200%2020%2014.5%2014.5%200%200%200%200-20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%2012h20%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-site-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-globe%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M12%202a14.5%2014.5%200%200%200%200%2020%2014.5%2014.5%200%200%200%200-20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%2012h20%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-site-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-globe%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M12%202a14.5%2014.5%200%200%200%200%2020%2014.5%2014.5%200%200%200%200-20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%2012h20%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-memberships: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='19' cy='6' r='3'/%3E%3Cpath d='M22 12v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9'/%3E%3Cpath d='M12 17v4'/%3E%3Cpath d='M8 21h8'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-memberships: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-monitor-dot%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%226%22%20r%3D%223%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M22%2012v3a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2h9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2017v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2021h8%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-memberships-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-monitor-dot%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%226%22%20r%3D%223%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M22%2012v3a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2h9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2017v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2021h8%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-memberships-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-monitor-dot%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%226%22%20r%3D%223%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M22%2012v3a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2h9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M12%2017v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8%2021h8%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-reputation: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-reputation: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-star%20lucide-icon%20customizable%22%3E%3Cpolygon%20points%3D%2212%202%2015.09%208.26%2022%209.27%2017%2014.14%2018.18%2021.02%2012%2017.77%205.82%2021.02%207%2014.14%202%209.27%208.91%208.26%2012%202%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-reputation-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-star%20lucide-icon%20customizable%22%3E%3Cpolygon%20points%3D%2212%202%2015.09%208.26%2022%209.27%2017%2014.14%2018.18%2021.02%2012%2017.77%205.82%2021.02%207%2014.14%202%209.27%208.91%208.26%2012%202%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-reputation-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-star%20lucide-icon%20customizable%22%3E%3Cpolygon%20points%3D%2212%202%2015.09%208.26%2022%209.27%2017%2014.14%2018.18%2021.02%2012%2017.77%205.82%2021.02%207%2014.14%202%209.27%208.91%208.26%2012%202%22%3E%3C%2Fpolygon%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-reporting: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='9' r='7'/%3E%3Ccircle cx='15' cy='15' r='7'/%3E%3C/svg%3E"); */
-
-/* --sidebar-menu-icon-reporting: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-blend%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%227%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2215%22%20cy%3D%2215%22%20r%3D%227%22%3E%3C%2Fcircle%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-reporting-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-blend%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%227%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2215%22%20cy%3D%2215%22%20r%3D%227%22%3E%3C%2Fcircle%3E%3C%2Fsvg%3E"); */
-/* --sidebar-menu-icon-reporting-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-blend%20lucide-icon%20customizable%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%227%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2215%22%20cy%3D%2215%22%20r%3D%227%22%3E%3C%2Fcircle%3E%3C%2Fsvg%3E"); */
 --sidebar-menu-icon-app-marketplace: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='M10 4v4'/%3E%3Cpath d='M2 8h20'/%3E%3Cpath d='M6 4v4'/%3E%3C/svg%3E");
 
-/* --sidebar-menu-icon-app-marketplace: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-app-window%20lucide-icon%20customizable%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M10%204v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%208h20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M6%204v4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
 --sidebar-menu-icon-app-marketplace-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-app-window%20lucide-icon%20customizable%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M10%204v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%208h20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M6%204v4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 --sidebar-menu-icon-app-marketplace-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-app-window%20lucide-icon%20customizable%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M10%204v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%208h20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M6%204v4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 --sidebar-menu-icon-mobile-app: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='14' height='20' x='5' y='2' rx='2' ry='2'/%3E%3Cpath d='M12.667 8 10 12h4l-2.667 4'/%3E%3C/svg%3E");
 
-/* --sidebar-menu-icon-mobile-app: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-smartphone-charging%22%3E%3Crect%20width%3D%2214%22%20height%3D%2220%22%20x%3D%225%22%20y%3D%222%22%20rx%3D%222%22%20ry%3D%222%22%2F%3E%3Cpath%20d%3D%22M12.667%208%2010%2012h4l-2.667%204%22%2F%3E%3C%2Fsvg%3E"); */
 --sidebar-menu-icon-mobile-app-hover: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-smartphone-charging%22%3E%3Crect%20width%3D%2214%22%20height%3D%2220%22%20x%3D%225%22%20y%3D%222%22%20rx%3D%222%22%20ry%3D%222%22%2F%3E%3Cpath%20d%3D%22M12.667%208%2010%2012h4l-2.667%204%22%2F%3E%3C%2Fsvg%3E");
 --sidebar-menu-icon-mobile-app-active: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-smartphone-charging%22%3E%3Crect%20width%3D%2214%22%20height%3D%2220%22%20x%3D%225%22%20y%3D%222%22%20rx%3D%222%22%20ry%3D%222%22%2F%3E%3Cpath%20d%3D%22M12.667%208%2010%2012h4l-2.667%204%22%2F%3E%3C%2Fsvg%3E");
 --sidebar-menu-icon-settings: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='M10 4v4'/%3E%3Cpath d='M2 8h20'/%3E%3Cpath d='M6 4v4'/%3E%3C/svg%3E");
 
-/* --sidebar-menu-icon-settings: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-app-window%20lucide-icon%20customizable%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M10%204v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%208h20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M6%204v4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
 --sidebar-menu-icon-settings-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-app-window%20lucide-icon%20customizable%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M10%204v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%208h20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M6%204v4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 --sidebar-menu-icon-settings-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-app-window%20lucide-icon%20customizable%22%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%2220%22%20height%3D%2216%22%20rx%3D%222%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M10%204v4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M2%208h20%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M6%204v4%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 --header-menu-icon-phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
  
-/* --header-menu-icon-phone: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-phone%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2016.92v3a2%202%200%200%201-2.18%202%2019.79%2019.79%200%200%201-8.63-3.07%2019.5%2019.5%200%200%201-6-6%2019.79%2019.79%200%200%201-3.07-8.67A2%202%200%200%201%204.11%202h3a2%202%200%200%201%202%201.72%2012.84%2012.84%200%200%200%20.7%202.81%202%202%200%200%201-.45%202.11L8.09%209.91a16%2016%200%200%200%206%206l1.27-1.27a2%202%200%200%201%202.11-.45%2012.84%2012.84%200%200%200%202.81.7A2%202%200%200%201%2022%2016.92z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
- --header-menu-icon-phone-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-phone%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2016.92v3a2%202%200%200%201-2.18%202%2019.79%2019.79%200%200%201-8.63-3.07%2019.5%2019.5%200%200%201-6-6%2019.79%2019.79%200%200%201-3.07-8.67A2%202%200%200%201%204.11%202h3a2%202%200%200%201%202%201.72%2012.84%2012.84%200%200%200%20.7%202.81%202%202%200%200%201-.45%202.11L8.09%209.91a16%2016%200%200%200%206%206l1.27-1.27a2%202%200%200%201%202.11-.45%2012.84%2012.84%200%200%200%202.81.7A2%202%200%200%201%2022%2016.92z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+--header-menu-icon-phone-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-phone%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2016.92v3a2%202%200%200%201-2.18%202%2019.79%2019.79%200%200%201-8.63-3.07%2019.5%2019.5%200%200%201-6-6%2019.79%2019.79%200%200%201-3.07-8.67A2%202%200%200%201%204.11%202h3a2%202%200%200%201%202%201.72%2012.84%2012.84%200%200%200%20.7%202.81%202%202%200%200%201-.45%202.11L8.09%209.91a16%2016%200%200%200%206%206l1.27-1.27a2%202%200%200%201%202.11-.45%2012.84%2012.84%200%200%200%202.81.7A2%202%200%200%201%2022%2016.92z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
  --header-menu-icon-phone-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-phone%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M22%2016.92v3a2%202%200%200%201-2.18%202%2019.79%2019.79%200%200%201-8.63-3.07%2019.5%2019.5%200%200%201-6-6%2019.79%2019.79%200%200%201-3.07-8.67A2%202%200%200%201%204.11%202h3a2%202%200%200%201%202%201.72%2012.84%2012.84%200%200%200%20.7%202.81%202%202%200%200%201-.45%202.11L8.09%209.91a16%2016%200%200%200%206%206l1.27-1.27a2%202%200%200%201%202.11-.45%2012.84%2012.84%200%200%200%202.81.7A2%202%200%200%201%2022%2016.92z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
  --header-menu-icon-notifications: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/%3E%3Cpath d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/%3E%3Cpath d='M4 2C2.8 3.7 2 5.7 2 8'/%3E%3Cpath d='M22 8c0-2.3-.8-4.3-2-6'/%3E%3C/svg%3E");
 
- /* --header-menu-icon-notifications: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bell-ring%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M6%208a6%206%200%200%201%2012%200c0%207%203%209%203%209H3s3-2%203-9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M10.3%2021a1.94%201.94%200%200%200%203.4%200%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M4%202C2.8%203.7%202%205.7%202%208%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M22%208c0-2.3-.8-4.3-2-6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E"); */
- --header-menu-icon-notifications-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bell-ring%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M6%208a6%206%200%200%201%2012%200c0%207%203%209%203%209H3s3-2%203-9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M10.3%2021a1.94%201.94%200%200%200%203.4%200%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M4%202C2.8%203.7%202%205.7%202%208%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M22%208c0-2.3-.8-4.3-2-6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+--header-menu-icon-notifications-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bell-ring%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M6%208a6%206%200%200%201%2012%200c0%207%203%209%203%209H3s3-2%203-9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M10.3%2021a1.94%201.94%200%200%200%203.4%200%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M4%202C2.8%203.7%202%205.7%202%208%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M22%208c0-2.3-.8-4.3-2-6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
  --header-menu-icon-notifications-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-bell-ring%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M6%208a6%206%200%200%201%2012%200c0%207%203%209%203%209H3s3-2%203-9%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M10.3%2021a1.94%201.94%200%200%200%203.4%200%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M4%202C2.8%203.7%202%205.7%202%208%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M22%208c0-2.3-.8-4.3-2-6%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
  --header-menu-icon-help: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z'/%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E");
 
- /* --header-menu-icon-help: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-badge-help%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M3.85%208.62a4%204%200%200%201%204.78-4.77%204%204%200%200%201%206.74%200%204%204%200%200%201%204.78%204.78%204%204%200%200%201%200%206.74%204%204%200%200%201-4.77%204.78%204%204%200%200%201-6.75%200%204%204%200%200%201-4.78-4.77%204%204%200%200%201%200-6.76Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%3E%3C%2Fpath%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2217%22%20y2%3D%2217%22%3E%3C%2Fline%3E%3C%2Fsvg%3E"); */
- --header-menu-icon-help-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-badge-help%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M3.85%208.62a4%204%200%200%201%204.78-4.77%204%204%200%200%201%206.74%200%204%204%200%200%201%204.78%204.78%204%204%200%200%201%200%206.74%204%204%200%200%201-4.77%204.78%204%204%200%200%201-6.75%200%204%204%200%200%201-4.78-4.77%204%204%200%200%201%200-6.76Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%3E%3C%2Fpath%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2217%22%20y2%3D%2217%22%3E%3C%2Fline%3E%3C%2Fsvg%3E");
+--header-menu-icon-help-hover: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-badge-help%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M3.85%208.62a4%204%200%200%201%204.78-4.77%204%204%200%200%201%206.74%200%204%204%200%200%201%204.78%204.78%204%204%200%200%201%200%206.74%204%204%200%200%201-4.77%204.78%204%204%200%200%201-6.75%200%204%204%200%200%201-4.78-4.77%204%204%200%200%201%200-6.76Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%3E%3C%2Fpath%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2217%22%20y2%3D%2217%22%3E%3C%2Fline%3E%3C%2Fsvg%3E");
  --header-menu-icon-help-active: url("data:image/svg+xml,%3Csvg%20data-v-e087307f%3D%22%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-badge-help%20lucide-icon%20customizable%22%3E%3Cpath%20d%3D%22M3.85%208.62a4%204%200%200%201%204.78-4.77%204%204%200%200%201%206.74%200%204%204%200%200%201%204.78%204.78%204%204%200%200%201%200%206.74%204%204%200%200%201-4.77%204.78%204%204%200%200%201-6.75%200%204%204%200%200%201-4.78-4.77%204%204%200%200%201%200-6.76Z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%3E%3C%2Fpath%3E%3Cline%20x1%3D%2212%22%20x2%3D%2212.01%22%20y1%3D%2217%22%20y2%3D%2217%22%3E%3C%2Fline%3E%3C%2Fsvg%3E"); 
 --header-menu-icon-changelog: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 17V5a2 2 0 0 0-2-2H4'/%3E%3Cpath d='M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3'/%3E%3C/svg%3E");
 --header-menu-icon-copilot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12.7 17.96c-.5 1.74-2.9 1.74-3.4 0l-.8-2.77c-.2-.7-.8-1.3-1.5-1.5L4.2 12.9c-1.74-.5-1.74-2.9 0-3.4l2.77-.8c.7-.2 1.3-.8 1.5-1.5l.8-2.77c.5-1.74 2.9-1.74 3.4 0l.8 2.77c.2.7.8 1.3 1.5 1.5l2.77.8c1.74.5 1.74 2.9 0 3.4l-2.77.8c-.7.2-1.3.8-1.5 1.5zm8.8-9.8c.5.2.9.6 1 1.1l.3 1.2c.1.3.4.5.7.6l1.2.3c.6.2.6 1.1 0 1.3l-1.2.3c-.3.1-.5.4-.7.6l-.3 1.2c-.2.6-1.1.6-1.3 0l-.3-1.2c-.1-.3-.4-.5-.7-.6l-1.2-.3c-.6-.2-.6-1.1 0-1.3l1.2-.3c.3-.1.5-.4.7-.6l.3-1.2c.1-.5.5-.9 1-.1zm-17 9.8c.5.2.9.6 1 1.1l.3 1.2c.1.3.4.5.7.6l1.2.3c.6.2.6 1.1 0 1.3l-1.2.3c-.3.1-.5.4-.7.6l-.3 1.2c-.2.6-1.1.6-1.3 0l-.3-1.2c-.1-.3-.4-.5-.7-.6l-1.2-.3c-.6-.2-.6-1.1 0-1.3l1.2-.3c.3-.1.5-.4.7-.6l.3-1.2c.1-.5.5-.9 1-.1z'/%3E%3C/svg%3E");
@@ -728,6 +599,34 @@ button {
 #sidebar-v2 nav a#sb_vibe.active span.nav-title {
     color: var(--sidebar-text-active-color, #ffffff) !important;
 }
+#sidebar-v2 nav a#sb_ask-ai span.nav-title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: var(--sidebar-menu-color) !important;
+}
+#sidebar-v2 nav a#sb_ask-ai:hover span.nav-title {
+    color: var(--sidebar-text-hover-color, #ffffff) !important;
+} 
+/* Active */
+#sidebar-v2 nav a#sb_ask-ai.active span.nav-title {
+    color: var(--sidebar-text-active-color, #ffffff) !important;
+}
+
+#sidebar-v2 nav a#sb_agency-ai-usage span.nav-title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: var(--sidebar-menu-color) !important;
+}
+#sidebar-v2 nav a#sb_agency-ai-usage:hover span.nav-title {
+    color: var(--sidebar-text-hover-color, #ffffff) !important;
+} 
+/* Active */
+#sidebar-v2 nav a#sb_agency-ai-usage.active span.nav-title {
+    color: var(--sidebar-text-active-color, #ffffff) !important;
+}
+
 #sidebar-v2 nav a.active span.nav-title {
   color: var(--sidebar-text-active-color,#ffffff) !important;
 }
@@ -1074,49 +973,6 @@ button {
   width: 260px !important;
 }
 
-/* Top nav */
-
-.hl_header > .topmenu-nav {
-  background: var(--top-nav-bg-color) !important;
-  background-image: var(--top-nav-bg-gradient) !important;
-}
-
-.topmenu-nav {
-  display: flex !important;
-  gap: 5px !important;
-  align-items: center !important;
-}
-
-.topmenu-nav > a {
-  padding: 0 10px !important;
-  margin: 0 !important;
-  border-bottom-width: 2px !important;
-  border-radius: 16px;
-}
-
-.topmenu-nav > a img {
-  display: none !important;
-}
-
-.topmenu-nav > a.divider {
-  display: none !important;
-}
-
-.topmenu-nav {
-  position: relative !important;
-  padding-left: 20px !important;
-}
-
-.topmenu-navtitle {
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-  position: absolute !important;
-  top: -35px !important;
-  left: 20px !important;
-  z-index: 99 !important;
-}
-
 nav[aria-label="Tabs"]
   a[style="color:rgb(56,160,219);padding-left:10px;padding-right:10px;border-color:rgb(56,160,219);"] {
   color: var(--primary-color) !important;
@@ -1126,40 +982,6 @@ nav[aria-label="Tabs"]
   a[style="color:rgb(56,160,219);border-color:rgb(56,160,219);padding-left:10px;padding-right:10px;"] {
   color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
-}
-div.topmenu-navtitle {
-  color: var(--top-nav-title-color) !important;
-  font-size: var(--top-nav-title-font-size) !important;
-}
-.topmenu-nav a {
-  color: var(--top-nav-menu-color) !important;
-  background-color: var(--top-nav-menu-bg) !important;
-  font-size: var(--top-nav-menu-font-size) !important;
-}
-
-.topmenu-nav > a {
-  border-width: var(--top-nav-border-width, 0) !important;
-  border-radius: var(--top-nav-border-radius) !important;
-  border-style: var(--top-nav-border-style) !important;
-  border-color: var(--top-nav-border-color) !important;
-  box-shadow: var(--top-nav-box-shadow) !important;
-}
-
-.topmenu-nav a:hover {
-  color: var(--top-nav-menu-hover-color) !important;
-  background-color: var(--top-nav-menu-hover-bg) !important;
-  border-width: var(--top-nav-border-hover-width, 0) !important;
-  border-radius: var(--top-nav-border-hover-radius) !important;
-  border-style: var(--top-nav-border-hover-style) !important;
-  border-color: var(--top-nav-border-hover-color) !important;
-}
-.topmenu-nav a.active {
-  color: var(--top-nav-menu-active-color) !important;
-  background-color: var(--top-nav-menu-active-bg) !important;
-  border-width: var(--top-nav-border-active-width, 0) !important;
-  border-radius: var(--top-nav-border-active-radius) !important;
-  border-style: var(--top-nav-border-active-style) !important;
-  border-color: var(--top-nav-border-active-color) !important;
 }
 
 /* Side bar menu icon start */
@@ -1273,25 +1095,12 @@ nav a#sb_location-mobile-app {
     /* content: var(--sidebar-menu-icon-lunchpad) !important; */
     color: var(--sidebar-menu-icon-active-color,#b9b9b9); 
 }
-/* #sb_launchpad:hover::after {
-  background-image: var(--sidebar-menu-icon-lunchpad-hover) !important;
-}
-
-#sb_launchpad.active::after {
-  background-image: var(--sidebar-menu-icon-lunchpad-active) !important;
-} */
 
 /* For dashboard */
 #sb_dashboard::after {
   display: none !important;
   content: var(--sidebar-menu-icon-dashboard) !important;
-  /* mask-image: var(--sidebar-menu-icon-dashboard);
-  -webkit-mask-image: var(--sidebar-menu-icon-dashboard); */
   background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;      
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1306,29 +1115,11 @@ nav a#sb_location-mobile-app {
 #sb_dashboard.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-/* #sb_dashboard::after {
-  background-image: var(--sidebar-menu-icon-dashboard) !important;
-}
-
-#sb_dashboard:hover::after {
-  background-image: var(--sidebar-menu-icon-dashboard-hover) !important;
-}
-
-#sb_dashboard.active::after {
-  background-image: var(--sidebar-menu-icon-dashboard-active) !important;
-} */
-
 /* For conversations*/
 #sb_conversations::after {
   display: none !important;
   content: var(--sidebar-menu-icon-conversations) !important;
-  /* mask-image: var(--sidebar-menu-icon-conversations);
-  -webkit-mask-image: var(--sidebar-menu-icon-conversations); */
     background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-        /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1343,32 +1134,12 @@ nav a#sb_location-mobile-app {
 #sb_conversations.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-
-/* #sb_conversations::after {
-  background-image: var(--sidebar-menu-icon-conversations) !important;
-}
-
-#sb_conversations:hover::after {
-  background-image: var(--sidebar-menu-icon-conversations-hover) !important;
-}
-
-#sb_conversations.active::after {
-  background-image: var(--sidebar-menu-icon-conversations-active) !important;
-} */
-
 /* For Calendar*/
 
 .hl_nav-header #sb_calendars::after {
  display: none !important;
  content: var(--sidebar-menu-icon-calendars) !important;
-  /* mask-image: var(--sidebar-menu-icon-calendars);
-  -webkit-mask-image: var(--sidebar-menu-icon-calendars); */
    background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-       /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1385,31 +1156,12 @@ nav a#sb_location-mobile-app {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
 
-
-/* .hl_nav-header #sb_calendars::after {
-  background-image: var(--sidebar-menu-icon-calendars) !important;
-}
-
-.hl_nav-header #sb_calendars:hover::after {
-  background-image: var(--sidebar-menu-icon-calendars-hover) !important;
-}
-
-.hl_nav-header #sb_calendars.active::after {
-  background-image: var(--sidebar-menu-icon-calendars-active) !important;
-} */
-
 /* For Constacts*/
 
 #sb_contacts::after {
   display: none !important;
   content: var(--sidebar-menu-icon-contact) !important;
-  /* mask-image: var(--sidebar-menu-icon-contact);
-  -webkit-mask-image: var(--sidebar-menu-icon-contact); */
     background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-        /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1425,32 +1177,13 @@ nav a#sb_location-mobile-app {
 #sb_contacts.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-/* #sb_contacts::after {
-  background-image: var(--sidebar-menu-icon-contact) !important;
-}
-
-#sb_contacts:hover::after {
-  background-image: var(--sidebar-menu-icon-contact-hover) !important;
-}
-
-#sb_contacts.active::after {
-  background-image: var(--sidebar-menu-icon-contact-active) !important;
-} */
 
 /* For opportunities*/
 
 #sb_opportunities::after {
   display: none !important;
   content:var(--sidebar-menu-icon-opportunities) !important;
-  /* mask-image: var(--sidebar-menu-icon-opportunities);
-  -webkit-mask-image: var(--sidebar-menu-icon-opportunities); */
  background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-     /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat; */
-  /* mask-size: contain; */
-  /* -webkit-mask-size: contain;
-    background-repeat: no-repeat; */
   background-position: center;
   position: absolute;
   width: 20px;
@@ -1465,30 +1198,12 @@ nav a#sb_location-mobile-app {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
 
-/* #sb_opportunities::after {
-  background-image: var(--sidebar-menu-icon-opportunities) !important;
-}
-
-#sb_opportunities:hover::after {
-  background-image: var(--sidebar-menu-icon-opportunities-hover) !important;
-}
-
-#sb_opportunities.active::after {
-  background-image: var(--sidebar-menu-icon-opportunities-active) !important;
-} */
-
 /* For payments */
 
 #sb_payments::after {
   display: none !important;
   content: var(--sidebar-menu-icon-payments) !important;
-  /* mask-image: var(--sidebar-menu-icon-payments);
-  -webkit-mask-image: var(--sidebar-menu-icon-payments); */
    background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-       /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;      
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1505,30 +1220,12 @@ nav a#sb_location-mobile-app {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
 
-/* #sb_payments::after {
-  background-image: var(--sidebar-menu-icon-payments) !important;
-}
-
-#sb_payments:hover::after {
-  background-image: var(--sidebar-menu-icon-payments-hover) !important;
-}
-
-#sb_payments.active::after {
-  background-image: var(--sidebar-menu-icon-payments-active) !important;
-} */
-
 /* For sb_email-marketing */
 
 #sb_email-marketing::after {
   display: none !important;
   content: var(--sidebar-menu-icon-marketing) !important;
-  /* mask-image: var(--sidebar-menu-icon-marketing);
-  -webkit-mask-image: var(--sidebar-menu-icon-marketing); */
   background-color: var(--sidebar-menu-icon-color); /* <— the icon color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;      
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1544,30 +1241,12 @@ nav a#sb_location-mobile-app {
 #sb_email-marketing.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-/* #sb_email-marketing::after {
-  background-image: var(--sidebar-menu-icon-marketing) !important;
-}
-
-#sb_email-marketing:hover::after {
-  background-image: var(--sidebar-menu-icon-marketing-hover) !important;
-}
-
-#sb_email-marketing.active::after {
-  background-image: var(--sidebar-menu-icon-marketing-active) !important;
-} */
-
 /* For sb_automation */
 
 #sb_automation::after {
   display: none !important;
   content: var(--sidebar-menu-icon-automation) !important;
-  /* mask-image: var(--sidebar-menu-icon-automation);
-  -webkit-mask-image: var(--sidebar-menu-icon-automation); */
   background-color: var(--sidebar-menu-icon-color); /* default icon color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1583,29 +1262,11 @@ nav a#sb_location-mobile-app {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
 
-/* #sb_automation::after {
-  background-image: var(--sidebar-menu-icon-automation) !important;
-}
-
-#sb_automation:hover::after {
-  background-image: var(--sidebar-menu-icon-automation-hover) !important;
-}
-
-#sb_automation.active::after {
-  background-image: var(--sidebar-menu-icon-automation-active) !important;
-} */
-
 /* sb_sites */
 #sb_sites::after {
   display: none !important;
   content: var(--sidebar-menu-icon-site) !important;
-  /* mask-image: var(--sidebar-menu-icon-site);
-  -webkit-mask-image: var(--sidebar-menu-icon-site); */
   background-color: var(--sidebar-menu-icon-color); /* default color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1620,30 +1281,12 @@ nav a#sb_location-mobile-app {
 #sb_sites.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-/* #sb_sites::after {
-  background-image: var(--sidebar-menu-icon-site);
-}
-
-#sb_sites:hover::after {
-  background-image: var(--sidebar-menu-icon-site-hover);
-}
-
-#sb_sites.active::after {
-  background-image: var(--sidebar-menu-icon-site-active);
-} */
 
 /* sb_memberships*/
 #sb_memberships::after {
   display: none !important;
   content: var(--sidebar-menu-icon-memberships) !important;
-  /* mask-image: var(--sidebar-menu-icon-memberships);
-  -webkit-mask-image: var(--sidebar-menu-icon-memberships); */
   background-color: var(--sidebar-menu-icon-color); /* default color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1658,30 +1301,12 @@ nav a#sb_location-mobile-app {
 #sb_memberships.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-/* #sb_memberships::after {
-  background-image: var(--sidebar-menu-icon-memberships);
-}
-
-#sb_memberships:hover::after {
-  background-image: var(--sidebar-menu-icon-memberships-hover);
-}
-
-#sb_memberships.active::after {
-  background-image: var(--sidebar-menu-icon-memberships-active);
-} */
 
 /* sb_reputation */
 #sb_reputation::after {
   display: none !important;
   content: var(--sidebar-menu-icon-reputation) !important;
-  /* mask-image: var(--sidebar-menu-icon-reputation);
-  -webkit-mask-image: var(--sidebar-menu-icon-reputation); */
   background-color: var(--sidebar-menu-icon-color); /* default color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;   
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1696,30 +1321,11 @@ nav a#sb_location-mobile-app {
 #sb_reputation.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-/* #sb_reputation::after {
-  background-image: var(--sidebar-menu-icon-reputation);
-}
-
-#sb_reputation:hover::after {
-  background-image: var(--sidebar-menu-icon-reputation-hover);
-}
-
-#sb_reputation.active::after {
-  background-image: var(--sidebar-menu-icon-reputation-active);
-} */
-
 /* sb_reporting  */
 #sb_reporting::after {
   display: none !important;
   content: var(--sidebar-menu-icon-reporting) !important;
-  /* mask-image: var(--sidebar-menu-icon-reporting);
-  -webkit-mask-image: var(--sidebar-menu-icon-reporting); */
   background-color: var(--sidebar-menu-icon-color); /* default color */
-      /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;     
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -1734,18 +1340,6 @@ nav a#sb_location-mobile-app {
 #sb_reporting.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-/* #sb_reporting::after {
-  background-image: var(--sidebar-menu-icon-reporting);
-}
-
-#sb_reporting:hover::after {
-  background-image: var(--sidebar-menu-icon-reporting-hover);
-}
-
-#sb_reporting.active::after {
-  background-image: var(--sidebar-menu-icon-reporting-active);
-} */
 
 /*  sb_app-marketplace  */
 #sb_app-marketplace::after {
@@ -1771,18 +1365,6 @@ nav a#sb_location-mobile-app {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
 
-/* #sb_app-marketplace::after {
-  background-image: var(--sidebar-menu-icon-app-marketplace);
-}
-
-#sb_app-marketplace:hover::after {
-  background-image: var(--sidebar-menu-icon-app-marketplace-hover);
-}
-
-#sb_app-marketplace.active::after {
-  background-image: var(--sidebar-menu-icon-app-marketplace-active);
-} */
-
 /*  sb_location-mobile-app  */
 #sb_location-mobile-app::after {
   mask-image: var(--sidebar-menu-icon-mobile-app);
@@ -1806,18 +1388,6 @@ nav a#sb_location-mobile-app {
 #sb_location-mobile-app.active::after {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
-
-/* #sb_location-mobile-app::after {
-  background-image: var(--sidebar-menu-icon-mobile-app);
-}
-
-#sb_location-mobile-app:hover::after {
-  background-image: var(--sidebar-menu-icon-mobile-app-hover);
-}
-
-#sb_location-mobile-app.active::after {
-  background-image: var(--sidebar-menu-icon-mobile-app-active);
-} */
 
 /* Settings */
 
@@ -1845,17 +1415,6 @@ nav a#sb_location-mobile-app {
   background-color: var(--sidebar-menu-icon-active-color,#b9b9b9); /* active color */
 }
 
-/* #sb_settings::after {
-  background-image: var(--sidebar-menu-icon-settings);
-}
-
-#sb_settings:hover::after {
-  background-image: var(--sidebar-menu-icon-settings-hover);
-}
-
-#sb_settings.active::after {
-  background-image: var(-sidebar-menu-icon-settings-active);
-} */
 /* COPILOT ICON BUTTON GENERAL */
 #hl_header--copilot-icon {
   width: 4rem !important;
@@ -1918,11 +1477,6 @@ nav a#sb_location-mobile-app {
 #hl_header--copilot-icon.active::before {
   background-color: var(--header-icon-hover);
 }
-
-
-
-
-/* Side bar menu icon end */
 
 /* Menu show and hide */
 nav a#sb_app-marketplace,
@@ -2073,33 +1627,6 @@ nav a#sb_location-mobile-app,
   background-color: var(--header-icon-color) !important; /* default icon color */
 }
 
-/* #recent_activities-toggle::before {
-  content: "" !important;
-  background-image: var(--header-menu-icon-notifications) !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  z-index: 999 !important;
-  width: 100% !important;
-  height: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: auto !important;
-}
-
-#recent_activities-toggle:hover:before {
-  background-image: var(--header-menu-icon-notifications-hover) !important;
-}
-
-#recent_activities-toggle:active:before {
-  background-image: var(--header-menu-icon-notifications-active) !important;
-} */
-
-/* Help icon */
-
 #hl_header--help-icon {
   border-radius: 100% !important;
 }
@@ -2108,11 +1635,6 @@ nav a#sb_location-mobile-app,
   background-color: var(--header-icon-bg) !important;
   border-radius: 8px !important;
 }
-
-/* #hl_header--help-icon:hover::before {
-
-  background-color: var(--header-icon-hover) !important; 
-} */
 
 #hl_header--help-icon i {
   display: none !important;
@@ -2175,33 +1697,6 @@ nav a#sb_location-mobile-app,
 #hl_header--help-icon.active::before {
   background-color: var(--header-icon-hover-bg) !important; /* hover color */
 }
-
-
-/* #hl_header--help-icon::before {
-  content: "" !important;
-  background-image: var(--header-menu-icon-help) !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  z-index: 999 !important;
-  width: 100% !important;
-  height: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: auto !important;
-}
-
-#hl_header--help-icon:hover::before {
-  background-image: var(--header-menu-icon-help-hover) !important;
-}
-
-#hl_header--help-icon:active::before {
-  background-image: var(--header-menu-icon-help-active) !important;
-} */
-
 /* Dialer icon */
 
 #dialer-error-toggle i {
@@ -2249,31 +1744,6 @@ nav a#sb_location-mobile-app,
 #dialer-error-toggle span:active::before {
   background-color: #dddddd; /* active */
 }
-
-/* #dialer-error-toggle span::before {
-  content: "" !important;
-  background-image: var(--header-menu-icon-phone) !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  z-index: 999 !important;
-  width: 100% !important;
-  height: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: auto !important;
-}
-
-#dialer-error-toggle span:hover:before {
-  background-image: var(--header-menu-icon-phone-hover) !important;
-}
-
-#dialer-error-toggle span:active:before {
-  background-image: var(--header-menu-icon-phone-active) !important;
-} */
 
 /* Canny icon */
 
@@ -2333,39 +1803,6 @@ nav a#sb_location-mobile-app,
   background-color: var(--header-icon-color); /* default icon color */
 }
 
-/* #canny_logs-toggle::before {
-  content: "" !important;
-  background-image: var(
-    --header-menu-icon-changelog,
-    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-scroll%22%3E%3Cpath%20d%3D%22M19%2017V5a2%202%200%200%200-2-2H4%22%2F%3E%3Cpath%20d%3D%22M8%2021h12a2%202%200%200%200%202-2v-1a1%201%200%200%200-1-1H11a1%201%200%200%200-1%201v1a2%202%200%201%201-4%200V5a2%202%200%201%200-4%200v2a1%201%200%200%200%201%201h3%22%2F%3E%3C%2Fsvg%3E")
-  ) !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  z-index: 999 !important;
-  width: 100% !important;
-  height: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: auto !important;
-}
-
-#canny_logs-toggle:hover::before {
-  background-image: var(
-    --header-menu-icon-changelog-hover,
-    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e7e9eaff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-scroll%22%3E%3Cpath%20d%3D%22M19%2017V5a2%202%200%200%200-2-2H4%22%2F%3E%3Cpath%20d%3D%22M8%2021h12a2%202%200%200%200%202-2v-1a1%201%200%200%200-1-1H11a1%201%200%200%200-1%201v1a2%202%200%201%201-4%200V5a2%202%200%201%200-4%200v2a1%201%200%200%200%201%201h3%22%2F%3E%3C%2Fsvg%3E")
-  ) !important;
-}
-
-#canny_logs-toggle:active::before {
-  background-image: var(
-    --header-menu-icon-changelog-active,
-    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-scroll%22%3E%3Cpath%20d%3D%22M19%2017V5a2%202%200%200%200-2-2H4%22%2F%3E%3Cpath%20d%3D%22M8%2021h12a2%202%200%200%200%202-2v-1a1%201%200%200%200-1-1H11a1%201%200%200%200-1%201v1a2%202%200%201%201-4%200V5a2%202%200%201%200-4%200v2a1%201%200%200%200%201%201h3%22%2F%3E%3C%2Fsvg%3E")
-  ) !important;
-} */
 
 /* header icons end */
 
@@ -3569,13 +3006,7 @@ nav a#sb_app-media {
 #sb_app-media::after {
   display: none  !important;
   content: var(--sidebar-menu-icon-media-storage) !important;
-  /* mask-image: var(--sidebar-menu-icon-media-storage);
-  -webkit-mask-image: var(--sidebar-menu-icon-media-storage); */
     background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
-        /* mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;      
-  -webkit-mask-size: contain; */
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -3591,29 +3022,6 @@ nav a#sb_app-media {
   background-color: #aeafaf; /* active color */
 }
 
-
-
-/* #sb_app-media::after {
-  background-image: var(
-    --sidebar-menu-icon-media-storage,
-    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-file-image%22%3E%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%2F%3E%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2212%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22m20%2017-1.296-1.296a2.41%202.41%200%200%200-3.408%200L9%2022%22%2F%3E%3C%2Fsvg%3E")
-  ) !important;
-}
-
-#sb_app-media:hover::after {
-  background-image: var(
-    --sidebar-menu-icon-media-storage-hover,
-    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-file-image%22%3E%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%2F%3E%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2212%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22m20%2017-1.296-1.296a2.41%202.41%200%200%200-3.408%200L9%2022%22%2F%3E%3C%2Fsvg%3E")
-  ) !important;
-}
-
-#sb_app-media.active::after {
-  background-image: var(
-    --sidebar-menu-icon-media-storage-active,
-    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23ffffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-file-image%22%3E%3Cpath%20d%3D%22M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z%22%2F%3E%3Cpath%20d%3D%22M14%202v4a2%202%200%200%200%202%202h4%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2212%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22m20%2017-1.296-1.296a2.41%202.41%200%200%200-3.408%200L9%2022%22%2F%3E%3C%2Fsvg%3E")
-  ) !important;
-} */
-/* Media Storage End */
 
 /* Setting calendar duplicate Issue Fixed */
 .hl_nav-header-without-footer #sb_calendars span::after {
@@ -3840,28 +3248,6 @@ nav a[id="sb_AI Agents"] {
   background-color: #c0c0c0; /* active */
 }
 
-
-/* [id="sb_AI Agents"]::after {
-  background-image: var(
-    --sidebar-menu-icon-ai-agents,
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zcGFya2xlcy1pY29uIGx1Y2lkZS1zcGFya2xlcyI+PHBhdGggZD0iTTkuOTM3IDE1LjVBMiAyIDAgMCAwIDguNSAxNC4wNjNsLTYuMTM1LTEuNTgyYS41LjUgMCAwIDEgMC0uOTYyTDguNSA5LjkzNkEyIDIgMCAwIDAgOS45MzcgOC41bDEuNTgyLTYuMTM1YS41LjUgMCAwIDEgLjk2MyAwTDE0LjA2MyA4LjVBMiAyIDAgMCAwIDE1LjUgOS45MzdsNi4xMzUgMS41ODFhLjUuNSAwIDAgMSAwIC45NjRMMTUuNSAxNC4wNjNhMiAyIDAgMCAwLTEuNDM3IDEuNDM3bC0xLjU4MiA2LjEzNWEuNS41IDAgMCAxLS45NjMgMHoiLz48cGF0aCBkPSJNMjAgM3Y0Ii8+PHBhdGggZD0iTTIyIDVoLTQiLz48cGF0aCBkPSJNNCAxN3YyIi8+PHBhdGggZD0iTTUgMThIMyIvPjwvc3ZnPg==")
-  ) !important;
-}
-
-[id="sb_AI Agents"]:hover::after {
-  background-image: var(
-    --sidebar-menu-icon-ai-agents-hover,
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zcGFya2xlcy1pY29uIGx1Y2lkZS1zcGFya2xlcyI+PHBhdGggZD0iTTkuOTM3IDE1LjVBMiAyIDAgMCAwIDguNSAxNC4wNjNsLTYuMTM1LTEuNTgyYS41LjUgMCAwIDEgMC0uOTYyTDguNSA5LjkzNkEyIDIgMCAwIDAgOS45MzcgOC41bDEuNTgyLTYuMTM1YS41LjUgMCAwIDEgLjk2MyAwTDE0LjA2MyA4LjVBMiAyIDAgMCAwIDE1LjUgOS45MzdsNi4xMzUgMS41ODFhLjUuNSAwIDAgMSAwIC45NjRMMTUuNSAxNC4wNjNhMiAyIDAgMCAwLTEuNDM3IDEuNDM3bC0xLjU4MiA2LjEzNWEuNS41IDAgMCAxLS45NjMgMHoiLz48cGF0aCBkPSJNMjAgM3Y0Ii8+PHBhdGggZD0iTTIyIDVoLTQiLz48cGF0aCBkPSJNNCAxN3YyIi8+PHBhdGggZD0iTTUgMThIMyIvPjwvc3ZnPg==")
-  ) !important;
-}
-
-[id="sb_AI Agents"].active::after {
-  background-image: var(
-    --sidebar-menu-icon-ai-agents-active,
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zcGFya2xlcy1pY29uIGx1Y2lkZS1zcGFya2xlcyI+PHBhdGggZD0iTTkuOTM3IDE1LjVBMiAyIDAgMCAwIDguNSAxNC4wNjNsLTYuMTM1LTEuNTgyYS41LjUgMCAwIDEgMC0uOTYyTDguNSA5LjkzNkEyIDIgMCAwIDAgOS45MzcgOC41bDEuNTgyLTYuMTM1YS41LjUgMCAwIDEgLjk2MyAwTDE0LjA2MyA4LjVBMiAyIDAgMCAwIDE1LjUgOS45MzdsNi4xMzUgMS41ODFhLjUuNSAwIDAgMSAwIC45NjRMMTUuNSAxNC4wNjNhMiAyIDAgMCAwLTEuNDM3IDEuNDM3bC0xLjU4MiA2LjEzNWEuNS41IDAgMCAxLS45NjMgMHoiLz48cGF0aCBkPSJNMjAgM3Y0Ii8+PHBhdGggZD0iTTIyIDVoLTQiLz48cGF0aCBkPSJNNCAxN3YyIi8+PHBhdGggZD0iTTUgMThIMyIvPjwvc3ZnPg==")
-  ) !important;
-} */
-
 /* 4. menu show and hide */
 nav a[id="sb_AI Agents"],
 .v2-collapse #sidebar-v2 nav a[id="sb_AI Agents"] {
@@ -3951,109 +3337,6 @@ input[type="submit"],
 [role="button"] {
   cursor: var(--custom-pointer) !important;
 }
-/* === TOP NAVBAR BELOW HEADER (using .topbar-mode) === */
-
-.topbar-mode {
-  /* fallback + variables */
-  --sidebar-topbar-height: var(--sidebar-topbar-height, 64px);
-  --sidebar-horizontal-padding: var(--sidebar-horizontal-padding, 1rem);
-  --sidebar-nav-gap: var(--sidebar-nav-gap, 1rem);
-  --sidebar-link-padding: var(--sidebar-link-padding, 12px);
-  --sidebar-menu-opacity: var(--sidebar-menu-opacity, 0.9);
-  --sidebar-menu-radius: var(--sidebar-menu-radius, 6px);
-  --sidebar-logo-height: var(--sidebar-logo-height, 36px);
-  --sidebar-text-size: var(--sidebar-text-size, 14px);
-  --sidebar-icon-size: var(--sidebar-icon-size, 16px);
-}
-
-/* Sidebar becomes horizontal bar BELOW header */
-.topbar-mode #sidebar-v2 {
-  position: relative !important;
-  top: 6% !important;
-  width: 87.5% !important;
-  height: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  background: var(--top-nav-menu-bg, var(--sidebar-bg-color, #111827)) !important;
-  color: var(--top-nav-menu-color, var(--sidebar-menu-color, #fff)) !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-  z-index: 999 !important;
-}
-
-/* Place it visually after header */
-.topbar-mode header + #sidebar-v2 {
-  order: 2 !important;
-  position: relative !important;
-  top: auto !important;
-}
-
-/* Sidebar inner container — horizontal */
-.topbar-mode #sidebar-v2 > .relative {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex-wrap: wrap !important; /* ✅ wrap when overflowing */
-  gap: var(--sidebar-nav-gap) !important;
-  padding: 0.5rem var(--sidebar-horizontal-padding) !important;
-  width: 100% !important;
-  height: auto !important;
-  background: inherit !important;
-}
-
-/* Logo */
-.topbar-mode #sidebar-v2 .agency-logo-container {
-  display: flex !important;
-  align-items: center !important;
-  margin-right: 1rem !important;
-}
-.topbar-mode #sidebar-v2 .agency-logo-container img {
-  max-height: var(--sidebar-logo-height) !important;
-  width: auto !important;
-}
-
-/* Menu container */
-.topbar-mode #sidebar-v2 nav[aria-label="header"] {
-    flex-wrap: wrap !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    /* gap: var(--sidebar-nav-gap) !important; */
-    height: 1% !important;
-    width: auto !important; 
-}
-
-/* Menu links */
-.topbar-mode #sidebar-v2 nav[aria-label="header"] a {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 var(--sidebar-link-padding) !important;
-  height: 40px !important;
-  border-radius: var(--sidebar-menu-radius) !important;
-  color: var(--top-nav-menu-color, var(--sidebar-menu-color)) !important;
-  font-size: var(--sidebar-text-size) !important;
-  opacity: var(--sidebar-menu-opacity) !important;
-  text-decoration: none !important;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-/* Hover & Active */
-.topbar-mode #sidebar-v2 nav[aria-label="header"] a:hover,
-.topbar-mode #sidebar-v2 nav[aria-label="header"] a.active {
-  background: var(--top-nav-menu-hover-bg, rgba(255, 255, 255, 0.1)) !important;
-  color: var(--top-nav-menu-hover-color, #fff) !important;
-  opacity: 1 !important;
-}
-
-/* Make sure content below is visible */
-.topbar-mode .hl_wrapper,
-.topbar-mode .main-container,
-.topbar-mode #app {
-  padding-top: 7% !important;
-  margin-top: 0 !important;
-}
-
 /* Common icon style for <i> tags */
 .tb-sidebar-icon {
   position: relative !important;
@@ -4089,85 +3372,6 @@ input[type="submit"],
   margin-right: 0.5rem;
   object-fit: contain;
   vertical-align: middle;
-}
-
-
-/* ----------------------------------------------------
-   TOP NAVIGATION FOR BLUEWAVE THEME
----------------------------------------------------- */
-
-body.bluewave-topnav-active header.hl_header,
-body.bluewave-topnav-active header.hl_header.--agency {
-    width: 100vw !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin: 0 !important;
-    padding: 6px 16px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    z-index: 9999 !important;
-    background: var(--primary-color) !important;
-}
-
-/* wrapper container */
-#ghl_custom_topnav_wrapper {
-    display: flex !important;
-    align-items: center !important;
-    gap: 14px !important;
-    flex: 1 !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-}
-
-/* nav links */
-#ghl_custom_topnav_wrapper nav a {
-    color: var(--top-nav-menu-color) !important;
-    padding: 14px 17px !important;
-    border-radius: 4px !important;
-    text-decoration: none !important;
-    font-weight: 500 !important;
-    background: #1d7bcd40;
-}
-
-#ghl_custom_topnav_wrapper nav a:hover {
-    background: var(--top-nav-menu-hover-bg) !important;
-}
-
-/* hide sidebar completely */
-body.bluewave-topnav-active aside#sidebar-v2,
-body.bluewave-topnav-active .hl_sidebar,
-body.bluewave-topnav-active .hl_app_sidebar {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-/* expand main area */
-body.bluewave-topnav-active main,
-body.bluewave-topnav-active #app,
-body.bluewave-topnav-active .hl_main-content,
-body.bluewave-topnav-active .container {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-}
-/* Custom scrollbar for the top navigation bar */
-#ghl_custom_topnav_wrapper_v4::-webkit-scrollbar {
-    height: 7px !important;  /* horizontal scrollbar */
-    width: 7px !important;   /* vertical scrollbar (just in case) */
-}
-
-#ghl_custom_topnav_wrapper_v4::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.4) !important;
-    border-radius: 10px !important;
-}
-
-#ghl_custom_topnav_wrapper_v4::-webkit-scrollbar-track {
-    background: transparent !important;
 }
 .disabled-section {
     pointer-events: none;   /* prevents clicking */
