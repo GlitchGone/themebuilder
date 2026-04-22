@@ -5,14 +5,14 @@
 body {
   cursor: var(--custom-pointer), auto !important;
 } */
-*,
+/* *,
 *::before,
 *::after {
   cursor: var(--custom-pointer), auto !important;
 }
   html body::after {
   display: none !important;
-}
+} */
 
 /* Remove loading */
 html body::after {
