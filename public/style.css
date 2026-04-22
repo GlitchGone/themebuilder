@@ -3493,6 +3493,7 @@ input[type="submit"],
 }
 /* Common icon style for <i> tags */
 .tb-sidebar-icon {
+  color: var(--sidebar-menu-icon-color, #ffffff) !important ;
   position: relative !important;
   right: 25px !important;
   display: inline-flex;
