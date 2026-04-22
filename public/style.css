@@ -105,7 +105,7 @@ html body::after {
  --top-nav-menu-hover-color: #fafafa;
  --top-nav-menu-bg: #212121;
  --top-nav-menu-hover-bg: #038c3f;
- --top-nav-menu-active-bg: #038c3f;
+ /* --top-nav-menu-active-bg: #038c3f; */
  --top-nav-menu-font-size: 16px;
  --top-nav-border-width:  0 0rem 0rem 0; ;
  --top-nav-border-radius: 8px;
@@ -119,7 +119,7 @@ html body::after {
  --top-nav-border-hover-radius: 8px;
  --top-nav-border-hover-style: double;
  --top-nav-border-hover-color: #9f00ffff;
- --top-nav-title-color: #000000ff;
+ /* --top-nav-title-color: #000000ff; */
  --top-nav-title-font-size: 24px;
  --top-nav-bg-color: #31249600;
  --top-nav-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
