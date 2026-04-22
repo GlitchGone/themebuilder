@@ -92,6 +92,9 @@ html body::after {
 --sidebar-menu-icon-media-storage:"\f478";
 --sidebar-menu-icon-memberships:"\e163";
 --sidebar-menu-icon-reputation:"\f005";
+--sidebar-menu-icon-ask-ai: "\f666";
+--sidebar-menu-icon-vibe: "\f834";
+
 
  #location-dashboard_banner--wordpress-promo-container{display: none !important};
  #location-dashboard_banner--yext-promo-container{display: none !important};
@@ -586,6 +589,9 @@ button {
 #sidebar-v2 nav a span.nav-title {
   color: var(--sidebar-menu-color) !important;
 }
+#sb_vibe img {
+  display: none !important;
+}
 #sidebar-v2 nav a#sb_vibe span.nav-title {
     display: block !important;
     visibility: visible !important;
@@ -598,6 +604,39 @@ button {
 /* Active */
 #sidebar-v2 nav a#sb_vibe.active span.nav-title {
     color: var(--sidebar-text-active-color, #ffffff) !important;
+}
+#sb_vibe {
+  position: relative;
+  padding-left: 40px !important;
+  display: flex;
+  align-items: center;
+}
+#sb_vibe::after {
+  content: var(--sidebar-menu-icon-vibe) !important;
+  font-family: "Font Awesome 6 Free"; /* required */
+  font-weight: 900;
+
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--sidebar-menu-icon-color);
+}
+#sb_vibe:hover::after {
+  color: var(--sidebar-menu-icon-hover-color, #ffffff);
+}
+
+#sb_vibe.active::after {
+  color: var(--sidebar-menu-icon-active-color, #c0c0c0);
 }
 #sidebar-v2 nav a#sb_ask-ai span.nav-title {
     display: block !important;
@@ -3183,7 +3222,7 @@ div.sidebar-v2-location .hl_topbar-tabs.notification-banner-wrapper {
 /* 1. order */
 
 /* 2. name */
-#app
+/* #app
   .sidebar-v2-location
   .hl_nav-header
   a[id="sb_AI Agents"]
@@ -3195,10 +3234,10 @@ div.sidebar-v2-location .hl_topbar-tabs.notification-banner-wrapper {
   left: 0 !important;
   width: 100% !important;
   display: flex !important;
-}
+} */
 
 /* 3. icon */
-[id="sb_AI Agents"]::after {
+/* [id="sb_AI Agents"]::after {
   content: "" !important;
   width: 30px !important;
   position: absolute !important;
@@ -3222,36 +3261,77 @@ nav a[id="sb_AI Agents"] {
 
 [id="sb_AI Agents"] img {
   display: none !important;
-}
+} */
 
-[id="sb_AI Agents"]::after {
+/* [id="sb_AI Agents"]::after {
   mask-image: var(--sidebar-menu-icon-ai-agents);
   -webkit-mask-image: var(--sidebar-menu-icon-ai-agents);
-    background-color:var(--sidebar-menu-icon-color); /* <— the icon color */
+    background-color:var(--sidebar-menu-icon-color); 
         mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
-  mask-size: contain;      /* prevent repeating */
+  mask-size: contain;      
   -webkit-mask-size: contain;
     background-repeat: no-repeat;
   background-position: center;
   position: absolute;
   width: 20px;
   height: 20px;
-}
+} 
 
 [id="sb_AI Agents"]:hover::after {
-  background-color: #ffffff; /* hover */
+  background-color: #ffffff;
 }
 
 
 [id="sb_AI Agents"].active::after {
-  background-color: #c0c0c0; /* active */
+  background-color: #c0c0c0; 
 }
 
-/* 4. menu show and hide */
+
 nav a[id="sb_AI Agents"],
 .v2-collapse #sidebar-v2 nav a[id="sb_AI Agents"] {
   display: var(--ai-agents-display) !important;
+} */
+#sb_ask-ai img {
+  display: none !important;
+}
+#sb_ask-ai {
+  position: relative;
+  padding-left: 40px !important;
+  display: flex;
+  align-items: center;
+}
+
+/* ICON */
+#sb_ask-ai::after {
+  content: var(--sidebar-menu-icon-ask-ai) !important;
+  font-family: "Font Awesome 6 Free"; /* IMPORTANT */
+  font-weight: 900; /* solid icons */
+  
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--sidebar-menu-icon-color);
+}
+
+/* HOVER */
+#sb_ask-ai:hover::after {
+  color: var(--sidebar-menu-icon-hover-color);
+}
+
+/* ACTIVE */
+#sb_ask-ai.active::after {
+  color: var(--sidebar-menu-icon-active-color);
 }
 
 /* 5. submenus */
