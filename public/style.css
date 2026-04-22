@@ -2488,7 +2488,7 @@ button:active {
 
 /* quick actions */
 .container-fluid > .hl_header--controls .quick-actions {
-  cursor: var(--custom-pointer);
+  cursor: var(--custom-pointer), pointer !important;
   padding: 10px;
   border-radius: 8px;
   background: var(--header-icon-bg) !important;
@@ -2552,7 +2552,7 @@ button:active {
 }
 
 .hl_header--controls .global-search {
-  cursor: var(--custom-pointer);
+  cursor: var(--custom-pointer), pointer !important;
   border-radius: 8px;
   background: var(--header-icon-bg) !important;
   background-image: var(--header-icon-bg-gradient) !important;
@@ -3495,7 +3495,7 @@ input[type="button"],
 input[type="submit"],
 .clickable,
 [role="button"] {
-  cursor: var(--custom-pointer) !important;
+  cursor: var(--custom-pointer), pointer !important;
 }
 /* Common icon style for <i> tags */
 .tb-sidebar-icon {
