@@ -123,6 +123,7 @@ html body::after {
  --top-nav-title-font-size: 24px;
  --top-nav-bg-color: #31249600;
  --top-nav-bg-gradient:  linear-gradient(250deg, #00000000 88%, #00000000 100%);
+ --title-color: #000000;
 
  #location-dashboard_banner--wordpress-promo-container{display: none !important};
  #location-dashboard_banner--yext-promo-container{display: none !important};
@@ -369,6 +370,9 @@ html body::after {
 .agency-logo {
   width: var(--logo-width) !important;
   height: var(--logo-height) !important;
+}
+.title {
+  color : var(--title-color) !important;
 }
 .title,
 h2,
