@@ -300,6 +300,7 @@ router.get('/code/:identifier', async (req, res) => {
 // Save or update theme for a user
 router.post("/", async (req, res) => {
   await connectDB();
+  console.log("BODY SIZE:", JSON.stringify(req.body).length);
   let { rlNo, email, themeData, selectedTheme, bodyFont, agencyId, updatedBy } = req.body;
 
   if (!email && !rlNo) {
