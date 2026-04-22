@@ -385,11 +385,13 @@ button {
   flex-direction: column !important;
   gap: 3px !important;
 }
+
 #sidebar-v2 nav a {
   background-color: var(--sidebar-menu-bg) !important;
   width: var(--sidebar-menu-width) !important;
   height: var(--sidebar-menu-height) !important;
   font-size: var(--sidebar-menu-font-size) !important;
+  cursor: var(--custom-pointer), pointer !important;
   margin: 0 auto !important;
 }
 
