@@ -3304,7 +3304,7 @@ nav a[id="sb_AI Agents"],
   align-items: center;
 }
 #sb_AI\ Agents::after {
-  content: "" !important;
+  content: "AI Agents" !important;
 
   position: absolute;
   left: 10px;
