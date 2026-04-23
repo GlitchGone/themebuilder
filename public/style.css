@@ -3621,7 +3621,7 @@ input[type="submit"],
 div.topmenu-navtitle {
   display: none !important;
   /* color: var(--top-nav-title-color) !important; */
-  color: var(--sidebar-menu-text-color) !important;
+  color: var(--sidebar-menu-color) !important;
   font-size: var(--top-nav-title-font-size) !important;
 }
 .topmenu-nav a {
