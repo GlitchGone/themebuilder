@@ -3631,7 +3631,9 @@ div.topmenu-navtitle {
   background-color: var(--sidebar-menu-bg) !important;
   font-size: var(--top-nav-menu-font-size) !important;
 }
-
+.shadow-lg{
+      background-color: #2d2c2c !important;
+}
 .topmenu-nav > a {
   border-width: var(--top-nav-border-width, 0) !important;
   border-radius: var(--top-nav-border-radius) !important;
