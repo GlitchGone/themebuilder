@@ -136,15 +136,16 @@ html body::after {
  --opportunities-order: 5;
  --payments-order: 6;
  --vibe-order: 7;
- --reporting-order: 14;
- --marketing-order: 8;
- --automation-order: 9;
  --ai-agents-order: 8;
- --sites-order: 10;
- --media-storage-order: 11;
- --memberships-order: 12;
+ --reporting-order: 14;
+ --marketing-order: 9;
+ --automation-order: 10;
+ --ai-agents-order: 8;
+ --sites-order: 11;
+ --media-storage-order: 12;
+ --memberships-order: 13;
  --app-marketplace-order: 15;
- --reputation-order: 13;
+ --reputation-order: 14;
  --mobile-app-order: 16;
  --sub-conversations-order: 0;
  --sub-manual-actions-order: 1;
@@ -3400,7 +3401,9 @@ nav a#sb_AI\ Agents,
 .v2-collapse #sidebar-v2 nav a#sb_AI\ Agents {
   display: var(--ai-agents-display) !important;
 }
-
+#sb_AI\ Agents {
+    order: var(--ai-agents-order) !important;
+}
 
 #sb_ask-ai img {
   display: none !important;
