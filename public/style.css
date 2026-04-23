@@ -3577,6 +3577,7 @@ input[type="submit"],
 /* Top nav */
 
 .hl_header > .topmenu-nav {
+  top: -9px !important;
   background: var(--top-nav-bg-color) !important;
   background-image: var(--top-nav-bg-gradient) !important;
 }
@@ -3618,14 +3619,30 @@ input[type="submit"],
 }
 
 div.topmenu-navtitle {
-  color: var(--top-nav-title-color) !important;
+  display: none !important;
+  /* color: var(--top-nav-title-color) !important; */
+  color: var(--sidebar-menu-text-color) !important;
   font-size: var(--top-nav-title-font-size) !important;
 }
 .topmenu-nav a {
+  /* color: var(--top-nav-menu-color) !important; */
   color: var(--top-nav-menu-color) !important;
-  background-color: var(--top-nav-menu-bg) !important;
+  /* background-color: var(--top-nav-menu-bg) !important; */
+  background-color: var(--sidebar-menu-bg) !important;
   font-size: var(--top-nav-menu-font-size) !important;
 }
+
+--sidebar-bg-color
+--sidebar-menu-bg
+--sidebar-menu-color
+--sidebar-menu-hover-bg
+--sidebar-menu-active-bg
+--sidebar-menu-icon-color
+--sidebar-menu-icon-hover-color
+--sidebar-menu-icon-active-color
+--sidebar-menu-border-radius
+--sidebar-top-right-radius
+--sidebar-bottom-right-radius
 
 .topmenu-nav > a {
   border-width: var(--top-nav-border-width, 0) !important;
@@ -3637,7 +3654,7 @@ div.topmenu-navtitle {
 
 .topmenu-nav a:hover {
   color: var(--top-nav-menu-hover-color) !important;
-  background-color: var(--top-nav-menu-hover-bg) !important;
+  background-color: var(--sidebar-menu-hover-bg) !important;
   border-width: var(--top-nav-border-hover-width, 0) !important;
   border-radius: var(--top-nav-border-hover-radius) !important;
   border-style: var(--top-nav-border-hover-style) !important;
@@ -3645,7 +3662,7 @@ div.topmenu-navtitle {
 }
 .topmenu-nav a.active {
   color: var(--top-nav-menu-active-color) !important;
-  background-color: var(--top-nav-menu-active-bg) !important;
+  background-color: var(--sidebar-menu-active-bg) !important;
   border-width: var(--top-nav-border-active-width, 0) !important;
   border-radius: var(--top-nav-border-active-radius) !important;
   border-style: var(--top-nav-border-active-style) !important;
