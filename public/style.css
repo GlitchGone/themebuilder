@@ -3632,18 +3632,6 @@ div.topmenu-navtitle {
   font-size: var(--top-nav-menu-font-size) !important;
 }
 
---sidebar-bg-color
---sidebar-menu-bg
---sidebar-menu-color
---sidebar-menu-hover-bg
---sidebar-menu-active-bg
---sidebar-menu-icon-color
---sidebar-menu-icon-hover-color
---sidebar-menu-icon-active-color
---sidebar-menu-border-radius
---sidebar-top-right-radius
---sidebar-bottom-right-radius
-
 .topmenu-nav > a {
   border-width: var(--top-nav-border-width, 0) !important;
   border-radius: var(--top-nav-border-radius) !important;
