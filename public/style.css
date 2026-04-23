@@ -3626,7 +3626,7 @@ div.topmenu-navtitle {
 }
 .topmenu-nav a {
   /* color: var(--top-nav-menu-color) !important; */
-  color: var(--top-nav-menu-color) !important;
+  color: var(--sidebar-menu-color) !important;
   /* background-color: var(--top-nav-menu-bg) !important; */
   background-color: var(--sidebar-menu-bg) !important;
   font-size: var(--top-nav-menu-font-size) !important;
