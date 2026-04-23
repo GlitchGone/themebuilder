@@ -374,6 +374,10 @@ html body::after {
 /* .title {
   color : var(--title-color) !important;
 } */
+.hl-display-sm-medium{
+  color : var(--title-color) !important;
+}
+
 .title,
 h2,
 h3,
