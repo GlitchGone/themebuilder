@@ -4,6 +4,7 @@ const cors = require("cors");
 const path = require("path");
 const themeRoutes = require("./routes/themeRoutes");
 const routeauth = require("./routes/routeauth");
+const adminRoutes = require("./routes/adminRoutes");
 const connectDB = require("./lib/mongo");
 
 const app = express();
@@ -31,6 +32,8 @@ connectDB();
 // ✅ API Routes FIRST (keep these before static middleware)
 app.use("/api/theme", themeRoutes);
 app.use("/api/auth", routeauth);
+app.use("/admin", adminRoutes);
+
 
 // ✅ Special route (optional)
 app.get("/connected", (req, res) => {

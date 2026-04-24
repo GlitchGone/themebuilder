@@ -12,6 +12,7 @@ const Themedynamically = require("../models/Theme");
 const transporter = require("../utils/mailer");
 const UserScript = require("../models/userScript");
 const AgencySettings = require("../models/AgencySettings");
+const AgencyInfo = require("../models/AgencyInfo");
 const connectDB = require("../lib/mongo"); // ← add this line
 // ─── Server-side caches (persist across warm requests) ───────────────────────
 const _fileCache = new Map();        // static CSS files: path → content
@@ -127,8 +128,10 @@ router.get("/getallthemes", async (req, res) => {
   }
 });
 router.post("/onboard", async (req, res) => {
+  let newTheme = null; // track for rollback
+
   try {
-    let { email, Relationship_No, createdBy } = req.body;
+    let { full_name, email, phone, fullAddress, Agency_Name, Relationship_No, createdBy } = req.body;
 
     if (!email && !Relationship_No) {
       return res.status(400).json({
@@ -146,9 +149,7 @@ router.post("/onboard", async (req, res) => {
     }
 
     if (emailList.length) {
-      const existingEmailUser = await Theme.findOne({
-        email: { $in: emailList }
-      });
+      const existingEmailUser = await Theme.findOne({ email: { $in: emailList } });
       if (existingEmailUser) {
         return res.status(409).json({
           message: "Email already exists, please choose another email. Thanks"
@@ -172,10 +173,10 @@ router.post("/onboard", async (req, res) => {
       });
     }
 
-    // ✅ Fetch Default Theme template
     const defaultThemeTemplate = await Themedynamically.findOne({ themeName: "Default Theme" });
-    console.log(defaultThemeTemplate,'defaultThemeTemplate');
-    const newTheme = new Theme({
+
+    // Step 1 — Save Theme
+    newTheme = new Theme({
       email: emailList.length ? emailList : [],
       rlNo: Relationship_No || null,
       agencyId: AgencyId,
@@ -183,56 +184,65 @@ router.post("/onboard", async (req, res) => {
       isActive: true,
       createdBy: createdBy || null,
       updatedAt: new Date(),
-      // ✅ Seed with default theme data
       themeData: defaultThemeTemplate?.themeData || {},
       selectedTheme: defaultThemeTemplate ? "Default Theme" : null
     });
-
     await newTheme.save();
 
+    // Step 2 — Save AgencyInfo (throws on failure → triggers rollback)
+    await AgencyInfo.create({
+      full_name:       full_name || null,
+      address:         fullAddress || null,
+      agency_name:     Agency_Name || null,
+      agencyId:        AgencyId,
+      relationship_no: Relationship_No || null,
+    });
+
+    // Step 3 — Save UserScript (throws on failure → triggers rollback)
     const baseURL = "https://themebuilder-six.vercel.app/api/theme";
     const customJsScript = `${baseURL}/combined?agencyId=${AgencyId}`;
     const customCssImport = `${baseURL}/merged-css?agencyId=${AgencyId}`;
 
-    const responseData = {
+    await UserScript.create({
+      email: emailList.length ? emailList[0] : null,
+      agencyId: AgencyId,
+      themeId: newTheme._id,
+      customJs: `<script src="${customJsScript}"></script>`,
+      customCss: `@import url("${customCssImport}");`
+    });
+
+    // Step 4 — Save AgencySettings (throws on failure → triggers rollback)
+    await AgencySettings.create({
+      agencyId: AgencyId,
+      loaderId: "69975a870e781c3a0b685ca5",
+      themeId: newTheme._id,
+      selectedTheme: defaultThemeTemplate ? "Default Theme" : null,
+      bodyFont: defaultThemeTemplate?.themeData?.["--body-font"] || null
+    });
+
+    return res.status(201).json({
+      message: "Theme created & email sent successfully",
       themeId: newTheme._id,
       agencyId: AgencyId,
       customJs: `<script src="${customJsScript}"></script>`,
       customCss: `@import url("${customCssImport}");`
-    };
-
-    try {
-      await UserScript.create({
-        email: emailList.length ? emailList[0] : null,
-        agencyId: AgencyId,
-        themeId: newTheme._id,
-        customJs: `<script src="${customJsScript}"></script>`,
-        customCss: `@import url("${customCssImport}");`
-      });
-    } catch (err) {
-      console.error("❌ Error saving to UserScript:", err);
-    }
-
-    try {
-      await AgencySettings.create({
-        agencyId: AgencyId,
-        loaderId: "69975a870e781c3a0b685ca5", // ✅ fixed loader id
-        themeId: newTheme._id,
-        selectedTheme: defaultThemeTemplate ? "Default Theme" : null,
-        bodyFont: defaultThemeTemplate?.themeData?.["--body-font"] || null
-      });
-    } catch (err) {
-      console.error("❌ Error creating default AgencySettings:", err);
-    }
-
-    return res.status(201).json({
-      message: "Theme created & email sent successfully",
-      ...responseData
     });
 
   } catch (err) {
-    res.status(500).json({
-      message: "Server error",
+    console.error("❌ Onboard failed:", err.message);
+
+    // Rollback: delete the Theme if it was saved before the failure
+    if (newTheme?._id) {
+      try {
+        await Theme.findByIdAndDelete(newTheme._id);
+        console.log("🔁 Rolled back Theme:", newTheme._id);
+      } catch (rollbackErr) {
+        console.error("❌ Rollback failed:", rollbackErr.message);
+      }
+    }
+
+    return res.status(500).json({
+      message: "Onboarding failed. No data was saved.",
       error: err.message
     });
   }
