@@ -3646,7 +3646,7 @@ div.topmenu-navtitle {
 }
 
 .topmenu-nav a:hover {
-  color: var(--top-nav-menu-hover-color) !important;
+  color: var(--sidebar-menu-text-hover-color) !important;
   background-color: var(--sidebar-menu-hover-bg) !important;
   border-width: var(--top-nav-border-hover-width, 0) !important;
   border-radius: var(--top-nav-border-hover-radius) !important;
