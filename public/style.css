@@ -3654,7 +3654,7 @@ div.topmenu-navtitle {
   border-color: var(--top-nav-border-hover-color) !important;
 }
 .topmenu-nav a.active {
-  color: var(--top-nav-menu-active-color) !important;
+  color: var(--sidebar-menu-text-active-color) !important;
   background-color: var(--sidebar-menu-active-bg) !important;
   border-width: var(--top-nav-border-active-width, 0) !important;
   border-radius: var(--top-nav-border-active-radius) !important;
