@@ -149,5 +149,8 @@ router.patch("/:id/deactivate", protect, async (req, res) => {
     return res.status(500).json({ message: "Server error", error: err.message });
   }
 });
+// Example: Get all agency information for Theme Builder dashboard
+
+
 
 module.exports = router;

@@ -10,7 +10,7 @@ const protect = (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.admin = decoded; // { id, email, role }
+    req.admin = decoded;
     next();
 
   } catch (err) {
@@ -18,4 +18,12 @@ const protect = (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+const isAuthenticated = (req, res, next) => {
+  if (req.session && req.session.token) {
+    return next();
+  }
+  res.redirect("/login");
+};
+
+// ✅ EXPORT BOTH
+module.exports = { protect, isAuthenticated };

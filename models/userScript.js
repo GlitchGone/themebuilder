@@ -39,4 +39,6 @@ const userScriptSchema = new mongoose.Schema({
   timestamps: true // adds createdAt & updatedAt automatically
 });
 
-module.exports = mongoose.model("UserScript", userScriptSchema);
+module.exports =
+  mongoose.models.UserScript ||
+  mongoose.model("UserScript", userScriptSchema);

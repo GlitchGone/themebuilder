@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="/dashboard" class="active">Dashboard</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <h1>Agencies</h1>
+
+    <table class="agency-table">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Agency Name</th>
+          <th>Owner</th>
+          <th>Agency ID</th>
+          <th>Relationship #</th>
+          <th>Email</th>
+          <th>Created At</th>
+          <th>Status</th>
+          <th>Script</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% agencies.forEach(a => { %>
+        <tr>
+
+          <td>
+                <img
+                    src="<%- a.logo || '/images/default-logo.png' %>"
+                    class="logo"
+                    onerror="this.src='/images/default-logo.png'"
+                >
+                </td>
+
+          <td><%= a.agencyName %></td>
+
+          <td><%= a.ownerName %></td>
+
+          <td><%= a.agencyId %></td>
+
+          <td><%= a.relationshipNo %></td>
+
+          <td>
+            <% if (a.emails.length === 0) { %>
+                —
+            <% } else if (a.emails.length === 1) { %>
+                <%= a.emails[0] %>
+            <% } else { %>
+                <select class="email-select">
+                <% a.emails.forEach(email => { %>
+                    <option><%= email %></option>
+                <% }) %>
+                </select>
+            <% } %>
+            </td>
+
+          <td>
+            <%= a.createdAt ? new Date(a.createdAt).toLocaleString() : "N/A" %>
+          </td>
+
+          <td>
+                <% if (a.isActive === null) { %>
+                    <span class="status inactive">No Theme</span>
+                <% } else { %>
+                    <button
+                    class="status-toggle-btn <%= a.isActive ? 'active' : 'inactive' %>"
+                    data-agency-id="<%- a.agencyId %>"
+                    data-agency-name="<%- a.agencyName %>"
+                    data-is-active="<%= a.isActive %>"
+                    onclick="confirmToggleStatus(this)"
+                    >
+                    <%= a.isActive ? 'Active' : 'Deactivated' %>
+                    </button>
+                <% } %>
+            </td>
+
+          <td>
+            <button
+              class="script-btn"
+              data-js="<%- encodeURIComponent(a.customJs) %>"
+              data-css="<%- encodeURIComponent(a.customCss) %>"
+              onclick="openScript(this)"
+            >
+              Script
+            </button>
+          </td>
+
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- SCRIPT MODAL -->
+<div id="scriptModal" class="modal">
+  <div class="modal-content">
+
+    <h2>Agency Scripts</h2>
+
+    <label>Custom JS URL</label>
+    <div class="copy-box">
+      <input id="jsUrl" readonly />
+      <span onclick="copyText('jsUrl')">📋</span>
+    </div>
+
+    <label>Custom CSS URL</label>
+    <div class="copy-box">
+      <input id="cssUrl" readonly />
+      <span onclick="copyText('cssUrl')">📋</span>
+    </div>
+
+    <button onclick="closeModal()">Close</button>
+
+  </div>
+</div>
+
+<script>
+function openScript(btn) {
+  document.getElementById("jsUrl").value  = decodeURIComponent(btn.dataset.js  || "");
+  document.getElementById("cssUrl").value = decodeURIComponent(btn.dataset.css || "");
+  document.getElementById("scriptModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("scriptModal").style.display = "none";
+}
+
+function copyText(id) {
+  const input = document.getElementById(id);
+  input.select();
+  document.execCommand("copy");
+  alert("Copied to clipboard!");
+}
+function openScript(btn) {
+  document.getElementById("jsUrl").value  = decodeURIComponent(btn.dataset.js  || "");
+  document.getElementById("cssUrl").value = decodeURIComponent(btn.dataset.css || "");
+  document.getElementById("scriptModal").style.display = "flex";
+}
+function closeModal() {
+  document.getElementById("scriptModal").style.display = "none";
+}
+function copyText(id) {
+  const input = document.getElementById(id);
+  input.select();
+  document.execCommand("copy");
+  alert("Copied to clipboard!");
+}
+// ── Status toggle ────────────────────────────────────────────────────────────
+function confirmToggleStatus(btn) {
+  const agencyId   = btn.dataset.agencyId;
+  const agencyName = btn.dataset.agencyName;
+  const isActive   = btn.dataset.isActive === "true";
+  const newState   = !isActive;
+  const action = newState ? "restore access for" : "revoke access of";
+  document.getElementById("statusConfirmTitle").textContent = newState ? "Restore Access?" : "Revoke Access?";
+  document.getElementById("statusConfirmMsg").innerHTML =
+    `Are you sure you want to <strong>${action}</strong> <strong>${agencyName}</strong>?<br>
+     Their theme will be marked as <strong>${newState ? "Active" : "Deactivated"}</strong>.`;
+  document.getElementById("statusConfirmModal").style.display = "flex";
+  document.getElementById("statusConfirmYes").onclick = () => {
+    closeStatusModal();
+    doToggleStatus(btn, agencyId, agencyName, newState);
+  };
+}
+function closeStatusModal() {
+  document.getElementById("statusConfirmModal").style.display = "none";
+}
+async function doToggleStatus(btn, agencyId, agencyName, newIsActive) {
+  btn.disabled = true;
+  btn.textContent = "Saving…";
+  try {
+    const res = await fetch("/dashboard/toggle-status", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ agencyId, isActive: newIsActive })
+    });
+    if (!res.ok) throw new Error(await res.text());
+    // Update button UI without reloading the page
+    btn.dataset.isActive = String(newIsActive);
+    btn.textContent      = newIsActive ? "Active" : "Deactivated";
+    btn.className        = "status-toggle-btn " + (newIsActive ? "active" : "inactive");
+  } catch (err) {
+    console.error("Toggle failed:", err);
+    alert("Failed to update status. Please try again.");
+    // Revert button text
+    btn.textContent = btn.dataset.isActive === "true" ? "Active" : "Deactivated";
+  } finally {
+    btn.disabled = false;
+  }
+}
+</script>
+<!-- STATUS TOGGLE CONFIRMATION MODAL -->
+<div id="statusConfirmModal" class="modal">
+  <div class="modal-content" style="max-width:420px;text-align:center;">
+    <h2 id="statusConfirmTitle" style="margin-bottom:10px;">Confirm Action</h2>
+    <p id="statusConfirmMsg" style="color:#555;margin-bottom:24px;line-height:1.6;"></p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <button id="statusConfirmYes" style="padding:9px 28px;background:#dc3545;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:700;">Yes, Proceed</button>
+      <button onclick="closeStatusModal()" style="padding:9px 28px;background:#6c757d;color:#fff;border:none;border-radius:5px;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

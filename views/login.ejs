@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <div class="login-header">
+      <h2>Admin Login</h2>
+      <p>Sign in to access your dashboard</p>
+    </div>
+
+    <form method="POST" action="/login" class="login-form">
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required />
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required />
+      </div>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="error-box"><%= error %></div>
+      <% } %>
+
+      <button type="submit" class="login-btn">Login</button>
+
+    </form>
+
+  </div>
+</div>
+
+</body>
+</html>

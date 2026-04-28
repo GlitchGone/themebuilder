@@ -52,6 +52,133 @@ router.get("/_debug-test", (req, res) => {
   console.log("✅ Theme routes active");
   res.json({ ok: true });
 });
+router.get("/agencies", async (req, res) => {
+  try {
+    // Get all themes (for logo + status)
+    const themes = await Theme.find({})
+      .select("agencyId isActive themeData")
+      .lean();
+
+    if (!themes.length) {
+      return res.status(404).json({
+        message: "No agencies found"
+      });
+    }
+
+    const agencyIds = themes.map(theme => theme.agencyId);
+
+    // Get Agency Info (for agency name)
+    const agencyInfos = await AgencyInfo.find({
+      agencyId: { $in: agencyIds }
+    })
+      .select("agencyId agency_name")
+      .lean();
+
+    // Get User Scripts (for scripts + createdAt)
+    const userScripts = await UserScript.find({
+      agencyId: { $in: agencyIds }
+    })
+      .select("agencyId customJs customCss createdAt")
+      .lean();
+
+    // Create lookup maps
+    const agencyInfoMap = {};
+    agencyInfos.forEach(info => {
+      agencyInfoMap[info.agencyId] = info;
+    });
+
+    const userScriptMap = {};
+    userScripts.forEach(script => {
+      userScriptMap[script.agencyId] = script;
+    });
+
+    // Final formatted response
+    const response = themes.map(theme => ({
+      agencyId: theme.agencyId,
+
+      // Logo from Theme.themeData["--agency-logo"]
+      logo: theme.themeData?.["--agency-logo"] || null,
+
+      // Agency Name from AgencyInfo
+      agencyName: agencyInfoMap[theme.agencyId]?.agency_name || null,
+
+      // Created date from UserScript
+      createdAt: userScriptMap[theme.agencyId]?.createdAt || null,
+
+      // Status from Theme.isActive
+      status: theme.isActive ? "Active" : "Inactive",
+
+      // Scripts from UserScript
+      customJs: userScriptMap[theme.agencyId]?.customJs || null,
+      customCss: userScriptMap[theme.agencyId]?.customCss || null
+    }));
+
+    return res.status(200).json({
+      message: "Agency details fetched successfully",
+      total: response.length,
+      data: response
+    });
+
+  } catch (err) {
+    console.error("❌ Fetch agencies failed:", err.message);
+
+    return res.status(500).json({
+      message: "Failed to fetch agency details",
+      error: err.message
+    });
+  }
+});
+// Create Agency Info API
+
+router.post("/agency-info", async (req, res) => {
+  try {
+    const {
+      full_name,
+      fullAddress,
+      agency_name,
+      agencyId,
+      relationship_no
+    } = req.body;
+
+    // Validation
+    if (!agencyId) {
+      return res.status(400).json({
+        message: "agencyId is required"
+      });
+    }
+
+    // Prevent duplicate agency info for same agency
+    const existingAgency = await AgencyInfo.findOne({ agencyId });
+
+    if (existingAgency) {
+      return res.status(409).json({
+        message: "AgencyInfo already exists for this agencyId"
+      });
+    }
+
+    // Create AgencyInfo
+    const newAgencyInfo = await AgencyInfo.create({
+      full_name: full_name || null,
+      address: fullAddress || null,
+      agency_name: agency_name || null,
+      agencyId: agencyId,
+      relationship_no: relationship_no || null
+    });
+
+    return res.status(201).json({
+      message: "AgencyInfo created successfully",
+      data: newAgencyInfo
+    });
+
+  } catch (err) {
+    console.error("❌ Create AgencyInfo failed:", err.message);
+
+    return res.status(500).json({
+      message: "Failed to create AgencyInfo",
+      error: err.message
+    });
+  }
+});
 router.post("/addthemes", async (req, res) => {
   await connectDB();
   try {
