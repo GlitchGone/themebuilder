@@ -111,7 +111,7 @@ body {
 .modal-content {
   background: white;
   padding: 20px;
-  width: 400px;
+  width: 663px;
   border-radius: 10px;
 }
 
@@ -170,3 +170,90 @@ body {
 .logout-btn:hover {
   background: #b02a37;
 }
+
+.email-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.email-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.email-text {
+  flex: 1;
+  word-break: break-all;
+}
+
+.email-remove-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.email-remove-btn:hover { color: #991b1b; }
+
+.email-add-btn {
+  background: none;
+  border: 1px dashed #2563eb;
+  color: #2563eb;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.email-add-btn:hover { background: #eff6ff; }
+
+.email-add-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.email-add-input {
+  flex: 1;
+  padding: 4px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 12px;
+  min-width: 0;
+}
+
+.email-save-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.email-cancel-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.no-email { color: #9ca3af; }

@@ -59,19 +59,27 @@
           <td><%= a.relationshipNo %></td>
 
           <td>
-            <% if (a.emails.length === 0) { %>
-                —
-            <% } else if (a.emails.length === 1) { %>
-                <%= a.emails[0] %>
-            <% } else { %>
-                <select class="email-select">
-                <% a.emails.forEach(email => { %>
-                    <option><%= email %></option>
-                <% }) %>
-                </select>
-            <% } %>
-            </td>
-
+            <div class="email-manager"
+                data-agency-id="<%- a.agencyId %>"
+                data-agency-name="<%- a.agencyName %>"
+                data-emails="<%- encodeURIComponent(JSON.stringify(a.emails)) %>">
+              <% if (a.emails.length === 0) { %>
+                <span class="no-email">—</span>
+              <% } %>
+              <% a.emails.forEach(email => { %>
+                <div class="email-chip">
+                  <span class="email-text"><%= email %></span>
+                  <button class="email-remove-btn" onclick="confirmEmailChange(this, 'remove', '<%- email %>')" title="Remove">×</button>
+                </div>
+              <% }) %>
+              <button class="email-add-btn" onclick="showAddEmailInput(this)">+ Add</button>
+              <div class="email-add-row" style="display:none;">
+                <input type="email" class="email-add-input" placeholder="new@email.com" />
+                <button class="email-save-btn" onclick="confirmEmailChange(this, 'add', '')">Save</button>
+                <button class="email-cancel-btn" onclick="hideAddEmailInput(this)">Cancel</button>
+              </div>
+            </div>
+          </td>
           <td>
             <%= a.createdAt ? new Date(a.createdAt).toLocaleString() : "N/A" %>
           </td>
@@ -133,7 +141,17 @@
 
   </div>
 </div>
-
+<!-- EMAIL CHANGE CONFIRMATION MODAL -->
+<div id="emailConfirmModal" class="modal">
+  <div class="modal-content" style="max-width:420px;text-align:center;">
+    <h2 id="emailConfirmTitle" style="margin-bottom:10px;">Confirm</h2>
+    <p id="emailConfirmMsg" style="color:#555;margin-bottom:24px;line-height:1.6;"></p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <button id="emailConfirmYes" style="padding:9px 28px;background:#2563eb;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:700;">Yes, Save</button>
+      <button onclick="closeEmailModal()" style="padding:9px 28px;background:#6c757d;color:#fff;border:none;border-radius:5px;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
 <script>
 function openScript(btn) {
   document.getElementById("jsUrl").value  = decodeURIComponent(btn.dataset.js  || "");
@@ -206,6 +224,114 @@ async function doToggleStatus(btn, agencyId, agencyName, newIsActive) {
     btn.textContent = btn.dataset.isActive === "true" ? "Active" : "Deactivated";
   } finally {
     btn.disabled = false;
+  }
+}
+
+// ── Email management ─────────────────────────────────────────────────────────
+let pendingEmailChange = null;
+
+function getEmailManager(el) {
+  return el.closest(".email-manager");
+}
+
+function showAddEmailInput(btn) {
+  const manager = getEmailManager(btn);
+  manager.querySelector(".email-add-row").style.display = "flex";
+  manager.querySelector(".email-add-btn").style.display = "none";
+  manager.querySelector(".email-add-input").focus();
+}
+
+function hideAddEmailInput(btn) {
+  const manager = getEmailManager(btn);
+  manager.querySelector(".email-add-row").style.display = "none";
+  manager.querySelector(".email-add-btn").style.display = "inline-block";
+  manager.querySelector(".email-add-input").value = "";
+}
+
+function confirmEmailChange(btn, action, email) {
+  const manager = getEmailManager(btn);
+  const agencyId   = manager.dataset.agencyId;
+  const agencyName = manager.dataset.agencyName;
+
+  let targetEmail = email;
+  if (action === "add") {
+    targetEmail = manager.querySelector(".email-add-input").value.trim();
+    if (!targetEmail) { alert("Please enter a valid email."); return; }
+  }
+
+  const emails = JSON.parse(decodeURIComponent(manager.dataset.emails));
+
+  let newEmails;
+  let confirmMsg;
+  if (action === "remove") {
+    newEmails  = emails.filter(e => e !== targetEmail);
+    confirmMsg = `Remove <strong>${targetEmail}</strong> from <strong>${agencyName}</strong>?`;
+    document.getElementById("emailConfirmTitle").textContent = "Remove Email?";
+  } else {
+    if (emails.includes(targetEmail)) { alert("This email already exists."); return; }
+    newEmails  = [...emails, targetEmail];
+    confirmMsg = `Add <strong>${targetEmail}</strong> to <strong>${agencyName}</strong>?`;
+    document.getElementById("emailConfirmTitle").textContent = "Add Email?";
+  }
+
+  document.getElementById("emailConfirmMsg").innerHTML = confirmMsg;
+  document.getElementById("emailConfirmModal").style.display = "flex";
+
+  pendingEmailChange = { agencyId, newEmails, manager, action, targetEmail };
+
+  document.getElementById("emailConfirmYes").onclick = () => {
+    closeEmailModal();
+    doUpdateEmails();
+  };
+}
+
+function closeEmailModal() {
+  document.getElementById("emailConfirmModal").style.display = "none";
+}
+
+async function doUpdateEmails() {
+  if (!pendingEmailChange) return;
+  const { agencyId, newEmails, manager, action, targetEmail } = pendingEmailChange;
+  pendingEmailChange = null;
+
+  try {
+    const res = await fetch("/dashboard/update-emails", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ agencyId, emails: newEmails })
+    });
+    if (!res.ok) throw new Error(await res.text());
+
+    // Update UI without reload
+    manager.dataset.emails = encodeURIComponent(JSON.stringify(newEmails));
+
+    if (action === "remove") {
+      // Remove the chip from DOM
+      manager.querySelectorAll(".email-chip").forEach(chip => {
+        if (chip.querySelector(".email-text").textContent === targetEmail) {
+          chip.remove();
+        }
+      });
+      if (newEmails.length === 0) {
+        const noEmail = document.createElement("span");
+        noEmail.className = "no-email";
+        noEmail.textContent = "—";
+        manager.prepend(noEmail);
+      }
+    } else {
+      // Add new chip before the add button
+      manager.querySelector(".no-email")?.remove();
+      const chip = document.createElement("div");
+      chip.className = "email-chip";
+      chip.innerHTML = `<span class="email-text">${targetEmail}</span>
+        <button class="email-remove-btn" onclick="confirmEmailChange(this,'remove','${targetEmail}')" title="Remove">×</button>`;
+      manager.querySelector(".email-add-btn").before(chip);
+      hideAddEmailInput(manager.querySelector(".email-cancel-btn"));
+    }
+
+  } catch (err) {
+    console.error("Email update failed:", err);
+    alert("Failed to update emails. Please try again.");
   }
 }
 </script>

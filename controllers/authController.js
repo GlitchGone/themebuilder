@@ -8,7 +8,6 @@ exports.getLogin = (req, res) => {
 exports.postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(`[LOGIN ATTEMPT] email="${email}"`);
     const admin = await Admin.findOne({ email });
     if (!admin) {
       return res.render("login", { error: "Invalid email or password" });
@@ -18,7 +17,6 @@ exports.postLogin = async (req, res) => {
     if (!match) {
       return res.render("login", { error: "Invalid email or password" });
     }
-    console.log(`[LOGIN SUCCESS] email="${email}"`);
     req.session.admin = { id: admin._id, email: admin.email };
     req.session.save((err) => {
       if (err) console.error(err);
