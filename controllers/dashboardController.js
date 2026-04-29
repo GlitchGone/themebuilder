@@ -12,6 +12,7 @@ exports.getDashboard = async (req, res) => {
       .select("agencyId customJs customCss")
       .lean();
 
+      
     // ── Query the raw collection directly — bypasses all Mongoose schema issues ──
     const db = await mongoose.connection.asPromise().then(c => c.db);
     const rawThemes = await db
