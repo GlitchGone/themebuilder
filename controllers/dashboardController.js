@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const AgencyInfo = require("../models/AgencyInfo");
-const UserScript = require("../models/UserScript");
+const UserScript = require("../models/userScript");
+
 
 exports.getDashboard = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ exports.getDashboard = async (req, res) => {
       .select("agencyId customJs customCss")
       .lean();
 
-      
+
     // ── Query the raw collection directly — bypasses all Mongoose schema issues ──
     const db = await mongoose.connection.asPromise().then(c => c.db);
     const rawThemes = await db
