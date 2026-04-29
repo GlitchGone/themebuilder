@@ -13,17 +13,17 @@ exports.getDashboard = async (req, res) => {
       .lean();
 
     // ── Query the raw collection directly — bypasses all Mongoose schema issues ──
-    const db = mongoose.connection.db;
+    const db = await mongoose.connection.asPromise().then(c => c.db);
     const rawThemes = await db
       .collection("userThemes")      // exact MongoDB collection name
       .find({})
       .project({ agencyId: 1, email: 1, themeData: 1, isActive: 1 })
       .toArray();
 
-    console.log(`[RAW] userThemes documents: ${rawThemes.length}`);
-    if (rawThemes.length > 0) {
-      console.log(`[RAW] Sample agencyIds:`, rawThemes.slice(0, 3).map(t => t.agencyId));
-    }
+    // console.log(`[RAW] userThemes documents: ${rawThemes.length}`);
+    // if (rawThemes.length > 0) {
+    //   console.log(`[RAW] Sample agencyIds:`, rawThemes.slice(0, 3).map(t => t.agencyId));
+    // }
 
     const normalizeId = (id) => (id ? String(id).trim() : "");
 
@@ -51,7 +51,7 @@ exports.getDashboard = async (req, res) => {
       if (key) scriptMap[key] = s;
     });
 
-    console.log(`[MAP] themeMap keys: ${Object.keys(themeMap).join(", ")}`);
+    // console.log(`[MAP] themeMap keys: ${Object.keys(themeMap).join(", ")}`);
 
     const agencies = agencyInfos.map(info => {
       const id     = normalizeId(info.agencyId);
@@ -59,7 +59,7 @@ exports.getDashboard = async (req, res) => {
       const script = scriptMap[id] || null;
 
       if (!theme) {
-        console.warn(`[MISS] No theme for agencyId="${id}"`);
+        // console.warn(`[MISS] No theme for agencyId="${id}"`);
       }
 
       const emailRaw = theme?.email;

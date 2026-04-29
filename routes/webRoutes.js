@@ -15,7 +15,7 @@ router.patch("/dashboard/toggle-status", async (req, res) => {
     const { agencyId, isActive } = req.body;
     if (!agencyId) return res.status(400).json({ error: "agencyId required" });
 
-    const db = mongoose.connection.db;
+    const db = await mongoose.connection.asPromise().then(c => c.db);
     const result = await db.collection("userThemes").updateOne(
       { agencyId: String(agencyId).trim() },
       { $set: { isActive: Boolean(isActive) } }
