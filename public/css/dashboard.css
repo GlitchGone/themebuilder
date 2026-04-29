@@ -145,3 +145,28 @@ body {
 .status-toggle-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .status-toggle-btn.active   { background: #28a745; color: #fff; }
 .status-toggle-btn.inactive { background: #dc3545; color: #fff; }
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.topbar h1 {
+  margin: 0;
+}
+
+.logout-btn {
+  padding: 8px 20px;
+  background: #dc3545;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #b02a37;
+}

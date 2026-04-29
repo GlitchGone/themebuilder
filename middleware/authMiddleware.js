@@ -18,8 +18,15 @@ const protect = (req, res, next) => {
   }
 };
 
+// const isAuthenticated = (req, res, next) => {
+//   if (req.session && req.session.token) {
+//     return next();
+//   }
+//   res.redirect("/login");
+// };
 const isAuthenticated = (req, res, next) => {
-  if (req.session && req.session.token) {
+  res.set("Cache-Control", "no-store");  // ← add this line
+  if (req.session && req.session.admin) {
     return next();
   }
   res.redirect("/login");

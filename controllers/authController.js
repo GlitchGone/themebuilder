@@ -1,4 +1,5 @@
-const axios = require("axios");
+const Admin = require("../models/Admin");
+const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res) => {
   res.render("login", { error: null });
@@ -7,26 +8,29 @@ exports.getLogin = (req, res) => {
 exports.postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(`[LOGIN ATTEMPT] email="${email}"`);
+    const admin = await Admin.findOne({ email });
+    if (!admin) {
+      return res.render("login", { error: "Invalid email or password" });
+    }
 
-    const response = await axios.post("https://themebuilder-six.vercel.app/admin/login", {
-      email,
-      password
+    const match = await bcrypt.compare(password, admin.password);
+    if (!match) {
+      return res.render("login", { error: "Invalid email or password" });
+    }
+    console.log(`[LOGIN SUCCESS] email="${email}"`);
+    req.session.admin = { id: admin._id, email: admin.email };
+    req.session.save((err) => {
+      if (err) console.error(err);
+      res.redirect("/dashboard");
     });
-
-    const { token, admin } = response.data;
-
-    // ✅ Store in session
-    req.session.token = token;
-    req.session.admin = admin;
-
-    res.redirect("/dashboard");
 
   } catch (err) {
-    return res.render("login", {
-      error: err.response?.data?.message || "Login failed"
-    });
+    console.error(err);
+    return res.render("login", { error: "Login failed" });
   }
 };
+
 exports.logout = (req, res) => {
   req.session.destroy(() => {
     res.redirect("/login");
