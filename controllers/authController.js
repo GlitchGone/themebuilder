@@ -1,5 +1,6 @@
 const Admin = require("../models/Admin");
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
 
 exports.getLogin = (req, res) => {
   res.render("login", { error: null });
@@ -8,6 +9,9 @@ exports.getLogin = (req, res) => {
 exports.postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    await mongoose.connection.asPromise();  // ← wait for DB connection
+
     const admin = await Admin.findOne({ email });
     if (!admin) {
       return res.render("login", { error: "Invalid email or password" });
@@ -17,6 +21,7 @@ exports.postLogin = async (req, res) => {
     if (!match) {
       return res.render("login", { error: "Invalid email or password" });
     }
+
     req.session.admin = { id: admin._id, email: admin.email };
     req.session.save((err) => {
       if (err) console.error(err);
