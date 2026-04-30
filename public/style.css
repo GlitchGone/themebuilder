@@ -3528,7 +3528,7 @@ input[type="button"],
 input[type="submit"],
 .clickable,
 [role="button"] {
-  cursor: var(--custom-pointer),auto !important;
+  cursor: var(--custom-pointer) !important;
 }
 /* Common icon style for <i> tags */
 .tb-sidebar-icon {
