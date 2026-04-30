@@ -422,7 +422,7 @@ button {
   width: var(--sidebar-menu-width) !important;
   height: var(--sidebar-menu-height) !important;
   font-size: var(--sidebar-menu-font-size) !important;
-  cursor: var(--custom-pointer), pointer !important;
+  cursor: var(--custom-pointer) !important;
   margin: 0 auto !important;
 }
 
@@ -2519,7 +2519,7 @@ button:active {
 
 /* quick actions */
 .container-fluid > .hl_header--controls .quick-actions {
-  cursor: var(--custom-pointer), pointer !important;
+  cursor: var(--custom-pointer) !important;
   padding: 10px;
   border-radius: 8px;
   background: var(--header-icon-bg) !important;
@@ -2583,7 +2583,7 @@ button:active {
 }
 
 .hl_header--controls .global-search {
-  cursor: var(--custom-pointer), pointer !important;
+  cursor: var(--custom-pointer) !important;
   border-radius: 8px;
   background: var(--header-icon-bg) !important;
   background-image: var(--header-icon-bg-gradient) !important;
@@ -3517,7 +3517,7 @@ nav.flex-1.w-full a {
   12.5%,62.5% {transform: translate(var(--s,15px))}
 }
 body {
-  cursor: var(--custom-cursor), auto !important;
+  cursor: var(--custom-cursor) !important;
 }
 
 
@@ -3528,7 +3528,7 @@ input[type="button"],
 input[type="submit"],
 .clickable,
 [role="button"] {
-  cursor: var(--custom-pointer), pointer !important;
+  cursor: var(--custom-pointer) !important;
 }
 /* Common icon style for <i> tags */
 .tb-sidebar-icon {
