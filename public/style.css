@@ -2137,6 +2137,7 @@ body textarea:focus {
 /* Location switcher  start */
 
 #sidebar-v2 #location-switcher-sidbar-v2 {
+  cursor: var(--custom-pointer) !important;
   background: var(--second-color) !important;
   max-width: 200px !important;
   margin: 0 auto !important;
