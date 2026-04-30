@@ -422,7 +422,7 @@ button {
   width: var(--sidebar-menu-width) !important;
   height: var(--sidebar-menu-height) !important;
   font-size: var(--sidebar-menu-font-size) !important;
-  cursor: var(--custom-pointer) !important;
+  /* cursor: var(--custom-pointer) !important; */
   margin: 0 auto !important;
 }
 
