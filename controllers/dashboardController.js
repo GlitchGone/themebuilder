@@ -19,7 +19,7 @@ exports.getDashboard = async (req, res) => {
     const rawThemes = await db
       .collection("userThemes")      // exact MongoDB collection name
       .find({})
-      .project({ agencyId: 1, email: 1, themeData: 1, isActive: 1 })
+      .project({ agencyId: 1, email: 1, themeData: 1, isActive: 1, updatedAt: 1 }) // only needed fields
       .toArray();
 
     // console.log(`[RAW] userThemes documents: ${rawThemes.length}`);
@@ -78,6 +78,7 @@ exports.getDashboard = async (req, res) => {
         logo:           extractLogo(theme?.themeData),
         emails,
         isActive:       theme?.isActive ?? null,
+        updatedAt:      theme?.updatedAt ?? null,
         customJs:       script?.customJs  || "",
         customCss:      script?.customCss || "",
       };

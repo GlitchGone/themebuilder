@@ -34,6 +34,7 @@
           <th>Relationship #</th>
           <th>Email</th>
           <th>Created At</th>
+          <th>Updated At</th>
           <th>Status</th>
           <th>Script</th>
         </tr>
@@ -83,6 +84,10 @@
           </td>
           <td>
             <%= a.createdAt ? new Date(a.createdAt).toLocaleString() : "N/A" %>
+          </td>
+
+          <td>
+            <%= a.updatedAt ? new Date(a.updatedAt).toLocaleString() : "N/A" %>
           </td>
 
           <td>
